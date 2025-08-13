@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import StyledComponentsRegistry from '@/lib/registry';
 import './globals.css';
 import type { Metadata } from 'next';
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <body>
-        <Layout>{children}</Layout>
+        <StyledComponentsRegistry>
+          <Layout>{children}</Layout>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

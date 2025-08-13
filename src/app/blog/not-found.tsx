@@ -1,84 +1,79 @@
 import Link from 'next/link';
 import { Search, Home, ArrowLeft } from 'lucide-react';
-import {
-  Container,
-  Content,
-  IconContainer,
-  IconWrapper,
-  ErrorCode,
-  ErrorTitle,
-  ErrorDescription,
-  ActionButtons,
-  ActionButton,
-  SuggestionsSection,
-  SuggestionsTitle,
-  SuggestionsGrid,
-  SuggestionLink,
-  SuggestionTitle,
-  SuggestionDescription
-} from './styles';
 
 export default function BlogNotFound() {
   return (
-    <Container>
-      <Content>
-        <IconContainer>
-          <IconWrapper>
-            <Search />
-          </IconWrapper>
-        </IconContainer>
+    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="max-w-2xl text-center bg-white p-12 rounded-2xl shadow-2xl">
+        <div className="mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full text-slate-500 mb-6">
+            <Search className="w-8 h-8" />
+          </div>
+        </div>
         
-        <ErrorCode>
+        <div className="text-6xl font-bold text-red-500 mb-4 leading-none">
           404
-        </ErrorCode>
+        </div>
         
-        <ErrorTitle>
+        <h1 className="text-3xl font-semibold text-slate-800 mb-4">
           Článok nenájdený
-        </ErrorTitle>
+        </h1>
         
-        <ErrorDescription>
+        <p className="text-lg text-slate-600 mb-8 max-w-md mx-auto leading-relaxed">
           Bohužiaľ, článok ktorý hľadáte neexistuje alebo bol presunutý. 
           Skúste sa vrátiť na hlavnú stránku blogu alebo použiť vyhľadávanie.
-        </ErrorDescription>
+        </p>
 
-        <ActionButtons>
-          <ActionButton href="/blog" className="primary">
-            <ArrowLeft />
+        <div className="flex gap-4 justify-center mb-12 flex-wrap">
+          <Link 
+            href="/blog" 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-all duration-200 hover:-translate-y-1"
+          >
+            <ArrowLeft className="w-4 h-4" />
             Späť na blog
-          </ActionButton>
+          </Link>
           
-          <ActionButton href="/" className="secondary">
-            <Home />
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-600 rounded-lg font-medium hover:bg-slate-200 transition-all duration-200 hover:-translate-y-1"
+          >
+            <Home className="w-4 h-4" />
             Domov
-          </ActionButton>
-        </ActionButtons>
+          </Link>
+        </div>
 
-        <SuggestionsSection>
-          <SuggestionsTitle>
+        <div className="border-t border-slate-200 pt-8">
+          <h2 className="text-xl font-semibold text-slate-800 mb-6">
             Možno vás zaujme
-          </SuggestionsTitle>
+          </h2>
           
-          <SuggestionsGrid>
-            <SuggestionLink href="/blog/ako-zacat-investovat-s-malym-kapitalom">
-              <SuggestionTitle>
+          <div className="grid gap-4 max-w-md mx-auto">
+            <Link 
+              href="/blog/ako-zacat-investovat-s-malym-kapitalom"
+              className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200 hover:-translate-y-1"
+            >
+              <h3 className="text-base font-semibold text-slate-800 mb-2">
                 Ako začať investovať s malým kapitálom
-              </SuggestionTitle>
-              <SuggestionDescription>
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Praktický návod pre začiatočníkov
-              </SuggestionDescription>
-            </SuggestionLink>
+              </p>
+            </Link>
             
-            <SuggestionLink href="/blog/financna-nezavislost-myty-a-realita">
-              <SuggestionTitle>
+            <Link 
+              href="/blog/financna-nezavislost-myty-a-realita"
+              className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200 hover:-translate-y-1"
+            >
+              <h3 className="text-base font-semibold text-slate-800 mb-2">
                 Finančná nezávislosť: Mýty a realita
-              </SuggestionTitle>
-              <SuggestionDescription>
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Rozbíjame najčastejšie mýty
-              </SuggestionDescription>
-            </SuggestionLink>
-          </SuggestionsGrid>
-        </SuggestionsSection>
-      </Content>
-    </Container>
+              </p>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 } 

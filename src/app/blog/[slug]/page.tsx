@@ -5,13 +5,14 @@ import RelatedPosts from '@/components/UI/Blog/RelatedPosts';
 import { getBlogPost, getRelatedPosts } from '@/lib/blog';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
   
   if (!post) {
     return {
@@ -35,13 +36,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
   
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = await getRelatedPosts(params.slug, post.category, post.tags);
+  const relatedPosts = await getRelatedPosts(slug, post.category, post.tags);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">

@@ -2,23 +2,16 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogPostsByTag } from '@/lib/blog';
 import BlogGrid from '@/components/UI/Blog/BlogGrid';
-import {
-  Container,
-  HeroSection,
-  HeroContent,
-  HeroTitle,
-  HeroSubtitle,
-  ContentSection
-} from './styles';
 
 interface TagPageProps {
-  params: {
+  params: Promise<{
     tag: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
-  const posts = await getBlogPostsByTag(params.tag);
+  const { tag } = await params;
+  const posts = await getBlogPostsByTag(tag);
   
   if (posts.length === 0) {
     return {
@@ -26,7 +19,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     };
   }
 
-  const tagName = decodeURIComponent(params.tag);
+  const tagName = decodeURIComponent(tag);
 
   return {
     title: `Články s tagom "${tagName}" | Raft Blog`,
@@ -41,31 +34,32 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
 }
 
 export default async function TagPage({ params }: TagPageProps) {
-  const posts = await getBlogPostsByTag(params.tag);
-  const tagName = decodeURIComponent(params.tag);
+  const { tag } = await params;
+  const posts = await getBlogPostsByTag(tag);
+  const tagName = decodeURIComponent(tag);
   
   if (posts.length === 0) {
     notFound();
   }
 
   return (
-    <Container>
+    <main className="min-h-screen bg-slate-100">
       {/* Hero Section */}
-      <HeroSection>
-        <HeroContent>
-          <HeroTitle>
+      <section className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white py-20">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Tag: #{tagName}
-          </HeroTitle>
-          <HeroSubtitle>
+          </h1>
+          <p className="text-xl md:text-2xl text-emerald-200">
             {posts.length} článkov s tagom "{tagName}"
-          </HeroSubtitle>
-        </HeroContent>
-      </HeroSection>
+          </p>
+        </div>
+      </section>
       
       {/* Blog Grid */}
-      <ContentSection>
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <BlogGrid initialPosts={posts} showFilters={false} />
-      </ContentSection>
-    </Container>
+      </div>
+    </main>
   );
 } 
