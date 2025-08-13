@@ -8,16 +8,16 @@ import ic_copyright from '../../../../public/svgs/ic_copyright.svg';
 
 const linksArr = [
   {
-    title: 'About us',
-    links: ['Our Company', 'Careers', 'Press kits'],
+    title: 'O mne',
+    links: ['O mne', 'Kvalifikácia', 'Skúsenosti'],
   },
   {
-    title: 'Legal',
-    links: ['Terms of use', 'Privacy policy', 'About us'],
+    title: 'Terapia',
+    links: ['Čo je BCST', 'Priebeh sedenia', 'Účinky'],
   },
   {
-    title: 'About us',
-    links: ['Contact us', 'FAQ'],
+    title: 'Kontakt',
+    links: ['Rezervácia', 'FAQ', 'Cenník'],
   },
 ];
 
@@ -44,7 +44,7 @@ const Footer = () => {
     <Wrapper>
       <Inner>
         <FooterLogo>
-          <Image src={raft_footer_logo} alt="raft_footer_logo" />
+          <h2 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#333333' }}>Kraniosakrálna terapia</h2>
         </FooterLogo>
         <FooterMainContent>
           <FooterMiddle>
@@ -53,7 +53,7 @@ const Footer = () => {
                 <Image src={qr_code} alt="qr_code" />
               </QRImageCtn>
               <TextCtn>
-                <p>Scan to download App on the Playstore and Appstore.</p>
+                <p>Naskenujte pre kontakt a rezerváciu termínu.</p>
                 <IconCtn>
                   <Image src={ic_google_playstore} alt="playstore icon" />
                   <Image src={ic_baseline_apple} alt="apple icon" />
@@ -75,12 +75,12 @@ const Footer = () => {
           </FooterMiddle>
           <FooterBottom>
             <Translator>
-              <h3>English (United Kingdom)</h3>
+              <h3>Slovenský jazyk</h3>
               <Image src={ic_chevron_down} alt="chevron down" />
             </Translator>
             <CopyRight>
               <Image src={ic_copyright} alt="copyright svg" />
-              Raft Corp, LLC.
+              Kraniosakrálna terapia Bratislava
             </CopyRight>
           </FooterBottom>
         </FooterMainContent>

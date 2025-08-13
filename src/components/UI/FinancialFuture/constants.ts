@@ -2,56 +2,55 @@ import ic_money_send from '../../../../public/svgs/ic_money_send.svg';
 import ic_wallet_minus from '../../../../public/svgs/ic_wallet_minus.svg';
 export const cardsInfo = [
   {
-    title: 'Spend Better',
+    title: 'Ako prebieha sedenie',
     details:
-      'Set and achieve financial goals with ease, automate your savings, and watch your money grow without the stress.',
+      'Počas terapie ležíte pohodlne oblečení na lehátku. Terapeut jemne položí ruky na rôzne časti tela a sleduje jemné pohyby vášho organizmu.',
     icon: ic_money_send,
   },
   {
-    title: 'Invest Better',
+    title: 'Nejde o masáž',
     details:
-      'Set and achieve financial goals with ease, automate your savings, and watch your money grow without the stress.',
+      'Nejde o masáž ani manipuláciu – je to priestor, kde telo samo nachádza rovnováhu. Terapeut je tu ako sprievodca procesom.',
     icon: ic_wallet_minus,
   },
 ];
 
 export const stats = [
   {
+    number: '10+',
+    subtitle: 'rokov skúseností',
+  },
+  {
+    number: '1000+',
+    subtitle: 'spokojných klientov',
+  },
+  {
     number: '50+',
-    subtitle: 'cities',
+    subtitle: 'certifikácií',
   },
   {
-    number: '50,000+',
-    subtitle: 'transactions',
-  },
-  {
-    number: '3M+',
-    subtitle: 'users',
-  },
-  {
-    number: '5+',
-    subtitle: 'user ratings',
+    number: '5.0',
+    subtitle: 'hodnotenie klientov',
   },
 ];
 
 // For desktop
 export const desktopHeaderPhrase = [
-  'Confidently Shape Your',
-  'Financial Future',
+  'Čo je biodynamická',
+  'kraniosakrálna terapia',
 ];
 export const desktopParagraphPhrase = [
-  'At RAFT, we empower you to confidently shape your financial future. Our modern',
-  'approach simplifies saving and investing, making it easier than ever.',
+  'Biodynamická kraniosakrálna terapia je jemná dotyková metóda, ktorá podporuje',
+  'prirodzenú schopnosť tela liečiť sa.',
 ];
 
 // For mobile
 export const mobileHeaderPhrase = [
-  'Confidently Shape',
-  ' Your Financial Future',
+  'Čo je biodynamická',
+  'kraniosakrálna terapia',
 ];
 export const mobileParagraphPhrase = [
-  'At RAFT, we empower you to confidently shape',
-  'your financial future. Our modern approach',
-  'simplifies saving and investing, making it easier',
-  'than ever.',
+  'Biodynamická kraniosakrálna terapia je jemná',
+  'dotyková metóda, ktorá podporuje prirodzenú',
+  'schopnosť tela liečiť sa.',
 ];

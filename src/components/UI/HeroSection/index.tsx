@@ -6,9 +6,7 @@ import { GetStartedButton } from '@/components';
 import MaskText from '@/components/Common/MaskText';
 import { useIsMobile } from '../../../../libs/useIsMobile';
 import {
-  mobileParagraphPhrases,
   mobilePhrases,
-  paragraphPhrases,
   phrases,
 } from './constants';
 
@@ -17,20 +15,14 @@ const HeroSection = () => {
   return (
     <Wrapper>
       <Inner>
-        <Pill>
-          <span>Introducing Raft cards</span>
-          <Image src={ic_chevron_right} alt="chevron-right" />
-        </Pill>
         <HeroTextContainer>
           {isMobile ? (
             <>
               <MaskText phrases={mobilePhrases} tag="h1" />
-              <MaskText phrases={mobileParagraphPhrases} tag="p" />
             </>
           ) : (
             <>
               <MaskText phrases={phrases} tag="h1" />
-              <MaskText phrases={paragraphPhrases} tag="p" />
             </>
           )}
         </HeroTextContainer>

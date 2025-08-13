@@ -24,7 +24,13 @@ const Header = () => {
     <Wrapper>
       <Inner>
         <LogoContainer>
-          <Image src={raft_logo} alt="raft_logo" priority />
+          <Image 
+            src="/logo-kranio.svg" 
+            alt="Kranio Logo" 
+            width={100} 
+            height={100}
+            priority
+          />
           <BurgerMenu onClick={() => setIsOpen(!isOpen)}>
             <motion.div
               variants={menu}
@@ -36,12 +42,11 @@ const Header = () => {
         </LogoContainer>
         <Nav className={isOpen ? 'active' : ''}>
           {links.map((link, i) => (
-            <AnimatedLink key={i} title={link.linkTo} />
+            <AnimatedLink key={i} title={link.linkTo} url={link.url} />
           ))}
         </Nav>
         <CallToActions className={isOpen ? 'active' : ''}>
-          <AnimatedLink title="Login" />
-          <GetStartedButton padding="0.5rem 0.75rem" />
+          <GetStartedButton padding="12px 24px" />
         </CallToActions>
       </Inner>
     </Wrapper>

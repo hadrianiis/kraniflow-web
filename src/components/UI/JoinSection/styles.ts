@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
   margin-top: 8.56rem;
-  background: var(--emerald);
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 `;
 
 export const Inner = styled.div`
@@ -22,7 +22,7 @@ export const Header = styled.header`
   max-width: 48.5rem;
   margin: 0 auto 6.5rem;
   h1 {
-    color: var(--Background, #070606);
+    color: var(--Background, #F1F1F1);
     font-size: 4.75rem;
     font-weight: 400;
   }
@@ -52,7 +52,7 @@ export const Testimonial = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  border-left: 2px solid var(--Background, #070606);
+  border-left: 2px solid var(--Background, #F1F1F1);
 
   @media (max-width: 768px) {
     border-left: none;
@@ -87,7 +87,7 @@ export const Name = styled.div`
   width: 100%;
 
   h3 {
-    color: var(--Background, #070606);
+    color: var(--Background, #F1F1F1);
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.5rem;

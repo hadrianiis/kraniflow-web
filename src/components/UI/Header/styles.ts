@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
   padding: 1rem 0;
-  border-bottom: 0.5px solid #3d3d3d;
 
   @media (max-width: 768px) {
     padding: 0.75rem 0;
@@ -39,7 +38,7 @@ export const BurgerMenu = styled.div`
 
     div {
       position: absolute;
-      background: var(--emerald);
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
       width: '250px';
       height: '300px';
       border-radius: 25px;

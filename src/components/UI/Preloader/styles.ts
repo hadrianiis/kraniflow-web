@@ -58,7 +58,7 @@ export const Inner = styled.div`
 `;
 
 export const SecondOverlay = styled.div`
-  background: var(--emerald);
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   position: fixed;
   height: 100vh;
   width: 100vw;

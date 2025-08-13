@@ -3,8 +3,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Raft',
-  description: 'Building the future of banking',
+  title: 'Kraniosakrálna terapia Bratislava – jemný dotyk pre zdravie a rovnováhu',
+  description: 'Objavte silu biodynamickej kraniosakrálnej terapie (BCST) v Bratislave. Uvoľnite stres, zmiernite bolesť a obnovte vnútorný pokoj.',
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="sk">
       <body>
         <Layout>{children}</Layout>
       </body>

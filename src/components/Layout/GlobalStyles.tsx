@@ -4,12 +4,14 @@ const styled = { createGlobalStyle };
 
 export const GlobalStyles = styled.createGlobalStyle`
   :root {
-    --Background: #070606;
+    --Background: #F1F1F1;
     --white: #fff;
     --light-gray: #dcdcdc;
-    --link-color: #bdbdbd;
+    --link-color: #333333;
     --green: #2b892e;
     --emerald: #48d64c;
+    --gradient-start: #F2BCBB;
+    --gradient-end: #469F9D;
   }
 
   * {
@@ -25,7 +27,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     overflow-x: hidden;
     font-family: 'SF Pro Display', sans-serif;
     background-color: var(--Background);
-    color: var(--white);
+    color: #333333;
     scroll-snap-type: y mandatory;
 
     &::-webkit-scrollbar {
@@ -37,7 +39,7 @@ export const GlobalStyles = styled.createGlobalStyle`
       }
 
       &-track {
-        background: var(--Background);
+        background: #F1F1F1;
       }
     }
   }

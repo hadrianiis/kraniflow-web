@@ -1,6 +1,5 @@
 'use client';
 import { styled } from 'styled-components';
-import grid_background from '../../../../public/images/offer_card_grid_1.png';
 
 export const Wrapper = styled.section``;
 
@@ -48,162 +47,134 @@ export const Header = styled.header`
   }
 `;
 
-export const ImageCtn = styled.div`
-  margin: 3rem auto 0;
+export const FeaturesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
   position: relative;
-  display: flex;
+  z-index: 10;
+  padding: 2.5rem 0;
+  max-width: 80rem;
+  margin: 0 auto;
 
-  &::after {
-    position: absolute;
-    content: '';
-    height: 13.4375rem;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, #131313 100%);
-    left: 0;
-    top: 50px;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  img {
-    width: 100%;
-    object-fit: contain;
-  }
-
-  @media (max-width: 768px) {
-    margin: 0.32rem auto 0;
-
-    &::after {
-      top: 30px;
-    }
-
-    img {
-      width: 90%;
-      margin: 0 auto;
-      object-fit: contain;
-    }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-export const TextCtn = styled.div`
-  padding: 2.5rem;
-  padding-top: 3.25rem;
-  max-width: 32.25rem;
+export const FeatureCard = styled.div<{ index: number }>`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: auto;
+  padding: 2.5rem 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-  h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1.75rem;
-  }
+  /* Border logic for grid layout */
+  ${({ index }) => {
+    if (index < 4) {
+      return `
+        @media (min-width: 1024px) {
+          border-bottom: 1px solid #e5e5e5;
+        }
+      `;
+    }
+    return '';
+  }}
 
-  p {
-    color: var(--link-color);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5rem;
-  }
+  ${({ index }) => {
+    if (index % 4 !== 3) {
+      return `
+        @media (min-width: 1024px) {
+          border-right: 1px solid #e5e5e5;
+        }
+      `;
+    }
+    return '';
+  }}
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-    h2 {
-      font-size: 1.5rem;
+  ${({ index }) => {
+    if (index % 4 === 0) {
+      return `
+        @media (min-width: 1024px) {
+          border-left: 1px solid #e5e5e5;
+        }
+      `;
+    }
+    return '';
+  }}
+
+  &:hover {
+    .hover-overlay {
+      opacity: 1;
+    }
+
+    .feature-title span {
+      transform: translateX(0.5rem);
     }
   }
 `;
 
-export const Offers = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+export const HoverOverlay = styled.div<{ index: number }>`
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 1;
 
-  &:last-child {
-    margin-top: 2rem;
-
-    div:first-child {
-      flex: 1;
-
-      ${ImageCtn} {
-        margin-top: 5.7rem;
-        flex: 2;
-      }
-
-      ${TextCtn} {
-        height: 1em;
-        flex: 1;
-      }
+  ${({ index }) => {
+    if (index < 4) {
+      return `
+        background: linear-gradient(to top, #f3f4f6, transparent);
+      `;
     }
+    return `
+      background: linear-gradient(to bottom, #f3f4f6, transparent);
+    `;
+  }}
+`;
 
-    div:last-child {
-      flex: 2;
+export const IconContainer = styled.div`
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
+  color: #6b7280;
+  font-size: 1.5rem;
+`;
 
-      ${ImageCtn} {
-        margin-top: 5.7rem;
-        flex: 2;
-        margin-left: auto;
-      }
+export const FeatureTitle = styled.div<{ index: number }>`
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
 
-      ${TextCtn} {
-        height: 1em;
-        flex: 1;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    &:last-child {
-      div:first-child {
-        flex: 1;
-
-        ${ImageCtn} {
-          margin-top: 4.78rem;
-          flex: 1;
-        }
-
-        ${TextCtn} {
-          margin-top: 4rem;
-        }
-      }
-
-      div:last-child {
-        flex: 1;
-
-        ${ImageCtn} {
-          margin-top: 5.7rem;
-          flex: 1;
-          margin-left: auto;
-        }
-
-        ${TextCtn} {
-          margin-top: 2rem;
-        }
-      }
-    }
+  span {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    color: #1f2937;
   }
 `;
 
-export const OfferCard = styled.div`
-  overflow: hidden;
-  height: 31.25rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--stroke, rgba(255, 255, 255, 0.04));
-  display: flex;
-  flex-direction: column;
-  background: url(${grid_background.src}) #131313 no-repeat;
+export const BorderIndicator = styled.div`
+  display: none;
+`;
 
-  &:first-child {
-    flex: 2;
-  }
-
-  &:nth-child(2) {
-    flex: 1;
-
-    ${ImageCtn} {
-      margin-left: 2.5rem;
-      width: 100%;
-    }
-  }
+export const FeatureDescription = styled.p`
+  font-size: 0.875rem;
+  color: #6b7280;
+  max-width: 20rem;
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
+  line-height: 1.5;
 `;

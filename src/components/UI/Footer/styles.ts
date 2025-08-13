@@ -115,7 +115,7 @@ export const LinksContainer = styled.ul`
   gap: 0.75rem;
 
   li {
-    color: #efefef;
+    color: #333333;
     font-size: 1rem;
     font-weight: 400;
     cursor: pointer;
@@ -126,7 +126,7 @@ export const LinksContainer = styled.ul`
       content: '';
       width: 100%;
       height: 1px;
-      background-color: #efefef;
+      background-color: #333333;
       left: 0;
       bottom: -5px;
       transform: scaleX(0);

@@ -3,8 +3,8 @@ type FAQItem = {
   answer: string;
 };
 
-export const desktopHeaderPhrase = ['Frequently asked', 'questions'];
-export const mobileHeaderPhrase = ['Frequently', 'asked', 'questions'];
+export const desktopHeaderPhrase = ['Často kladené', 'otázky'];
+export const mobileHeaderPhrase = ['Často', 'kladené', 'otázky'];
 export const animate = {
   initial: {
     y: '100%',
@@ -19,23 +19,23 @@ export const animate = {
 
 export const faqData: FAQItem[] = [
   {
-    question: 'How do I create an account with RAFT?',
+    question: 'Ako dlho trvá jedno sedenie?',
     answer:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'Jedno sedenie trvá približne 60-90 minút. Prvé sedenie je dlhšie, pretože sa zoznamujeme a zisťujeme vaše potreby.',
   },
   {
-    question: 'How does RAFT ensure the security of my financial data?',
+    question: 'Koľko sedení potrebujem?',
     answer:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      'Počet sedení závisí od vašich problémov a ako na ne telo reaguje. Odporúčam minimálne 3-5 sedení pre viditeľné výsledky.',
   },
   {
-    question: 'What types of transactions can I perform with RAFT?',
+    question: 'Je terapia vhodná pre tehotné ženy?',
     answer:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      'Áno, BCST je veľmi bezpečná a vhodná pre tehotné ženy. Pomáha zmierniť ťažkosti tehotenstva a pripraviť telo na pôrod.',
   },
   {
-    question: 'What benefits does RAFT offer for wealth management?',
+    question: 'Môžem chodiť na terapiu s deťmi?',
     answer:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      'Áno, kraniosakrálna terapia je vhodná aj pre deti. Je jemná a bezpečná, pomáha pri problémoch so spánkom, úzkosti a poruchách správania.',
   },
 ];

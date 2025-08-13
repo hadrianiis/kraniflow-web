@@ -55,9 +55,9 @@ const FinancialFreedom = () => {
             viewport={{ amount: 0.25, once: true }}
           >
             {isMobile ? (
-              <Image src={freedom_mobile_banner} alt="banner_img" fill />
+                              <Image src={freedom_mobile_banner} alt="Kraniosakrálna terapia - mobile" fill />
             ) : (
-              <Image src={financial_freedom_banner} alt="banner_img" fill />
+              <Image src={financial_freedom_banner} alt="Kraniosakrálna terapia - jemný dotyk" fill />
             )}
           </Div>
         </BannerCtn>

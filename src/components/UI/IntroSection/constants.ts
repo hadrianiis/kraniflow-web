@@ -3,39 +3,39 @@ import ic_identification from '../../../../public/svgs/ic_identification.svg';
 import ic_lock_closed from '../../../../public/svgs/ic_lock_closed.svg';
 
 // For desktop
-export const desktopHeaderPhrase = ["Introducing RAFT's Next-", 'Gen Cards'];
+export const desktopHeaderPhrase = ['Prečo vyskúšať', 'BCST'];
 export const desktopParagraphPhrase = [
-  " Discover RAFT's latest innovation – our new cards. Elevate your banking",
-  'experience with cutting-edge features, security, and unprecedented',
-  'convenience.',
+  'Biodynamická kraniosakrálna terapia je jemná a účinná metóda,',
+  'ktorá harmonizuje telo aj myseľ, pomáha zmierniť bolesti a stres',
+  'a podporuje prirodzené samoliečebné procesy organizmu.',
 ];
 
 // For mobile
-export const mobileHeaderPhrase = ["Introducing RAFT's", 'Next-Gen Cards'];
+export const mobileHeaderPhrase = ['Prečo vyskúšať', 'BCST'];
 export const mobileParagraphPhrase = [
-  " Discover RAFT's latest innovation – our new cards.",
-  ' Elevate your banking experience with cutting-edge',
-  'features, security, and unprecedented',
-  'convenience.',
+  'Biodynamická kraniosakrálna terapia je jemná',
+  'a účinná metóda, ktorá harmonizuje telo aj myseľ,',
+  'pomáha zmierniť bolesti a stres a podporuje',
+  'prirodzené samoliečebné procesy organizmu.',
 ];
 
 export const edges = [
   {
-    point: 'Contactless Technology',
+    point: 'Uvoľňuje fyzické aj emočné napätie',
     details:
-      'Our new cards come equipped with contactless technology, allowing you to make swift, secure payments with a simple tap.',
+      'Jemný dotyk pomáha uvoľniť svalové napätie a emočné bloky, čo vedie k pocitu hlbokého uvoľnenia.',
     icon: ic_document_duplicate,
   },
   {
-    point: 'Personalization',
+    point: 'Pomáha pri bolestiach a stresoch',
     details:
-      'Customize your card to reflect your unique style. Choose from a range of designs that suit your personality.',
+      'Účinná pri bolestiach hlavy, chrbta, kĺbov a pri znižovaní stresu a úzkosti.',
     icon: ic_identification,
   },
   {
-    point: 'Enhanced Security',
+    point: 'Vhodná pre všetkých',
     details:
-      'Your peace of mind is our priority. Our cards feature advanced security measures to protect your transactions and data.',
+      'Bezpečná pre dospelých, deti, tehotné ženy aj seniorov. Podporuje regeneráciu po zraneniach.',
     icon: ic_lock_closed,
   },
 ];

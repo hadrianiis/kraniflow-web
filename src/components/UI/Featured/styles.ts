@@ -2,7 +2,9 @@
 import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
-export const Wrapper = styled.section``;
+export const Wrapper = styled.section`
+  background-color: #f1f1f1;
+`;
 
 export const Inner = styled.div`
   display: flex;

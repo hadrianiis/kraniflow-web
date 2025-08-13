@@ -1,47 +1,69 @@
-import seamless_payments from '../../../../public/images/seamless_payments.png';
-import smart_investing from '../../../../public/images/smart_investing.png';
-import wealth_management from '../../../../public/images/wealth_management.png';
-import financial_planning from '../../../../public/images/financial_planning.png';
+import {
+  IconAdjustmentsBolt,
+  IconCloud,
+  IconCurrencyDollar,
+  IconEaseInOut,
+  IconHeart,
+  IconHelp,
+  IconRouteAltLeft,
+  IconTerminal2,
+} from "@tabler/icons-react";
+
 // For desktop
 export const desktopHeaderPhrases = [
-  'Elevate Your Financial',
-  'Journey with RAFT',
+  'Pri čom pomáha BCST',
 ];
 export const desktopParagraphPhrase = [
-  'RAFT offers a world of financial possibilities. From investments to payments,',
-  "we've got you covered. Join us and unlock your potential today.",
+  'Biodynamická kraniosakrálna terapia pracuje s pohybom mozgovomiechovej tekutiny',
+  'a uvoľňuje napätie vo svaloch, kostiach a nervovom systéme.',
 ];
 
 // For mobile
 export const mobileParagraphPhrase = [
-  'RAFT offers a world of financial possibilities. From',
-  "investments to payments, we've got you covered.",
-  'Join us and unlock your potential today.',
+  'Biodynamická kraniosakrálna terapia pracuje',
+  's pohybom mozgovomiechovej tekutiny a uvoľňuje',
+  'napätie vo svaloch, kostiach a nervovom systéme.',
 ];
 
-export const offers = [
+export const features = [
   {
-    illustration: seamless_payments,
-    title: 'Seamless Payments',
-    details:
-      'Enjoy secure, seamless transactions that make managing your money a breeze.',
+    title: "Chronické bolesti",
+    description: "Účinná pomoc pri chronických bolestiach, migrénach a napätí v šiji.",
+    iconName: "IconTerminal2",
   },
   {
-    illustration: smart_investing,
-    title: 'Smart Investing',
-    details:
-      'Grow your wealth confidently with our personalized investment solutions, tailored to your financial goals.',
+    title: "Stres a úzkosť",
+    description: "Pomáha zmierniť stres, úzkosť a vyčerpanie, zlepšuje spánok a koncentráciu.",
+    iconName: "IconEaseInOut",
   },
   {
-    illustration: wealth_management,
-    title: 'Wealth Management',
-    details:
-      'Make informed decisions for your financial future with our wealth management expertise.',
+    title: "Tehotenstvo a pôrod",
+    description: "Podpora v tehotenstve a po pôrode, jemná pomoc deťom a seniorom.",
+    iconName: "IconCurrencyDollar",
   },
   {
-    illustration: financial_planning,
-    title: 'Financial Planning',
-    details:
-      'Achieve your financial dreams with our comprehensive financial planning services, guiding you toward a secure future.',
+    title: "Regenerácia",
+    description: "Podporuje regeneráciu po zraneniach a operáciách, harmonizuje telo aj myseľ.",
+    iconName: "IconCloud",
+  },
+  {
+    title: "Nervový systém",
+    description: "Harmonizuje nervový systém a zlepšuje celkovú vitalitu organizmu.",
+    iconName: "IconRouteAltLeft",
+  },
+  {
+    title: "24/7 Podpora",
+    description: "Dostupná pomoc a konzultácie kedykoľvek potrebujete.",
+    iconName: "IconHelp",
+  },
+  {
+    title: "Prevencia",
+    description: "Pravidelné ošetrenie pre udržanie zdravia a vitality.",
+    iconName: "IconAdjustmentsBolt",
+  },
+  {
+    title: "Komplexná starostlivosť",
+    description: "Holistický prístup k zdraviu tela, mysle a ducha.",
+    iconName: "IconHeart",
   },
 ];

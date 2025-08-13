@@ -23,14 +23,18 @@ export const menu = {
 export const links = [
   {
     url: '/',
-    linkTo: 'Solutions',
+    linkTo: 'Domov',
   },
   {
-    url: '/',
-    linkTo: 'Learn',
+    url: '/about',
+    linkTo: 'O mne',
   },
   {
-    url: '/',
-    linkTo: 'About',
+    url: '/terapia',
+    linkTo: 'O terapii',
+  },
+  {
+    url: '/blog',
+    linkTo: 'Blog',
   },
 ];

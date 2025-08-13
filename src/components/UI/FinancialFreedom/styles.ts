@@ -115,12 +115,12 @@ export const Title = styled.div`
 
 export const BriefNote = styled.div`
   max-height: 54.75rem;
-  padding: 8.25rem 4.5rem;
-  background: var(--emerald);
+  padding: 6rem 4.5rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 
   p {
-    color: var(--Background, #070606);
-    font-size: 8rem;
+    color: var(--Background, #F1F1F1);
+    font-size: 6rem;
     font-weight: 400;
     max-width: 1440px;
   }

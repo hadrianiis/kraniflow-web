@@ -28,7 +28,10 @@ export const Header = styled.header`
   margin: 0 auto 7.38rem;
 
   h3 {
-    color: var(--emerald);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 1.125rem;
     font-weight: 500;
     text-transform: uppercase;

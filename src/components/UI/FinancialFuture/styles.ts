@@ -58,8 +58,8 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   height: 41.875rem;
   border-radius: 0.75rem;
-  border: 1px solid var(--stroke, rgba(255, 255, 255, 0.04));
-  background: #131313;
+  border: 1px solid var(--stroke, rgba(0, 0, 0, 0.1));
+  background: #ffffff;
 
   @media (max-width: 768px) {
     height: 27.5rem;

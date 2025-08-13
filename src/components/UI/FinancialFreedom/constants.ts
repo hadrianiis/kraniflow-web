@@ -4,53 +4,52 @@ import ic_circle_stack from '../../../../public/svgs/ic_circle_stack.svg';
 import ic_arrows_left_right from '../../../../public/svgs/ic_arrows_right_left.svg';
 
 // For desktop
-export const desktopHeaderPhrase = ['Your Financial Freedom,', 'Your Way'];
+export const desktopHeaderPhrase = ['O mne – váš', 'sprievodca k rovnováhe'];
 export const desktopParagraphPhrase = [
-  'We believe that managing your finances should be effortless and cost-effective.',
-  "That's why we offer you the freedom you deserve.",
+  'Volám sa [Tvoje meno] a mojou misiou je pomáhať ľuďom cítiť sa lepšie –',
+  'fyzicky, psychicky aj emočne.',
 ];
 export const desktopBriefNotePhrase = [
-  'Smart investments,',
-  'secure payments, and',
-  'expert guidance, all in',
-  'one place.',
+  'Biodynamická kraniosakrálna terapia je jemná a účinná metóda,',
+  'ktorá harmonizuje telo aj myseľ, pomáha zmierniť bolesti a stres',
+  'a podporuje prirodzené samoliečebné procesy organizmu.',
 ];
 
 // For mobile
-export const mobileHeaderPhrase = ['Your Financial', 'Freedom, Your Way'];
+export const mobileHeaderPhrase = ['O mne – váš', 'sprievodca k rovnováhe'];
 export const mobileParagraphPhrase = [
-  'We believe that managing your finances should be',
-  "effortless and cost-effective. That's why we offer",
-  ' you the freedom you deserve.',
+  'Volám sa [Tvoje meno] a mojou misiou je',
+  'pomáhať ľuďom cítiť sa lepšie –',
+  'fyzicky, psychicky aj emočne.',
 ];
 
 export const mobileBriefNotePhrase = [
-  'Smart',
-  ' investments,',
-  'secure',
-  ' payments,',
-  'and expert',
-  'guidance, all',
-  'in one place.',
+  'Kraniosakrálna',
+  'terapia ma oslovila',
+  'svojou jemnosťou',
+  'a hĺbkou.',
+  'Fascinuje ma, ako',
+  'dokáže nenápadný',
+  'dotyk otvoriť cestu.',
 ];
 
 export const edges = [
   {
-    point: 'No minimum balance fees',
+    point: 'Certifikovaná terapeutka',
     details:
-      'Say goodbye to minimum balance fees. Your account, your balance—no hidden charges',
+      'Som certifikovaná terapeutka biodynamickej kraniosakrálnej terapie a pravidelne sa vzdelávam.',
     icon: ic_banknotes,
   },
   {
-    point: 'No monthly fees',
+    point: 'Individuálny prístup',
     details:
-      'Bank with us without worrying about monthly fees. Keep more of your money where it belongs—in your account',
+      'Každé sedenie prispôsobujem individuálnym potrebám – s rešpektom k vášmu tempu a telu.',
     icon: ic_circle_stack,
   },
   {
-    point: 'No bank transfer fees',
+    point: 'Verím v malé kroky',
     details:
-      'Seamlessly transfer funds without the extra cost. Send and receive money with zero bank transfer fees.',
+      'Verím, že aj malé kroky vedú k veľkým zmenám. Každé sedenie je cestou k lepšiemu pocitu.',
     icon: ic_arrows_left_right,
   },
 ];

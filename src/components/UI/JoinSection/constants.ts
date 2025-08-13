@@ -12,34 +12,34 @@ export type Props = {
 export const testimonials = [
   {
     testimony:
-      "RAFT has transformed my approach to finance. Their smart investing options have helped me grow my wealth, and their user-friendly platform makes managing my money a breeze. I've never felt more confident about my financial future.",
-    person: 'Robert Fox',
+      "Kraniosakrálna terapia mi pomohla uvoľniť chronické napätie v chrbte. Po niekoľkých sedeniach som sa cítila oveľa lepšie a spím pokojnejšie. Terapeutka je veľmi jemná a profesionálna.",
+    person: 'Mária Nováková',
     avatar: robert_fox,
   },
   {
     testimony:
-      "I can't express how grateful I am to RAFT. Their wealth management services have been a game-changer for my family's financial security. The expert guidance and personalized strategies have given us peace of mind, knowing that our future is in capable hands.",
-    person: 'Cameron Williamson',
+      "Trpel som migrénami už roky a nič mi nepomohlo. Po BCST sedeniach sa moje bolesti hlavy výrazne zmenšili. Terapia je jemná a príjemná, odporúčam ju každému.",
+    person: 'Peter Kováč',
     avatar: cameron_williamson,
   },
   {
     testimony:
-      "RAFT's financial planning services have been a lifeline for me. I always struggled with managing my money, but their team crafted a tailored plan that addressed my goals and concerns. It's been a game-changer in achieving my financial dreams",
-    person: 'Esther Howard',
+      "Po pôrode som sa cítila vyčerpaná a bez energie. Kraniosakrálna terapia mi pomohla obnoviť rovnováhu a cítim sa oveľa lepšie. Je to skutočne zázračná metóda.",
+    person: 'Anna Svobodová',
     avatar: esther_howard,
   },
   {
     testimony:
-      "I can't express how grateful I am to RAFT. Their wealth management services have been a game-changer for my family's financial security. The expert guidance and personalized strategies have given us peace of mind, knowing that our future is in capable hands.",
-    person: 'Cameron Williamson',
+      "Ako senior som mal problémy s pohyblivosťou a spánkom. BCST mi pomohla zlepšiť kvalitu spánku a cítim sa oveľa energickejší. Terapeutka je veľmi trpezlivá.",
+    person: 'Ján Horváth',
     avatar: cameron_williamson,
   },
   {
     testimony:
-      "RAFT has transformed my approach to finance. Their smart investing options have helped me grow my wealth, and their user-friendly platform makes managing my money a breeze. I've never felt more confident about my financial future.",
-    person: 'Robert Fox',
+      "Stres z práce ma doslova zničil. Po kraniosakrálnej terapii sa cítim oveľa pokojnejší a vyrovnanejší. Je to investícia do môjho zdravia, ktorú neľutujem.",
+    person: 'Eva Králová',
     avatar: robert_fox,
   },
 ];
 
-export const desktopHeaderPhrase = ['Join over 3 million', 'members'];
+export const desktopHeaderPhrase = ['Rezervujte si termín', 'a doprajte si chvíľu'];

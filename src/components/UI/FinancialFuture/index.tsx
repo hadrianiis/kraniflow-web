@@ -52,7 +52,7 @@ const FinancialFuture = () => {
                 <MaskText phrases={new Array(info.details)} tag="p" />
               </TextCtn>
               <SVGCtn>
-                <Image src={info.icon} alt="icon" />
+                <Image src={info.icon} alt="Kraniosakrálna terapia ikona" />
               </SVGCtn>
             </Card>
           ))}
@@ -68,9 +68,9 @@ const FinancialFuture = () => {
       </Inner>
       <Banner>
         {isMobile ? (
-          <Image src={future_mobile_banner} alt="future_banner" fill />
+          <Image src={future_mobile_banner} alt="Kraniosakrálna terapia - mobile banner" fill />
         ) : (
-          <Image src={future_banner} alt="future_banner" fill />
+          <Image src={future_banner} alt="Kraniosakrálna terapia - banner" fill />
         )}
       </Banner>
     </Wrapper>
