@@ -10,7 +10,7 @@ import {
   Wrapper,
 } from './styles';
 import Image from 'next/image';
-import ic_chevron_down from '../../../../public/svgs/ic_chevron_down.svg';
+import { ChevronDown } from 'lucide-react';
 import { MaskText } from '@/components';
 import { useIsMobile } from '../../../../libs/useIsMobile';
 import {
@@ -61,7 +61,7 @@ const FAQ = () => {
               <Question onClick={() => toggleItem(index)} className="p-6">
                 <span className="flex-1">{item.question}</span>
                 <div className={`transition-transform duration-300 ${openItem === index ? 'rotate-180' : ''}`}>
-                  <Image src={ic_chevron_down} alt="cheveron down" width={20} height={20} />
+                  <ChevronDown size={20} color="currentColor" />
                 </div>
               </Question>
               <AnimatePresence>
