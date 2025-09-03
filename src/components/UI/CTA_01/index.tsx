@@ -23,7 +23,7 @@ const CTA_01 = () => {
               </Link>
             </SecondaryButton>
             <PrimaryButton>
-              <Link href="/rezervacia">
+              <Link href="/contact">
                 Rezervovať termín
               </Link>
             </PrimaryButton>
