@@ -9,9 +9,7 @@ const Preloader = ({
 }: {
   setComplete: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const word = ['K', 'r', 'a', 'n', 'i', 'o', 'f', 'l', 'o', 'w'];
-
-  const spans = useRef<(HTMLDivElement | null)[]>([]); // Create a ref to store the span elements
+  const textRef = useRef<HTMLDivElement>(null); // Create a ref for the text element
   const imageRef = useRef<HTMLDivElement>(null);
   const secondOverlayRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -27,12 +25,11 @@ const Preloader = ({
       y: '-100%', // Move the spans up
       ease: 'back.out(1.7)', // Easing function
     });
-    // Iterate through the span elements and animate them
-    tl.to(spans.current, {
-      y: '-100%', // Move the spans up
+    // Animate the text element
+    tl.to(textRef.current, {
+      y: '-100%', // Move the text up
       ease: 'back.out(1.7)', // Easing function
       duration: 1.4, // Animation duration
-      stagger: 0.05, // Stagger duration (0.2 seconds delay between each span)
     });
     // Animate both the wrapper and the second overlay almost at the same time
     tl.to([wrapperRef.current, secondOverlayRef.current], {
@@ -60,17 +57,8 @@ const Preloader = ({
     <>
       <Wrapper ref={wrapperRef}>
         <Inner>
-          <div>
-            {word.map((t, i) => (
-              <div
-                key={i}
-                ref={(element) => {
-                  spans.current[i] = element;
-                }}
-              >
-                {t}
-              </div>
-            ))}
+          <div ref={textRef}>
+            Kranioflow
           </div>
         </Inner>
       </Wrapper>
