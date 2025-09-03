@@ -1,7 +1,7 @@
 import { StaticImageData } from 'next/image';
 import robert_fox from '../../../../public/images/robert_fox.png';
-import cameron_williamson from '../../../../public/images/cameron_williamson.png';
-import esther_howard from '../../../../public/images/esther_howard.png';
+import cameron_williamson from '../../../../public/images/kika-photo.avif';
+import esther_howard from '../../../../public/images/kika1.avif';
 
 export type Props = {
   testimony: string;

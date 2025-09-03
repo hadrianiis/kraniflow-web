@@ -1,10 +1,8 @@
 'use client';
-import Image from 'next/image';
 import { Wrapper, Inner, Pill, HeroTextContainer } from './styles';
-import ic_chevron_right from '../../../../public/svgs/ic_chevron_right.svg';
 import { GetStartedButton } from '@/components';
 import MaskText from '@/components/Common/MaskText';
-import { useIsMobile } from '../../../../libs/useIsMobile';
+import { useIsMobile } from '@/lib/useIsMobile';
 import {
   mobilePhrases,
   phrases,
@@ -18,11 +16,11 @@ const HeroSection = () => {
         <HeroTextContainer>
           {isMobile ? (
             <>
-              <MaskText phrases={mobilePhrases} tag="h1" />
+              <MaskText phrases={mobilePhrases} tag="h1" align="center" />
             </>
           ) : (
             <>
-              <MaskText phrases={phrases} tag="h1" />
+              <MaskText phrases={phrases} tag="h1" align="center" />
             </>
           )}
         </HeroTextContainer>

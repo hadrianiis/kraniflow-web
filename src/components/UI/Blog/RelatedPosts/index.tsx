@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
-import { BlogPost } from '../BlogGrid/types';
+import { BlogPost } from '@/types/blog';
 import {
   Container,
   Header,
@@ -56,7 +56,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
             <PostCard>
               <ImageContainer>
                 <PostImage
-                  src={post.image}
+                  src={post.featuredImage}
                   alt={post.title}
                 />
                 <CategoryBadge>
@@ -72,7 +72,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                   </MetaItem>
                   <MetaItem>
                     <Clock />
-                    {post.readTime}
+                    {post.readTime} min
                   </MetaItem>
                 </PostMeta>
                 

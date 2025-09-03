@@ -1,10 +1,10 @@
 'use client';
 import { Body, LineMask } from './styles';
-import { useInView, motion } from 'framer-motion';
+import { useInView, motion, Variants } from 'framer-motion';
 import { useRef } from 'react';
 
-const MaskText = ({ phrases, tag }: { phrases: string[]; tag: string }) => {
-  const animate = {
+const MaskText = ({ phrases, tag, align = 'left' }: { phrases: string[]; tag: string; align?: 'left' | 'center' | 'right' }) => {
+  const animate: Variants = {
     initial: {
       y: '100%',
     },
@@ -16,10 +16,10 @@ const MaskText = ({ phrases, tag }: { phrases: string[]; tag: string }) => {
   const body = useRef(null);
   const isInView = useInView(body, { once: true, margin: '-10%', amount: 0.4 });
   return (
-    <Body ref={body}>
+    <Body ref={body} $align={align}>
       {phrases.map((phrase, index) => {
         return (
-          <LineMask key={index}>
+          <LineMask key={index} $align={align}>
             {tag === 'h1' ? (
               <motion.h1
                 variants={animate}

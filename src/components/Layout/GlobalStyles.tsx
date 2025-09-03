@@ -49,26 +49,6 @@ export const GlobalStyles = styled.createGlobalStyle`
     text-decoration: none;
   }
 
-  .parallax {
-    overflow: hidden;
-    margin: 0;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .parallax .scroller {
-    display: flex;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .scroller span {
-    display: block;
-    margin-right: 5rem;
-  }
-
   .not_complete {
     display: none;
   }

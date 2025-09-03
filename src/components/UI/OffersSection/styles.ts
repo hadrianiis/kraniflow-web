@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.section``;
 
 export const Inner = styled.div`
-  max-width: 1440px;
+  max-width: 80rem;
   width: 90%;
   margin: 12.38rem auto 0;
 

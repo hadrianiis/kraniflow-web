@@ -1,10 +1,12 @@
 'use client';
 import Image from 'next/image';
-import big_banner from '../../../../public/images/big_banner.png';
-import featured_mobile_banner from '../../../../public/images/featured_mobile_banner.png';
-import { Wrapper, Inner, ImageContainer, ParallaxImages, Div } from './styles';
+// Obrázky - použijeme cestu namiesto importu
+const big_banner = '/images/featured_img.avif';
+const featured_mobile_banner = '/images/featured_img1.avif';
+const featured_img1 = '/images/featured_img1.avif';
+import { Wrapper, Inner, ImageContainer, Div } from './styles';
 import RevealCover from '@/components/Common/RevealCover';
-import { useIsMobile } from '../../../../libs/useIsMobile';
+import { useIsMobile } from '@/lib/useIsMobile';
 export const imageVariants = {
   hidden: {
     scale: 1.6,
@@ -13,7 +15,6 @@ export const imageVariants = {
     scale: 1,
     transition: {
       duration: 1.4,
-      ease: [0.6, 0.05, -0.01, 0.9],
       delay: 0.2,
     },
   },
@@ -34,12 +35,12 @@ const Featured = () => {
           >
             {isMobile ? (
               <Image
-                src={featured_mobile_banner}
+                src={featured_img1}
                 alt="Kraniosakrálna terapia - jemný dotyk pre zdravie"
                 fill
               />
             ) : (
-              <Image src={big_banner} alt="Kraniosakrálna terapia Bratislava" fill />
+              <Image src={featured_img1} alt="Kraniosakrálna terapia Bratislava" fill />
             )}
           </Div>
         </ImageContainer>

@@ -11,7 +11,7 @@ export const Inner = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 6.25rem auto 0;
-  max-width: 1440px;
+  max-width: 80rem;
   width: 90%;
 
   h2 {
@@ -53,12 +53,6 @@ export const ImageContainer = styled.div`
       height: 23.75rem;
     }
   }
-`;
-
-export const ParallaxImages = styled.div`
-  position: relative;
-  max-width: 53.7rem;
-  margin: 3rem auto 0;
 `;
 
 export const Div = styled(motion.div)`

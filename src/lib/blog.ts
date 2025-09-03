@@ -1,96 +1,144 @@
-import { BlogPost } from '@/components/UI/Blog/BlogGrid/types';
+import { BlogPost } from '@/types/blog';
 
 // Mock data - v reálnej aplikácii by toto bolo z databázy alebo CMS
 const mockPosts: BlogPost[] = [
   {
-    id: 1,
-    title: 'Ako začať investovať s malým kapitálom',
-    excerpt: 'Praktický návod pre začiatočníkov, ktorí chcú začať investovať aj s obmedzenými finančnými prostriedkami.',
+    id: '1',
+    title: 'Úvod do kraniosakrálnej terapie',
+    excerpt: 'Objavte, ako kraniosakrálna terapia môže pomôcť s chronickými bolesťami, stresom a celkovým zdravím.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'Mgr. Peter Novák',
-    authorAvatar: '/images/robert_fox.png',
+    featuredImage: '/images/kranio-about1.avif',
     publishedAt: '2024-01-15',
-    readTime: '8 min',
-    category: 'Investovanie',
-    tags: ['začiatočníci', 'investovanie', 'finančné plánovanie'],
-    featured: true,
-    image: '/images/smart_investing.png',
-    slug: 'ako-zacat-investovat-s-malym-kapitalom'
+    updatedAt: '2024-01-15',
+    readTime: 8,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['kraniosakrálna terapia', 'úvod', 'zdravie'],
+    category: 'Základy terapie',
+    isPublished: true,
+    views: 1250,
+    likes: 45,
+    slug: 'uvod-do-kraniosakralnej-terapie'
   },
   {
-    id: 2,
-    title: 'Finančná nezávislosť: Mýty a realita',
-    excerpt: 'Rozbíjame najčastejšie mýty o finančnej nezávislosti a poskytujeme reálne kroky k jej dosiahnutiu.',
+    id: '2',
+    title: 'Ako kraniosakrálna terapia pomáha so stresom',
+    excerpt: 'Pozrite si, ako môže kraniosakrálna terapia účinne redukovať stres a napätie v tele.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'Ing. Jana Kováčová',
-    authorAvatar: '/images/esther_howard.png',
+    featuredImage: '/images/stress-cells.avif',
     publishedAt: '2024-01-12',
-    readTime: '12 min',
-    category: 'Finančná sloboda',
-    tags: ['finančná nezávislosť', 'plánovanie', 'ciele'],
-    featured: false,
-    image: '/images/financial_freedom_banner.png',
-    slug: 'financna-nezavislost-myty-a-realita'
+    updatedAt: '2024-01-12',
+    readTime: 12,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['stres', 'napätie', 'relaxácia'],
+    category: 'Stres a napätie',
+    isPublished: true,
+    views: 980,
+    likes: 32,
+    slug: 'ako-kraniosakralna-terapia-pomaha-so-stresom'
   },
   {
-    id: 3,
-    title: 'Dôchodkové sporenie v 21. storočí',
-    excerpt: 'Moderné prístupy k dôchodkovému sporeniu a ako si zabezpečiť pohodlný život v starobe.',
+    id: '3',
+    title: 'Kraniosakrálna terapia pre deti',
+    excerpt: 'Ako môže kraniosakrálna terapia pomôcť deťom s rôznymi zdravotnými problémami a vývojovými poruchami.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'PhDr. Martin Svoboda',
-    authorAvatar: '/images/cameron_williamson.png',
+    featuredImage: '/images/kika-spine.webp',
     publishedAt: '2024-01-10',
-    readTime: '10 min',
-    category: 'Dôchodkové sporenie',
-    tags: ['dôchodok', 'sporenie', 'budúcnosť'],
-    featured: false,
-    image: '/images/future_banner.png',
-    slug: 'dochodkove-sporenie-v-21-storoci'
+    updatedAt: '2024-01-10',
+    readTime: 10,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['deti', 'vývoj', 'zdravie'],
+    category: 'Terapia pre deti',
+    isPublished: true,
+    views: 756,
+    likes: 28,
+    slug: 'kraniosakralna-terapia-pre-deti'
   },
   {
-    id: 4,
-    title: 'Kryptomeny: Riziká a príležitosti',
-    excerpt: 'Analýza kryptomien z pohľadu dlhodobého investora a ako sa vyhnúť najčastejším chybám.',
+    id: '4',
+    title: 'Biodynamický prístup v kraniosakrálnej terapii',
+    excerpt: 'Pozrite si, ako biodynamický prístup môže priniesť hlbšie liečivé účinky v kraniosakrálnej terapii.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'Mgr. Peter Novák',
-    authorAvatar: '/images/robert_fox.png',
+    featuredImage: '/images/skeleton.avif',
     publishedAt: '2024-01-08',
-    readTime: '15 min',
-    category: 'Kryptomeny',
-    tags: ['kryptomeny', 'blockchain', 'investovanie'],
-    featured: false,
-    image: '/images/wealth_management.png',
-    slug: 'kryptomeny-rizika-a-prilezitosti'
+    updatedAt: '2024-01-08',
+    readTime: 15,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['biodynamika', 'liečenie', 'terapia'],
+    category: 'Biodynamický prístup',
+    isPublished: true,
+    views: 634,
+    likes: 19,
+    slug: 'biodynamicky-pristup-v-kraniosakralnej-terapii'
   },
   {
-    id: 5,
-    title: 'Daňové optimalizácie pre živnostníkov',
-    excerpt: 'Legálne spôsoby ako znížiť daňové zaťaženie a zvýšiť ziskovosť vašej živnosti.',
+    id: '5',
+    title: 'Kraniosakrálna terapia a migrény',
+    excerpt: 'Ako môže kraniosakrálna terapia pomôcť pri chronických bolestiach hlavy a migrénach.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'Ing. Jana Kováčová',
-    authorAvatar: '/images/esther_howard.png',
+    featuredImage: '/images/featured_img.avif',
     publishedAt: '2024-01-05',
-    readTime: '11 min',
-    category: 'Daňové poradenstvo',
-    tags: ['dane', 'živnosť', 'optimalizácia'],
-    featured: false,
-    image: '/images/financial_planning.png',
-    slug: 'danove-optimalizacie-pre-zivnostnikov'
+    updatedAt: '2024-01-05',
+    readTime: 11,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['migrény', 'bolesť hlavy', 'liečenie'],
+    category: 'Bolesť hlavy',
+    isPublished: true,
+    views: 892,
+    likes: 41,
+    slug: 'kraniosakralna-terapia-a-migreny'
   },
   {
-    id: 6,
-    title: 'Rodinné rozpočtovanie: Základy úspechu',
-    excerpt: 'Jednoduché a účinné metódy rodinného rozpočtovania, ktoré fungujú v praxi.',
+    id: '6',
+    title: 'Príprava na kraniosakrálnu terapiu',
+    excerpt: 'Praktické tipy, ako sa pripraviť na prvú kraniosakrálnu terapiu a čo očakávať.',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    author: 'PhDr. Martin Svoboda',
-    authorAvatar: '/images/cameron_williamson.png',
+    featuredImage: '/images/featured_img1.avif',
     publishedAt: '2024-01-03',
-    readTime: '9 min',
-    category: 'Rozpočtovanie',
-    tags: ['rozpočet', 'rodina', 'úspory'],
-    featured: false,
-    image: '/images/seamless_payments.png',
-    slug: 'rodinne-rozpoctovanie-zaklady-uspechu'
+    updatedAt: '2024-01-03',
+    readTime: 9,
+    author: {
+      id: '1',
+      name: 'Mgr. Kika Nováková',
+      avatar: '/images/kika-photo-kranio.avif',
+      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
+      role: 'Terapeutka'
+    },
+    tags: ['príprava', 'prvá návšteva', 'tipy'],
+    category: 'Príprava na terapiu',
+    isPublished: true,
+    views: 567,
+    likes: 23,
+    slug: 'priprava-na-kraniosakralnu-terapiu'
   }
 ];
 
@@ -148,7 +196,7 @@ export async function getBlogPostsByAuthor(author: string): Promise<BlogPost[]> 
   await new Promise(resolve => setTimeout(resolve, 100));
   
   return mockPosts.filter(post => 
-    post.author.toLowerCase().includes(author.toLowerCase())
+    post.author.name.toLowerCase().includes(author.toLowerCase())
   );
 }
 
@@ -164,4 +212,50 @@ export async function searchBlogPosts(query: string): Promise<BlogPost[]> {
     post.content.toLowerCase().includes(lowercaseQuery) ||
     post.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
   );
-} 
+}
+
+// Admin functions for CRUD operations
+export async function createBlogPost(postData: Omit<BlogPost, 'id' | 'publishedAt' | 'updatedAt' | 'views' | 'likes'>): Promise<BlogPost> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  const newPost: BlogPost = {
+    ...postData,
+    id: (mockPosts.length + 1).toString(),
+    publishedAt: new Date().toISOString().split('T')[0],
+    updatedAt: new Date().toISOString().split('T')[0],
+    views: 0,
+    likes: 0
+  };
+  
+  mockPosts.unshift(newPost);
+  return newPost;
+}
+
+export async function updateBlogPost(id: string, postData: Partial<BlogPost>): Promise<BlogPost | null> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  const postIndex = mockPosts.findIndex(post => post.id === id);
+  if (postIndex === -1) return null;
+  
+  const updatedPost = {
+    ...mockPosts[postIndex],
+    ...postData,
+    updatedAt: new Date().toISOString().split('T')[0]
+  };
+  
+  mockPosts[postIndex] = updatedPost;
+  return updatedPost;
+}
+
+export async function deleteBlogPost(id: string): Promise<boolean> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  const postIndex = mockPosts.findIndex(post => post.id === id);
+  if (postIndex === -1) return false;
+  
+  mockPosts.splice(postIndex, 1);
+  return true;
+}

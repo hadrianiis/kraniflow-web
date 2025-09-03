@@ -1,27 +1,27 @@
 import { Metadata } from 'next';
-import BlogHero from '@/components/UI/Blog/BlogHero';
-import BlogGrid from '@/components/UI/Blog/BlogGrid';
 import { Wrapper, Inner, ContentSection } from './styles';
+import { BlogGrid } from '@/components/UI/Blog';
+import { getBlogPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: 'Blog | Raft - Finančná sloboda a investovanie',
-  description: 'Objavte najnovšie články o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody. Expertné rady a tipy od našich finančných poradcov.',
-  keywords: 'blog, finančné poradenstvo, investovanie, finančná sloboda, finančné plánovanie',
+  title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+  description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness. Expertné rady a tipy od našich terapeutov.',
+  keywords: 'blog, kraniosakrálna terapia, zdravie, wellness, terapeutické rady',
   openGraph: {
-    title: 'Blog | Raft - Finančná sloboda a investovanie',
-    description: 'Objavte najnovšie články o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody.',
+    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
     type: 'website',
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
+  
   return (
     <Wrapper>
-      <BlogHero />
-      
       <ContentSection>
         <Inner>
-          <BlogGrid />
+          <BlogGrid initialPosts={posts} showFilters={false} />
         </Inner>
       </ContentSection>
     </Wrapper>

@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
-import StyledComponentsRegistry from '@/lib/registry';
+import StyledComponentsRegistry from '../../libs/registry';
+import { ToastProvider } from '@/components/UI/Toast';
 import './globals.css';
 import type { Metadata } from 'next';
 
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="sk">
       <body>
         <StyledComponentsRegistry>
-          <Layout>{children}</Layout>
+          <ToastProvider>
+            <Layout>{children}</Layout>
+          </ToastProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

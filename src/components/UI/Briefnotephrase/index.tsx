@@ -14,9 +14,9 @@ const Briefnotephrase = () => {
     <Wrapper>
       <BriefNote>
         {isMobile ? (
-          <MaskText phrases={mobileBriefNotePhrase} tag="p" />
+          <MaskText phrases={mobileBriefNotePhrase} tag="p" align="center" />
         ) : (
-          <MaskText phrases={desktopBriefNotePhrase} tag="p" />
+          <MaskText phrases={desktopBriefNotePhrase} tag="p" align="center" />
         )}
       </BriefNote>
     </Wrapper>

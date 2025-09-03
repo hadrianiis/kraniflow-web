@@ -8,6 +8,15 @@
   --Background: #F1F1F1;
   --gradient-start: #F2BCBB;
   --gradient-end: #469F9D;
+  
+  /* Text color variables */
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
+  --text-light: #a0aec0;
+  --text-dark: #2d3748;
+  --text-muted: #718096;
+  --text-accent: var(--gradient-start);
 }
 
 * {
@@ -23,7 +32,7 @@ body {
   overflow-x: hidden;
   font-family: 'SF Pro Display', sans-serif;
   background-color: var(--Background);
-  color: #333333;
+  color: var(--text-primary);
 }
 
 a {
@@ -39,3 +48,5 @@ a {
 .complete {
   display: block;
 }
+
+

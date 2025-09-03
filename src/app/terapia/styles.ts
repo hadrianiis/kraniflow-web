@@ -1,16 +1,34 @@
-'use client';
 import { styled } from 'styled-components';
+
+export const TerapiaPageWrapper = styled.div`
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/stress-cells.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
+  }
+`;
 
 export const Wrapper = styled.section`
   min-height: 100vh;
-  background: #f1f1f1;
+  background: var(--background);
 `;
 
 export const Inner = styled.div`
   max-width: 1440px;
   width: 90%;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 4rem 0;
 `;
 
 export const HeroSection = styled.div`
@@ -26,7 +44,7 @@ export const HeroSection = styled.div`
     font-size: 4.75rem;
     font-weight: 400;
     margin-bottom: 2rem;
-    background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -34,7 +52,7 @@ export const HeroSection = styled.div`
 
   p {
     font-size: 1.25rem;
-    color: #64748b;
+    color: var(--link-color);
     line-height: 1.75rem;
     margin-bottom: 3rem;
     max-width: 48rem;
@@ -64,15 +82,20 @@ export const ContentSection = styled.section`
     font-size: 3rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #1e293b;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   > p {
     font-size: 1.25rem;
-    color: #64748b;
+    color: var(--link-color);
     line-height: 1.75rem;
     max-width: 56rem;
     margin: 0 auto 4rem;
+    opacity: 0.9;
   }
 
   @media (max-width: 768px) {
@@ -105,14 +128,15 @@ export const TherapyGrid = styled.div`
 `;
 
 export const TherapyCard = styled.div<{ index: number }>`
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 2.5rem 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 
   &::before {
     content: '';
@@ -130,6 +154,7 @@ export const TherapyCard = styled.div<{ index: number }>`
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .icon-container {
@@ -142,13 +167,14 @@ export const TherapyCard = styled.div<{ index: number }>`
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1e293b;
+    color: var(--text-color);
   }
 
   p {
     font-size: 1rem;
-    color: #64748b;
+    color: var(--link-color);
     line-height: 1.6rem;
+    opacity: 0.9;
   }
 
   @media (max-width: 768px) {
@@ -179,46 +205,66 @@ export const BenefitsGrid = styled.div`
 `;
 
 export const BenefitItem = styled.div`
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 0.75rem;
   padding: 2rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border: 1px solid #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.08);
   }
 
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1e293b;
+    color: var(--text-color);
   }
 
   p {
     font-size: 1rem;
-    color: #64748b;
+    color: var(--link-color);
     line-height: 1.6rem;
+    opacity: 0.9;
   }
 `;
 
 // CTA section specific styles
 export const CTASection = styled(ContentSection)`
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
   color: white;
   margin: 8rem 0 4rem;
   padding: 4rem 2rem;
   border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+  }
 
   h2 {
     color: white;
+    position: relative;
+    z-index: 1;
   }
 
   > p {
-    color: #cbd5e1;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
   }
 
   @media (max-width: 768px) {

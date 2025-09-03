@@ -47,11 +47,11 @@ const OffersSection = () => {
     <Wrapper>
       <Inner>
         <Header>
-          <MaskText phrases={desktopHeaderPhrases} tag="h1" />
+          <MaskText phrases={desktopHeaderPhrases} tag="h1" align="center" />
           {isMobile ? (
-            <MaskText phrases={mobileParagraphPhrase} tag="p" />
+            <MaskText phrases={mobileParagraphPhrase} tag="p" align="center" />
           ) : (
-            <MaskText phrases={desktopParagraphPhrase} tag="p" />
+            <MaskText phrases={desktopParagraphPhrase} tag="p" align="center" />
           )}
         </Header>
         

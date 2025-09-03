@@ -7,7 +7,7 @@ export const Wrapper = styled.footer`
 
 export const Inner = styled.main`
   width: 90%;
-  max-width: 1440px;
+  max-width: 80rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

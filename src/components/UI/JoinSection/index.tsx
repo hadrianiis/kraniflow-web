@@ -46,7 +46,7 @@ const JoinSection = () => {
     <Wrapper>
       <Inner>
         <Header>
-          <MaskText phrases={desktopHeaderPhrase} tag="h1" />
+          <MaskText phrases={desktopHeaderPhrase} tag="h1" align="center" />
         </Header>
         <TestimonialWrapper>
           {mappedTestimonials.map((t, i) => (
@@ -54,11 +54,11 @@ const JoinSection = () => {
               <Testimony>{t.testimony}</Testimony>
               <UserInfo>
                 <Name>
-                  <MaskText phrases={new Array(t.person)} tag="h3" />
-                  <MaskText phrases={new Array('Spokojný klient')} tag="p" />
+                  <MaskText phrases={new Array(t.person)} tag="h3" align="left" />
+                  <MaskText phrases={new Array('Spokojný klient')} tag="p" align="left" />
                 </Name>
                 <Avatar>
-                  <Image src={t.avatar} alt="user avatar" />
+                  <Image src={t.avatar} alt="user avatar" width={60} height={60} />
                 </Avatar>
               </UserInfo>
             </Testimonial>
@@ -66,10 +66,10 @@ const JoinSection = () => {
         </TestimonialWrapper>
         <PaginationButtonContainer>
           <Previous onClick={previous}>
-            <Image src={ic_arrow_left} alt="arrow_left" />
+            <Image src={ic_arrow_left} alt="arrow_left" width={24} height={24} />
           </Previous>
           <Next onClick={next}>
-            <Image src={ic_arrow_right} alt="arrow_right" />
+            <Image src={ic_arrow_right} alt="arrow_right" width={24} height={24} />
           </Next>
         </PaginationButtonContainer>
       </Inner>

@@ -1,14 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Clock, User, Share2, Bookmark, Heart, MessageCircle } from 'lucide-react';
-import { BlogPost } from '../BlogGrid/types';
+import { Calendar, Clock, User, MessageCircle } from 'lucide-react';
+import { BlogPost } from '@/types/blog';
 import {
   Container,
   HeroSection,
-  BadgeContainer,
-  CategoryBadge,
-  FeaturedBadge,
   Title,
   Excerpt,
   MetaContainer,
@@ -19,8 +16,6 @@ import {
   AuthorLabel,
   MetaInfo,
   MetaItem,
-  ActionButtons,
-  ActionButton,
   FeaturedImageContainer,
   FeaturedImage,
   ContentContainer,
@@ -30,14 +25,7 @@ import {
   TagsSection,
   TagsTitle,
   TagsContainer,
-  TagLink,
-  AuthorBioSection,
-  AuthorBioContainer,
-  AuthorBioAvatar,
-  AuthorBioContent,
-  AuthorBioName,
-  AuthorBioDescription,
-  AuthorBioLink
+  TagLink
 } from './styles';
 
 interface BlogPostDetailProps {
@@ -54,17 +42,7 @@ export default function BlogPostDetail({ post }: BlogPostDetailProps) {
         transition={{ duration: 0.8 }}
       >
         <HeroSection>
-          {/* Category Badge */}
-          <BadgeContainer>
-            <CategoryBadge>
-              {post.category}
-            </CategoryBadge>
-            {post.featured && (
-              <FeaturedBadge>
-                Odporúčané
-              </FeaturedBadge>
-            )}
-          </BadgeContainer>
+
 
           {/* Title */}
           <Title>
@@ -80,11 +58,11 @@ export default function BlogPostDetail({ post }: BlogPostDetailProps) {
           <MetaContainer>
             <AuthorInfo>
               <AuthorAvatar
-                src={post.authorAvatar}
-                alt={post.author}
+                src={post.author.avatar}
+                alt={post.author.name}
               />
               <AuthorDetails>
-                <AuthorName>{post.author}</AuthorName>
+                <AuthorName>{post.author.name}</AuthorName>
                 <AuthorLabel>Autor článku</AuthorLabel>
               </AuthorDetails>
             </AuthorInfo>
@@ -100,26 +78,12 @@ export default function BlogPostDetail({ post }: BlogPostDetailProps) {
               </MetaItem>
               <MetaItem>
                 <Clock />
-                {post.readTime}
+                {post.readTime} min
               </MetaItem>
             </MetaInfo>
           </MetaContainer>
 
-          {/* Action Buttons */}
-          <ActionButtons>
-            <ActionButton $variant="primary">
-              <Heart />
-              Páči sa mi
-            </ActionButton>
-            <ActionButton $variant="secondary">
-              <Bookmark />
-              Uložiť
-            </ActionButton>
-            <ActionButton $variant="secondary">
-              <Share2 />
-              Zdieľať
-            </ActionButton>
-          </ActionButtons>
+
         </HeroSection>
       </motion.div>
 
@@ -131,7 +95,7 @@ export default function BlogPostDetail({ post }: BlogPostDetailProps) {
       >
         <FeaturedImageContainer>
           <FeaturedImage
-            src={post.image}
+            src={post.featuredImage}
             alt={post.title}
           />
         </FeaturedImageContainer>
@@ -198,28 +162,7 @@ export default function BlogPostDetail({ post }: BlogPostDetailProps) {
               </TagsContainer>
             </TagsSection>
 
-            {/* Author Bio */}
-            <AuthorBioSection>
-              <AuthorBioContainer>
-                <AuthorBioAvatar
-                  src={post.authorAvatar}
-                  alt={post.author}
-                />
-                <AuthorBioContent>
-                  <AuthorBioName>
-                    O autorovi: {post.author}
-                  </AuthorBioName>
-                  <AuthorBioDescription>
-                    Expert na finančné poradenstvo s viac ako 15-ročnými skúsenosťami. Špecializuje sa na investičné stratégie, dôchodkové plánovanie a daňové optimalizácie.
-                  </AuthorBioDescription>
-                  <AuthorBioLink
-                    href={`/blog/author/${post.author.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    Zobraziť všetky články autora →
-                  </AuthorBioLink>
-                </AuthorBioContent>
-              </AuthorBioContainer>
-            </AuthorBioSection>
+
           </ContentWrapper>
         </ContentContainer>
       </motion.div>

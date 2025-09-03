@@ -39,11 +39,15 @@ const FAQ = () => {
   return (
     <Wrapper>
       <Inner>
-        {isMobile ? (
-          <MaskText phrases={mobileHeaderPhrase} tag="h1" />
-        ) : (
-          <MaskText phrases={desktopHeaderPhrase} tag="h1" />
-        )}
+        <div className="text-center mb-16">
+          {isMobile ? (
+            <MaskText phrases={mobileHeaderPhrase} tag="h1" align="center" />
+          ) : (
+            <MaskText phrases={desktopHeaderPhrase} tag="h1" align="center" />
+          )}
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
         <Accordion ref={accordionRef}>
           {faqData.map((item, index) => (
             <AccordionItem
@@ -52,10 +56,13 @@ const FAQ = () => {
               animate={isInView ? 'open' : ''}
               custom={index}
               key={index}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
             >
-              <Question onClick={() => toggleItem(index)}>
-                {item.question}
-                <Image src={ic_chevron_down} alt="cheveron down" />
+              <Question onClick={() => toggleItem(index)} className="p-6">
+                <span className="flex-1">{item.question}</span>
+                <div className={`transition-transform duration-300 ${openItem === index ? 'rotate-180' : ''}`}>
+                  <Image src={ic_chevron_down} alt="cheveron down" width={20} height={20} />
+                </div>
               </Question>
               <AnimatePresence>
                 {openItem === index && (
@@ -63,6 +70,7 @@ const FAQ = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
+                    className="px-6 pb-6"
                   >
                     {item.answer}
                   </Answer>

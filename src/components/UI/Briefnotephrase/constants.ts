@@ -15,3 +15,20 @@ export const mobileBriefNotePhrase = [
   'dokáže nenápadný',
   'dotyk otvoriť cestu.',
 ];
+
+// For about page - desktop
+export const aboutDesktopBriefNotePhrase = [
+  'Biodynamická kraniosakrálna terapia je moja vášeň',
+  'a životné poslanie. Pomáham ľuďom nájsť rovnováhu,',
+  'zmierniť bolesti a obnoviť prirodzené zdravie.',
+];
+
+// For about page - mobile
+export const aboutMobileBriefNotePhrase = [
+  'Biodynamická kraniosakrálna',
+  'terapia je moja vášeň',
+  'a životné poslanie.',
+  'Pomáham ľuďom nájsť',
+  'rovnováhu, zmierniť bolesti',
+  'a obnoviť prirodzené zdravie.',
+];

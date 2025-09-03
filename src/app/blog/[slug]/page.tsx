@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import BlogPostDetail from '@/components/UI/Blog/BlogPostDetail';
 import RelatedPosts from '@/components/UI/Blog/RelatedPosts';
 import { getBlogPost, getRelatedPosts } from '@/lib/blog';
+import { Wrapper, Inner } from './styles';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -16,20 +17,20 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   
   if (!post) {
     return {
-      title: 'Článok nenájdený | Raft Blog',
+      title: 'Článok nenájdený | KranioFlow Blog',
     };
   }
 
   return {
-    title: `${post.title} | Raft Blog`,
+    title: `${post.title} | KranioFlow Blog`,
     description: post.excerpt,
     keywords: post.tags.join(', '),
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      images: [post.image],
-      authors: [post.author],
+      images: [post.featuredImage],
+      authors: [post.author.name],
       publishedTime: post.publishedAt,
     },
   };
@@ -46,14 +47,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const relatedPosts = await getRelatedPosts(slug, post.category, post.tags);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <BlogPostDetail post={post} />
-      
-      {relatedPosts.length > 0 && (
-        <div className="container mx-auto px-4 py-12">
+    <Wrapper>
+      <Inner>
+        <BlogPostDetail post={post} />
+        
+        {relatedPosts.length > 0 && (
           <RelatedPosts posts={relatedPosts} />
-        </div>
-      )}
-    </main>
+        )}
+      </Inner>
+    </Wrapper>
   );
 } 

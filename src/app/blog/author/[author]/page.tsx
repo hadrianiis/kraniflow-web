@@ -51,14 +51,14 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
         <div className="max-w-4xl mx-auto text-center px-4">
           <div className="mb-8">
             <img
-              src={authorInfo.authorAvatar}
-              alt={authorInfo.author}
+              src={authorInfo.author.avatar}
+              alt={authorInfo.author.name}
               className="w-32 h-32 rounded-full border-4 border-white/20 mx-auto mb-6"
             />
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            {authorInfo.author}
+            {authorInfo.author.name}
           </h1>
           
           <p className="text-xl md:text-2xl text-blue-200 mb-8">

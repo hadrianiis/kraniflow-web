@@ -1,9 +1,18 @@
 import Link from 'next/link';
 import { Search, Home, ArrowLeft } from 'lucide-react';
 
+const customStyles = {
+  backgroundColor: '#f1f1f1',
+  minHeight: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '2rem'
+};
+
 export default function BlogNotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-slate-100">
+    <div style={customStyles}>
       <div className="max-w-2xl text-center bg-white p-12 rounded-2xl shadow-2xl">
         <div className="mb-6">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full text-slate-500 mb-6">

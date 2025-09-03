@@ -120,6 +120,9 @@ export const BlogCard = styled.article`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-4px);
@@ -178,6 +181,9 @@ export const CardImage = styled.div`
 
 export const CardContent = styled.div`
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CardMeta = styled.div`
@@ -214,6 +220,7 @@ export const CardExcerpt = styled.p`
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.875rem;
+  flex: 1;
 `;
 
 export const CardTags = styled.div`
@@ -241,6 +248,7 @@ export const ReadMoreLink = styled.a`
   font-size: 0.875rem;
   text-decoration: none;
   transition: all 0.2s ease;
+  margin-top: auto;
 
   &:hover {
     color: #3a8a88;

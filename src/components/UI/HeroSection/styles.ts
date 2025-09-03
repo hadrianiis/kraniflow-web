@@ -11,7 +11,7 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 56rem;
+  max-width: 80rem;
   margin: 0 auto;
   text-align: center;
   background-position: top center;

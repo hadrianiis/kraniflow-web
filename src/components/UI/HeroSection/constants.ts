@@ -1,6 +1,6 @@
 // For desktop
-export const phrases = ['Kraniosakrálna terapia', ];
+export const phrases = ['Masáže a biodynamická ', 'kraniosakrálna terapia', ];
 
 
 // For mobile
-export const mobilePhrases = ['Kraniosakrálna terapia', ];
+export const mobilePhrases = ['Masáže a biodynamická kraniosakrálna terapia', ];

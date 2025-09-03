@@ -50,13 +50,13 @@ const Footer = () => {
           <FooterMiddle>
             <QRContainer>
               <QRImageCtn>
-                <Image src={qr_code} alt="qr_code" />
+                <Image src={qr_code} alt="qr_code" width={120} height={120} />
               </QRImageCtn>
               <TextCtn>
                 <p>Naskenujte pre kontakt a rezerváciu termínu.</p>
                 <IconCtn>
-                  <Image src={ic_google_playstore} alt="playstore icon" />
-                  <Image src={ic_baseline_apple} alt="apple icon" />
+                  <Image src={ic_google_playstore} alt="playstore icon" width={24} height={24} />
+                  <Image src={ic_baseline_apple} alt="apple icon" width={24} height={24} />
                 </IconCtn>
               </TextCtn>
             </QRContainer>
@@ -76,10 +76,10 @@ const Footer = () => {
           <FooterBottom>
             <Translator>
               <h3>Slovenský jazyk</h3>
-              <Image src={ic_chevron_down} alt="chevron down" />
+              <Image src={ic_chevron_down} alt="chevron down" width={16} height={16} />
             </Translator>
             <CopyRight>
-              <Image src={ic_copyright} alt="copyright svg" />
+              <Image src={ic_copyright} alt="copyright svg" width={16} height={16} />
               Kraniosakrálna terapia Bratislava
             </CopyRight>
           </FooterBottom>

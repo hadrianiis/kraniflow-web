@@ -2,22 +2,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Div, Word, Span, AbsoluteContainer } from './styles';
+import { Variants } from 'framer-motion';
 
-type AnimationProps = {
-  rest: {
-    y: number;
-  };
-  hover: {
-    y: number;
-    transition: {
-      duration: number;
-      ease: number[];
-      type: string;
-    };
-  };
-};
+type AnimationProps = Variants;
 
-const titleAnimation = {
+const titleAnimation: Variants = {
   rest: {
     transition: {
       staggerChildren: 0.005,
@@ -30,7 +19,7 @@ const titleAnimation = {
   },
 };
 
-const letterAnimation = {
+const letterAnimation: Variants = {
   rest: {
     y: 0,
   },
@@ -44,7 +33,7 @@ const letterAnimation = {
   },
 };
 
-const letterAnimationTwo = {
+const letterAnimationTwo: Variants = {
   rest: {
     y: 25,
   },
@@ -91,7 +80,7 @@ const AnimatedWord = ({
   isHovered,
 }: {
   title: string;
-  animations: AnimationProps;
+  animations: Variants;
   isHovered: boolean;
 }) => (
   <Word

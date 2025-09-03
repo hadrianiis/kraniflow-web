@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
-  max-width: 1200px;
+  max-width: 80rem;
   margin: 0 auto;
   padding: 3rem 1rem;
+  background-color: #f1f1f1;
   
   @media (min-width: 768px) {
     padding: 4rem 2rem;
@@ -69,10 +70,9 @@ export const MetaContainer = styled.div`
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background-color: white;
+  background-color: transparent;
   border-radius: 1rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #f3f4f6;
+  border: none;
   
   @media (min-width: 768px) {
     flex-direction: row;
@@ -178,11 +178,10 @@ export const ContentContainer = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  background-color: white;
+  background-color: transparent;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #f3f4f6;
+  border: none;
   
   @media (min-width: 768px) {
     padding: 3rem;

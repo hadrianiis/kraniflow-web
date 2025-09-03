@@ -2,7 +2,6 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
-  margin-top: 8.56rem;
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 `;
 
@@ -10,7 +9,7 @@ export const Inner = styled.div`
   display: flex;
   padding: 6.25rem 0;
   width: 90%;
-  max-width: 1440px;
+  max-width: 80rem;
   margin: 0 auto;
   flex-direction: column;
   justify-content: center;

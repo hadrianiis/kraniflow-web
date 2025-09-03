@@ -1,12 +1,11 @@
 import {
   FAQ,
   Featured,
-  FinancialFuture,
   HeroSection,
   IntroSection,
   JoinSection,
   OffersSection,
-  Briefnotephrase
+  Briefnotephrase,
 } from '@/components';
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Featured />
       <OffersSection />
       <Briefnotephrase />
-      <FinancialFuture />
       <IntroSection />
       <JoinSection />
       <FAQ />
