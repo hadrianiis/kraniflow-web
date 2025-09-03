@@ -36,6 +36,7 @@ export const Inner = styled.div`
     align-items: center;
 
     div {
+      font-family: 'MBF Taurian', sans-serif;
       font-weight: 600;
       font-size: 25em;
     }
