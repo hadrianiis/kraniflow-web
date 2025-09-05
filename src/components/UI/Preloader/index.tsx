@@ -1,7 +1,7 @@
 'use client';
 
 import { Wrapper, Inner, TextContainer, Letter, SecondOverlay } from './styles';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 const Preloader = ({
@@ -15,6 +15,10 @@ const Preloader = ({
 
   const text = 'Kranioflow';
   const letters = text.split('');
+
+  const setLetterRef = useCallback((index: number) => (el: HTMLSpanElement | null) => {
+    letterRefs.current[index] = el;
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -61,9 +65,7 @@ const Preloader = ({
             {letters.map((letter, index) => (
               <Letter 
                 key={index}
-                ref={(el) => {
-                  letterRefs.current[index] = el;
-                }}
+                ref={setLetterRef(index)}
               >
                 {letter}
               </Letter>
