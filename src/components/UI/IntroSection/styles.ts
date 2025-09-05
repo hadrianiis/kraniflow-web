@@ -2,10 +2,10 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
-  padding-top: 6rem;
+  padding-bottom: 0;
 
   @media (max-width: 768px) {
-    padding-top: 4rem;
+    padding-bottom: 0;
   }
 `;
 
@@ -97,7 +97,7 @@ export const Header = styled.header`
   p {
     max-width: 100%;
     color: var(--link-color);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
     margin: 0;
@@ -165,7 +165,7 @@ export const SessionTitle = styled.div`
     }
     
     p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       line-height: 1.5;
     }
   }
@@ -198,7 +198,7 @@ export const SessionDescription = styled.div`
     }
     
     div {
-      font-size: 0.9rem;
+      font-size: 1rem;
       line-height: 1.5;
     }
   }
@@ -207,7 +207,7 @@ export const SessionDescription = styled.div`
 export const IntroEdge = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 1.25rem 0;
 
   p {
@@ -222,7 +222,7 @@ export const IntroEdge = styled.div`
 
   @media (max-width: 768px) {
     padding: 1rem 0;
-    gap: 0.375rem;
+    gap: 0.5rem;
   }
 `;
 
@@ -262,14 +262,17 @@ export const IntroTitle = styled.div`
 `;
 
 export const Stats = styled.div`
-  margin: 5rem auto;
+  margin-top: 3rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 4rem;
 
   @media (max-width: 768px) {
-    margin: 3rem auto;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem auto 3rem auto;
   }
 `;
 
@@ -300,7 +303,7 @@ export const Stat = styled.div`
     gap: 0.5rem;
     
     h1 {
-      font-size: 1.25rem;
+      font-size: 2rem;
     }
 
     p {
@@ -316,12 +319,16 @@ export const Banner = styled.div`
 
   img {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 768px) {
     height: 28rem;
     img {
-      object-fit: contain;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
   }
 `;

@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import {
   Section,
   Container,
@@ -28,41 +29,61 @@ export default function TherapyTextSection() {
           <FeaturesGrid>
             <FeatureCard>
               <FeatureIcon>
-                <span style={{ fontSize: '2rem' }}>🤱</span>
+                <Image 
+                  src="/svgs/pregnant.svg" 
+                  alt="Tehotné ženy" 
+                  width={50} 
+                  height={50}
+                />
                 <FeatureTitle>Tehotné ženy</FeatureTitle>
               </FeatureIcon>
               <FeatureDescription>
-                Úľava od bolesti chrbta, zmiernenie stresu a podpora relaxácie.
+                Úľava od bolesti chrbta, zmiernenie stresu a napätia, podpora relaxácie.
               </FeatureDescription>
             </FeatureCard>
             
             <FeatureCard>
               <FeatureIcon>
-                <span style={{ fontSize: '2rem' }}>👶</span>
+                <Image 
+                  src="/svgs/baby.svg" 
+                  alt="Novorodenci a deti" 
+                  width={50} 
+                  height={50}
+                />
                 <FeatureTitle>Novorodenci a deti</FeatureTitle>
               </FeatureIcon>
               <FeatureDescription>
-                Pomáha pri kolikách, problémoch so spánkom a emočnej stabilite.
+                Pomáha pri problémoch ako koliky, problémy so spánkom, emočná stabilita.
               </FeatureDescription>
             </FeatureCard>
 
             <FeatureCard>
               <FeatureIcon>
-                <span style={{ fontSize: '2rem' }}>👨‍💼</span>
+                <Image 
+                  src="/svgs/adult.svg" 
+                  alt="Dospelí" 
+                  width={50} 
+                  height={50}
+                />
                 <FeatureTitle>Dospelí</FeatureTitle>
               </FeatureIcon>
               <FeatureDescription>
-                Zmiernenie bolesti hlavy, krku, chrbta a úľava pri stresových situáciách.
+                Zmiernenie bolesti hlavy, krku, chrbta, úľava pri stresových situáciách, zlepšenie kvality spánku.
               </FeatureDescription>
             </FeatureCard>
 
             <FeatureCard>
               <FeatureIcon>
-                <span style={{ fontSize: '2rem' }}>👴</span>
+                <Image 
+                  src="/svgs/old-man.svg" 
+                  alt="Seniori" 
+                  width={50} 
+                  height={50}
+                />
                 <FeatureTitle>Seniori</FeatureTitle>
               </FeatureIcon>
               <FeatureDescription>
-                Zlepšenie pohyblivosti, zmiernenie bolesti a podpora regenerácie.
+                Zlepšenie pohyblivosti, zmiernenie bolesti, podpora regenerácie po úrazoch.
               </FeatureDescription>
             </FeatureCard>
           </FeaturesGrid>

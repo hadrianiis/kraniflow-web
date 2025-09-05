@@ -19,25 +19,25 @@ import {
   features,
 } from './constants';
 import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
+  IconClockCheck,
+  IconHeartHandshake,
+  IconPlant2,
+  IconMoodKid,
+  IconUserBolt,
+  IconBrain,
+  IconBabyCarriage,
+  IconBandage,
 } from "@tabler/icons-react";
 
 const iconMap = {
-  IconTerminal2: IconTerminal2,
-  IconEaseInOut: IconEaseInOut,
-  IconCurrencyDollar: IconCurrencyDollar,
-  IconCloud: IconCloud,
-  IconRouteAltLeft: IconRouteAltLeft,
-  IconHelp: IconHelp,
-  IconAdjustmentsBolt: IconAdjustmentsBolt,
-  IconHeart: IconHeart,
+  IconBandage: IconBandage,
+  IconHeartHandshake: IconHeartHandshake,
+  IconUserBolt: IconUserBolt,
+  IconBabyCarriage: IconBabyCarriage,
+  IconMoodKid: IconMoodKid,
+  IconPlant2: IconPlant2,
+  IconClockCheck: IconClockCheck,
+  IconBrain: IconBrain,
 };
 
 const OffersSection = () => {

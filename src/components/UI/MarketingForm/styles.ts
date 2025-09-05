@@ -92,40 +92,61 @@ export const StepDescription = styled.p`
 `
 
 export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-height: 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  min-height: 200px;
   width: 100%;
-  max-width: 24rem;
+  max-width: 28rem;
   margin: 0 auto;
+  padding: 0.5rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-width: 24rem;
+  }
 `
 
 export const OptionButton = styled.button<{ $isSelected: boolean }>`
   width: 100%;
-  min-width: 70px;
-  background: ${props => props.$isSelected ? '#1f2937' : 'transparent'};
+  min-height: 60px;
+  background: ${props => props.$isSelected ? '#1f2937' : 'white'};
   color: ${props => props.$isSelected ? 'white' : '#374151'};
-  font-weight: ${props => props.$isSelected ? '600' : '400'};
-  border: 1px solid ${props => props.$isSelected ? '#1f2937' : '#d1d5db'};
-  border-radius: 0.5rem;
+  font-weight: ${props => props.$isSelected ? '600' : '500'};
+  border: 2px solid ${props => props.$isSelected ? '#1f2937' : '#e5e7eb'};
+  border-radius: 0.75rem;
   padding: 1rem 1.25rem;
-  margin-bottom: 0.75rem;
   transition: all 300ms ease;
   cursor: pointer;
   outline: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: ${props => props.$isSelected 
+    ? '0 4px 12px rgba(31, 41, 55, 0.15)' 
+    : '0 2px 4px rgba(0, 0, 0, 0.05)'
+  };
 
   &:hover {
-    color: white;
-    background: #1f2937;
-    border-color: #1f2937;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: ${props => props.$isSelected 
+      ? '0 8px 25px rgba(31, 41, 55, 0.25)' 
+      : '0 6px 20px rgba(0, 0, 0, 0.1)'
+    };
+    border-color: ${props => props.$isSelected ? '#1f2937' : '#d1d5db'};
   }
 
   &:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(-1px);
   }
 `
 

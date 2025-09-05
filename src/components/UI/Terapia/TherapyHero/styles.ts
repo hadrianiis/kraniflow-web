@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 export const Section = styled.section`
   padding: 4rem 0;
   background: transparent;
+  top: 3rem;
   
   @media (min-width: 768px) {
     padding: 8rem 0;
@@ -44,7 +45,7 @@ export const ContentWrapper = styled.div`
   
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 2rem;
   }
 `;
@@ -55,10 +56,12 @@ export const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
   
   @media (min-width: 768px) {
     width: 50%;
     gap: 1.5rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -105,20 +108,29 @@ export const FeatureTitle = styled.h3`
   font-size: 0.875rem;
   font-weight: 500;
   color: #111827;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const FeatureDescription = styled.p`
   font-size: 0.875rem;
   color: #6b7280;
   line-height: 1.5;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const ImageWrapper = styled.div`
-  margin-top: 3rem;
+  margin-top: 2rem;
   height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   
   @media (min-width: 768px) {
     position: absolute;
@@ -128,6 +140,7 @@ export const ImageWrapper = styled.div`
     margin-top: -10rem;
     justify-content: flex-end;
     padding-right: 2rem;
+    width: auto;
   }
 `;
 
@@ -139,7 +152,9 @@ export const ImageContainer = styled.div`
   align-items: center;
   
   @media (min-width: 768px) {
-    max-width: 60%;
+    max-width: 70%;
+    top: -3rem;
+    left: 15rem;
   }
 `;
 
@@ -161,6 +176,8 @@ export const DottedBorder = styled.div`
   border-radius: 1rem;
   padding: 0;
   background: transparent;
+  width: 100%;
+  max-width: 500px;
   
   img {
     border-radius: 0.75rem;
@@ -169,5 +186,9 @@ export const DottedBorder = styled.div`
     object-fit: contain;
     background: transparent;
     box-shadow: none;
+  }
+  
+  @media (min-width: 768px) {
+    max-width: none;
   }
 `;

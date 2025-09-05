@@ -112,7 +112,7 @@ export const StoryText = styled.div`
   text-align: left;
   
   h2 {
-    font-size: 42px;
+    font-size: 2.625rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 32px;
@@ -120,19 +120,19 @@ export const StoryText = styled.div`
     text-align: left !important;
     
     @media (max-width: 768px) {
-      font-size: 32px;
+      font-size: 2rem;
     }
   }
   
   p {
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.8;
     color: #475569;
     margin-bottom: 24px;
     text-align: left !important;
     
     @media (max-width: 768px) {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 `;
@@ -170,25 +170,25 @@ export const WhyBCSTSection = styled.section`
   margin: 40px 0;
   
   h2 {
-    font-size: 42px;
+    font-size: 2.625rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 32px;
     
     @media (max-width: 768px) {
-      font-size: 32px;
+      font-size: 2rem;
     }
   }
   
   p {
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.8;
     color: #475569;
     max-width: 900px;
     margin: 0 auto;
     
     @media (max-width: 768px) {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 `;
@@ -200,25 +200,25 @@ export const PersonalMessageSection = styled.section`
   margin: 40px 0;
   
   h2 {
-    font-size: 42px;
+    font-size: 2.625rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 32px;
     
     @media (max-width: 768px) {
-      font-size: 32px;
+      font-size: 2rem;
     }
   }
   
   p {
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.8;
     color: #475569;
     max-width: 900px;
     margin: 0 auto;
     
     @media (max-width: 768px) {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 `;
@@ -228,7 +228,7 @@ export const Header = styled.div`
   text-align: center;
   
   h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #64748b;
     margin-bottom: 20px;
@@ -241,26 +241,26 @@ export const HeaderMainText = styled.div`
   text-align: center;
   
   h1 {
-    font-size: 56px;
+    font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 32px;
     color: #1e293b;
     
     @media (max-width: 768px) {
-      font-size: 40px;
+      font-size: 2.5rem;
     }
   }
   
   p {
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 1.7;
     color: #475569;
     max-width: 700px;
     margin: 0 auto;
     
     @media (max-width: 768px) {
-      font-size: 18px;
+      font-size: 1.125rem;
     }
   }
 `;
@@ -340,7 +340,7 @@ export const IntroEdge = styled.div`
   }
   
   p {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.7;
     color: #ffffff;
     margin: 0;
@@ -364,7 +364,7 @@ export const IntroTitle = styled.div`
   }
   
   h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 600;
     color: #ffffff;
   }
@@ -382,7 +382,7 @@ export const SessionTitle = styled.div`
   margin: 0; /* Odstránim margin pre lepšie zarovnanie */
   
   h2 {
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 600;
     color: #1e293b;
     margin-bottom: 20px;
@@ -391,7 +391,7 @@ export const SessionTitle = styled.div`
   }
   
   p {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.7;
     color: #475569;
     margin: 0; /* Odstránim margin pre lepšie zarovnanie */
@@ -433,18 +433,18 @@ export const Stat = styled.div`
   border: 1px solid #e2e8f0;
   
   h1 {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 16px;
     
     @media (max-width: 768px) {
-      font-size: 36px;
+      font-size: 2.25rem;
     }
   }
   
   p {
-    font-size: 16px;
+    font-size: 1rem;
     color: #64748b;
     font-weight: 500;
   }

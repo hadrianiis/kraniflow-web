@@ -28,7 +28,7 @@ export const Title = styled.h2`
   z-index: 10;
   width: 100%;
   font-size: 2.25rem;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 1.1;
   color: #111827;
   text-align: center;
@@ -106,16 +106,19 @@ export const FeatureIcon = styled.div`
   align-items: center;
   gap: 0.75rem;
   
-  svg {
-    width: 2rem;
-    height: 2rem;
-    color: #10b981;
+  img {
+    filter: brightness(0) saturate(100%);
+    transition: all 0.3s ease;
+  }
+  
+  &:hover img {
+    filter: brightness(0) saturate(100%) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   }
 `;
 
 export const FeatureTitle = styled.h3`
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: normal;
   color: #111827;
 `;
 

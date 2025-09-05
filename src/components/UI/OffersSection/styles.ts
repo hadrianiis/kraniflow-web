@@ -74,40 +74,6 @@ export const FeatureCard = styled.div<{ index: number }>`
   cursor: pointer;
   transition: all 0.2s ease;
 
-  /* Border logic for grid layout */
-  ${({ index }) => {
-    if (index < 4) {
-      return `
-        @media (min-width: 1024px) {
-          border-bottom: 1px solid #e5e5e5;
-        }
-      `;
-    }
-    return '';
-  }}
-
-  ${({ index }) => {
-    if (index % 4 !== 3) {
-      return `
-        @media (min-width: 1024px) {
-          border-right: 1px solid #e5e5e5;
-        }
-      `;
-    }
-    return '';
-  }}
-
-  ${({ index }) => {
-    if (index % 4 === 0) {
-      return `
-        @media (min-width: 1024px) {
-          border-left: 1px solid #e5e5e5;
-        }
-      `;
-    }
-    return '';
-  }}
-
   &:hover {
     .hover-overlay {
       opacity: 1;

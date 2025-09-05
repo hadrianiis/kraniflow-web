@@ -1,12 +1,12 @@
 import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
+  IconClockCheck,
+  IconHeartHandshake,
+  IconPlant2,
+  IconMoodKid,
+  IconUserBolt,
+  IconBrain,
+  IconBabyCarriage,
+  IconBandage,
 } from "@tabler/icons-react";
 
 // For desktop
@@ -31,41 +31,41 @@ export const features = [
   {
     title: "Chronické bolesti",
     description: "Účinná metóda na pomoc pri chronických bolestiach, akútnych stavoch, migrénach a napätí v tele.",
-    iconName: "IconTerminal2",
+    iconName: "IconUserBolt",
   },
   {
     title: "Stres a psychická rovnováha",
     description: "Pomáha zmierniť stavy úzkosti, depresie a vyčerpania. Umožňuje spracovanie PTSD, zlepšuje spánok a koncentráciu.",
-    iconName: "IconEaseInOut",
+    iconName: "IconBrain",
   },
   {
     title: "Úrazy a operácie",
     description: "Podpora regenerácie po vážnych úrazoch a chirurgických zákrokoch. Podporuje zlepšenie energetických tokov v tele a odbúravanie zápalových procesov.",
-    iconName: "IconCurrencyDollar",
+    iconName: "IconBandage",
   },
   {
     title: "Tehotenstvo a pôrod",
     description: "Zmierňovanie bolesti a napätia počas tehotenstva. Uvoľnenie svalového a fasciálneho napätia. Príprava na pôrod a popôrodná starostlivosť.",
-    iconName: "IconCloud",
+    iconName: "IconBabyCarriage",
   },
   {
     title: "Podpora detí a novorodencov",
     description: "Terapia je bezpečná a účinná pre novorodencov a malé deti. Pomáha pri neurologických poruchách a vývojových problémoch. Je to aj pomoc pri regulovaní emociálnych reakcii.",
-    iconName: "IconRouteAltLeft",
+    iconName: "IconMoodKid",
   },
   {
     title: "Prevencia a zdravie",
     description: "BCST zlepšuje celkovú vitalitu a pohodu. Pomáha obnoviť správne fungovanie tela, zlepšiť držanie tela, flexibilitu a rovnováhu. Zlepšuje energetickú úroveň v tele a mentálnu jasnosť.",
-    iconName: "IconHelp",
+    iconName: "IconPlant2",
   },
   {
     title: "24/7 podpora",
     description: "Dostupná pomoc a konzultácie kedykoľvek potrebujete.",
-    iconName: "IconAdjustmentsBolt",
+    iconName: "IconClockCheck",
   },
   {
     title: "Komplexná starostlivosť",
     description: "Holistický prístup k zdraviu tela, mysle a ducha. Kombinácia rôznych metód pri terapii s dôrazom na potreby klienta.",
-    iconName: "IconHeart",
+    iconName: "IconHeartHandshake",
   },
 ];

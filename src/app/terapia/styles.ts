@@ -80,7 +80,7 @@ export const ContentSection = styled.section`
 
   h2 {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: normal;
     margin-bottom: 1.5rem;
     color: var(--text-color);
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
@@ -165,7 +165,7 @@ export const TherapyCard = styled.div<{ index: number }>`
 
   h3 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: normal;
     margin-bottom: 1rem;
     color: var(--text-color);
   }
@@ -221,7 +221,7 @@ export const BenefitItem = styled.div`
 
   h3 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: normal;
     margin-bottom: 1rem;
     color: var(--text-color);
   }

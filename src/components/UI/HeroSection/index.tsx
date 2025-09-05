@@ -17,10 +17,12 @@ const HeroSection = () => {
           {isMobile ? (
             <>
               <MaskText phrases={mobilePhrases} tag="h1" align="center" />
+              <p>Cesta k dlhodobému zdraviu</p>
             </>
           ) : (
             <>
               <MaskText phrases={phrases} tag="h1" align="center" />
+              <p>Cesta k dlhodobému zdraviu</p>
             </>
           )}
         </HeroTextContainer>

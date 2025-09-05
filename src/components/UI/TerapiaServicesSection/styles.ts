@@ -39,7 +39,7 @@ export const PillDot = styled.span`
 
 export const Title = styled.h2`
   font-size: 4rem;
-  font-weight: 400;
+  font-weight: normal;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
   line-height: 1.1;
@@ -110,7 +110,7 @@ export const ServiceIcon = styled.div<{ $color?: string }>`
 
 export const ServiceTitle = styled.h3`
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: normal;
   color: #1f2937;
   margin-bottom: 1rem;
 `;
@@ -119,6 +119,7 @@ export const ServiceDescription = styled.p`
   color: #6b7280;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  font-size: 0.875rem;
 `;
 
 export const ServiceFeatures = styled.ul`
@@ -156,7 +157,7 @@ export const ServicePrice = styled.div`
 
 export const PriceAmount = styled.div<{ $color?: string }>`
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: normal;
   color: ${props => props.$color || '#D8B0B6'};
   margin-bottom: 0.5rem;
 `;
@@ -185,7 +186,7 @@ export const CTACard = styled.div`
 
 export const CTATitle = styled.h3`
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: normal;
   color: #111827;
   margin-bottom: 1rem;
   
@@ -195,7 +196,7 @@ export const CTATitle = styled.h3`
 `;
 
 export const CTADescription = styled.p`
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: #374151;
   margin-bottom: 2rem;
   max-width: 48rem;

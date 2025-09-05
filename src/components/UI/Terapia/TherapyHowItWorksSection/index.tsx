@@ -1,5 +1,5 @@
 'use client';
-import { Heart, Shield, Zap, Brain } from 'lucide-react';
+import { IconHeart, IconShield, IconBolt, IconBrain } from '@tabler/icons-react';
 import Image from 'next/image';
 import {
   Section,
@@ -32,30 +32,14 @@ export default function TherapyHowItWorksSection() {
               <span>identifikoval a uvoľnil napätie</span> v kraniosakrálnom systéme.
             </Description>
             <Description>
-              Táto technika pomáha obnoviť prirodzený rytmus tela a podporiť samoliečebné procesy organizmu.
-              asdasdasdasdasdasdasd
-              asdasdasdasdasdasdasddasd
-              asd
-              asd
-              asd
-              asd
-              asd
-              asd
-              <br/>
-              asd
-              <br/>
-              asd
-              <br/>
-              asd
-              <br/>
-              asd
-              <br/>
+            Kraniosakrálna terapia pôsobí priamo na kraniosakrálny systém – jemné pohyby lebky a miechy, ktoré umožňujú správny tok mozgovomiešneho moku. Tento systém je kľúčový pre rovnováhu a správnu funkciu nervového systému. Kraniosakrálna terapia pracuje so štyrmi základnými princípmi: uvoľňovanie napätia, obnovenie pohybu, podpora samoliečivých, schopností, prepojenie tela a mysle.
+
             </Description>
 
             <FeaturesGrid>
               <FeatureCard>
                 <FeatureIcon>
-                  <Heart className="size-4" />
+                  <IconHeart size={16} />
                   <FeatureTitle>Jemné dotyky</FeatureTitle>
                 </FeatureIcon>
                 <FeatureDescription>
@@ -65,7 +49,7 @@ export default function TherapyHowItWorksSection() {
               
               <FeatureCard>
                 <FeatureIcon>
-                  <Shield className="size-4" />
+                  <IconShield size={16} />
                   <FeatureTitle>Bezpečná metóda</FeatureTitle>
                 </FeatureIcon>
                 <FeatureDescription>
@@ -75,7 +59,7 @@ export default function TherapyHowItWorksSection() {
 
               <FeatureCard>
                 <FeatureIcon>
-                  <Zap className="size-4" />
+                  <IconBolt size={16} />
                   <FeatureTitle>Rýchle výsledky</FeatureTitle>
                 </FeatureIcon>
                 <FeatureDescription>
@@ -85,7 +69,7 @@ export default function TherapyHowItWorksSection() {
 
               <FeatureCard>
                 <FeatureIcon>
-                  <Brain className="size-4" />
+                  <IconBrain size={16} />
                   <FeatureTitle>Holistický prístup</FeatureTitle>
                 </FeatureIcon>
                 <FeatureDescription>

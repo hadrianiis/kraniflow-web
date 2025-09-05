@@ -36,14 +36,14 @@ export const BriefNote = styled.div`
   h2 {
     color: var(--white);
     font-size: 3.5rem;
-    font-weight: 700;
+    font-weight: normal;
     margin: 0 0 1.5rem 0;
     line-height: 1.1;
   }
 
   p {
     color: var(--white);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
     margin: 0 0 2.5rem 0;
     opacity: 0.9;
@@ -60,7 +60,7 @@ export const BriefNote = styled.div`
     }
     
     p {
-      font-size: 1.125rem;
+      font-size: 1rem;
       margin-bottom: 2rem;
     }
   }

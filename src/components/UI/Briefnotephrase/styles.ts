@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const Wrapper = styled.section`
   margin-top: 11.25rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1440px) {
     margin-top: 6.25rem;
   }
 `;
@@ -18,7 +18,7 @@ export const BriefNote = styled.div`
 
   p {
     color: var(--Background, #F1F1F1);
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 400;
     max-width: 1480px;
     text-align: left !important;
@@ -28,7 +28,7 @@ export const BriefNote = styled.div`
     padding: 2rem 1.5rem;
     margin: 50px 0;
     p {
-      font-size: 3.75rem;
+      font-size: 2rem;
       text-align: left !important;
     }
   }

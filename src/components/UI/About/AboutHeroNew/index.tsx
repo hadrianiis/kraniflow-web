@@ -1,5 +1,4 @@
 'use client';
-import { Heart, Users, Award } from 'lucide-react';
 import Image from 'next/image';
 import {
   Section,
@@ -8,11 +7,10 @@ import {
   ContentWrapper,
   TextContent,
   Description,
-  FeaturesGrid,
-  FeatureCard,
-  FeatureIcon,
-  FeatureTitle,
-  FeatureDescription,
+  StatsContainer,
+  StatItem,
+  StatNumber,
+  StatLabel,
   ImageWrapper,
   ImageContainer,
   GradientOverlay,
@@ -30,34 +28,26 @@ export default function AboutHeroNew() {
         <ContentWrapper>
           <TextContent>
             <Description>
-              Som Kristína Švantnerová, certifikovaná terapeutka kraniosakrálnej terapie s viac ako{' '}
-              <span>15 rokmi skúseností</span> v oblasti alternatívneho liečenia a wellness.
+            Volám sa <strong>Kristína Švantnerová</strong> a som terapeutka a masérka, ktorá spája prístup z rôznych oblastí a ponúka unikátnu personalizovanú techniku. KranioFlow vzniklo, aby sme našli s každým klientom jeho osobný flow a odľahčili jeho organizmus.
             </Description>
             <Description>
-              Moja cesta začala s hlbokým záujmom o prirodzené liečebné metódy a túžbou pomôcť ľuďom dosiahnuť lepšie zdravie a pohodu bez potreby invazívnych zákrokov.
+            S viac ako 4-ročnou praxou v kraniosakrálnej terapii a 14-ročnou praxou s masážami vám ponúkam holistický prístup k vašim problémom. Kombinujem rôzne techniky, ktoré poskytujú komplexné riešenie na fyzickej aj psychickej úrovni. Či už ide o bolesť, stres, alebo emocionálne blokády, vždy sa zameriam na vašu individuálnu potrebu. To, čo dnes ponúkam svojim klientom, mám odskúšané na vlastnej koži.
             </Description>
 
-            <FeaturesGrid>
-              <FeatureCard>
-                <FeatureIcon>
-                  <Heart className="size-4" />
-                  <FeatureTitle>Vášnivá terapeutka</FeatureTitle>
-                </FeatureIcon>
-                <FeatureDescription>
-                  Každý klient je pre mňa jedinečný a pristupujem k nemu s úctou a pochopením.
-                </FeatureDescription>
-              </FeatureCard>
-              
-              <FeatureCard>
-                <FeatureIcon>
-                  <Award className="size-4" />
-                  <FeatureTitle>Certifikovaná odbornosť</FeatureTitle>
-                </FeatureIcon>
-                <FeatureDescription>
-                  Pravidelne sa vzdelávam a zdokonaľujem v najnovších technikách kraniosakrálnej terapie.
-                </FeatureDescription>
-              </FeatureCard>
-            </FeaturesGrid>
+            <StatsContainer>
+              <StatItem>
+                <StatNumber>14+</StatNumber>
+                <StatLabel>rokov praxe</StatLabel>
+              </StatItem>
+              <StatItem>
+                <StatNumber>4+</StatNumber>
+                <StatLabel>roky BCST</StatLabel>
+              </StatItem>
+              <StatItem>
+                <StatNumber>300+</StatNumber>
+                <StatLabel>spokojných klientov</StatLabel>
+              </StatItem>
+            </StatsContainer>
           </TextContent>
           
           <ImageWrapper>

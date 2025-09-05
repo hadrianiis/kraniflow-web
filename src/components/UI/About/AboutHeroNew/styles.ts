@@ -2,7 +2,7 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
-  padding: 4rem 0;
+  padding: 2rem 0;
   background: transparent;
   
   @media (min-width: 768px) {
@@ -16,7 +16,7 @@ export const Container = styled.div`
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   
   @media (min-width: 768px) {
     gap: 4rem;
@@ -27,10 +27,16 @@ export const Title = styled.h2`
   position: relative;
   z-index: 10;
   max-width: 36rem;
-  font-size: 2.25rem;
+  font-size: 1.875rem;
   font-weight: 500;
   line-height: 1.1;
   color: #111827;
+  margin-bottom: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+    margin-bottom: 0;
+  }
   
   @media (min-width: 1024px) {
     font-size: 3rem;
@@ -44,7 +50,7 @@ export const ContentWrapper = styled.div`
   
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 3rem;
     min-height: 500px;
   }
@@ -55,11 +61,12 @@ export const TextContent = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   
   @media (min-width: 768px) {
     width: 45%;
     gap: 1.5rem;
+    justify-content: flex-end;
   }
 `;
 
@@ -73,74 +80,86 @@ export const Description = styled.p`
   }
 `;
 
-export const FeaturesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  padding-top: 1.5rem;
-  
-  @media (min-width: 640px) {
-    gap: 1rem;
-  }
-`;
-
-export const FeatureCard = styled.div`
+export const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-`;
-
-export const FeatureIcon = styled.div`
-  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
   align-items: center;
-  gap: 0.5rem;
   
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #6b7280;
+  @media (min-width: 640px) {
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 2rem;
   }
 `;
 
-export const FeatureTitle = styled.h3`
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #111827;
+export const StatItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  text-align: center;
+  
+  @media (min-width: 640px) {
+    align-items: center;
+  }
 `;
 
-export const FeatureDescription = styled.p`
+export const StatNumber = styled.span`
+  font-size: 2rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1;
+  
+  @media (min-width: 640px) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const StatLabel = styled.span`
   font-size: 0.875rem;
   color: #6b7280;
-  line-height: 1.5;
+  line-height: 1.2;
+  font-weight: 400;
 `;
 
 export const ImageWrapper = styled.div`
-  margin-top: 3rem;
+  margin-top: 2rem;
   height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 0;
   
   @media (min-width: 768px) {
-    position: absolute;
-    top: -2rem;
-    left: 0;
-    right: 0;
+    position: relative;
     margin-top: 0;
     justify-content: flex-end;
     padding-right: 3rem;
+    align-self: flex-end;
+    width: auto;
   }
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
-  max-width: 50%;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
   
   @media (min-width: 768px) {
     max-width: 80%;
+    width: auto;
+    margin: 0;
   }
 `;
 
@@ -163,7 +182,9 @@ export const DottedBorder = styled.div`
   padding: 0;
   background: transparent;
   width: 100%;
+  max-width: 100%;
   height: auto;
+  margin: 0;
   
   &::before {
     content: '';

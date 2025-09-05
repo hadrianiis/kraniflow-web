@@ -11,7 +11,7 @@ export const Body = styled.div<{ $align: 'left' | 'center' | 'right' }>`
       default: return 'flex-start';
     }
   }};
-  gap: 0.25rem;
+  gap: 0.5rem;
   text-align: ${props => props.$align};
   
   h1,

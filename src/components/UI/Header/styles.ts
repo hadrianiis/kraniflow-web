@@ -4,10 +4,52 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
   padding: 1rem 0;
+  position: relative;
 
   @media (max-width: 768px) {
     padding: 0.75rem 0;
   }
+`;
+
+export const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
+  display: none;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 25px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: ${({ $isOpen }) => $isOpen ? 'flex-start' : 'center'};
+    padding: 0.5rem;
+    width: ${({ $isOpen }) => $isOpen ? '240px' : '55px'};
+    height: ${({ $isOpen }) => $isOpen ? '350px' : '55px'};
+    transform-origin: top right;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
+  }
+`;
+
+export const MobileMenuContent = styled.div<{ $isOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  opacity: ${({ $isOpen }) => $isOpen ? 1 : 0};
+  visibility: ${({ $isOpen }) => $isOpen ? 'visible' : 'hidden'};
+  overflow: visible;
+  height: 100%;
+  justify-content: space-between;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 `;
 
 export const Inner = styled.div`
@@ -23,34 +65,17 @@ export const LogoContainer = styled.div`
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
+    position: relative;
   }
 `;
 
 export const BurgerMenu = styled.div`
   display: none;
-  position: relative;
 
   @media (max-width: 768px) {
-    display: block;
-    padding: 0.5rem;
-
-    div {
-      position: absolute;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      width: '250px';
-      height: '300px';
-      border-radius: 25px;
-      z-index: 1;
-      top: 50px;
-    }
-
-    img {
-      position: relative;
-      z-index: 2;
-      object-fit: cover;
-    }
+    display: none; /* Hamburger menu je teraz fixed v svojom komponente */
   }
 `;
 
@@ -68,21 +93,40 @@ export const Nav = styled.div`
   }
 
   @media (max-width: 768px) {
-    position: absolute;
-    top: 60px;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-    right: 120px;
-    z-index: 3;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-delay: 0.5s;
+    display: none; /* Skryjeme desktop navigáciu na mobile */
+  }
+`;
 
-    &.active {
-      opacity: 1;
-      visibility: visible;
+export const MobileNav = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+
+    a {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      padding: 0.5rem 0.75rem;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+        transform: translateY(-1px);
+      }
     }
   }
 `;
@@ -109,18 +153,33 @@ export const CallToActions = styled.div`
   }
 
   @media (max-width: 768px) {
-    position: absolute;
-    top: 220px;
-    z-index: 3;
-    right: 50px;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-delay: 0.5s;
+    display: none; /* Skryjeme desktop CTA na mobile */
+  }
+`;
 
-    &.active {
-      opacity: 1;
-      visibility: visible;
+export const MobileCallToActions = styled.div<{ $isOpen: boolean }>`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+    padding: 1rem 0.5rem;
+    opacity: ${({ $isOpen }) => $isOpen ? 1 : 0};
+    visibility: ${({ $isOpen }) => $isOpen ? 'visible' : 'hidden'};
+    flex-shrink: 0;
+    transform: ${({ $isOpen }) => $isOpen ? 'translateY(0)' : 'translateY(20px)'};
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: ${({ $isOpen }) => $isOpen ? '0.4s' : '0s'};
+
+    div {
+      span {
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 600;
+      }
     }
   }
 `;

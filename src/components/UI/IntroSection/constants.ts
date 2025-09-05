@@ -1,6 +1,7 @@
-import ic_document_duplicate from '../../../../public/svgs/ic_document_duplicate.svg';
-import ic_identification from '../../../../public/svgs/ic_identification.svg';
-import ic_lock_closed from '../../../../public/svgs/ic_lock_closed.svg';
+// SVG icons paths
+const meditation = '/svgs/meditation.svg';
+const pain_icon = '/svgs/pain_icon.svg';
+const for_all = '/svgs/for_all.svg';
 
 // For desktop
 export const desktopHeaderPhrase = ['Prečo vyskúšať', 'BCST'];
@@ -43,19 +44,19 @@ export const edges = [
     point: 'Uvoľňuje fyzické aj emočné napätie',
     details:
       'Jemný dotyk pomáha uvoľniť svalové napätie a emočné bloky, čo vedie k pocitu hlbokého uvoľnenia.',
-    icon: ic_document_duplicate,
+    icon: meditation,
   },
   {
     point: 'Pomáha pri bolestiach a stresoch',
     details:
       'Účinná pri bolestiach hlavy, chrbta, kĺbov a pri znižovaní stresu a úzkosti.',
-    icon: ic_identification,
+    icon: pain_icon,
   },
   {
     point: 'Vhodná pre všetkých',
     details:
       'Bezpečná pre dospelých, deti, tehotné ženy aj seniorov. Podporuje regeneráciu po zraneniach.',
-    icon: ic_lock_closed,
+    icon: for_all,
   },
 ];
 
@@ -65,13 +66,10 @@ export const stats = [
     subtitle: 'rokov skúseností',
   },
   {
-    number: '1000+',
+    number: '300+',
     subtitle: 'spokojných klientov',
   },
-  {
-    number: '50+',
-    subtitle: 'certifikácií',
-  },
+  
   {
     number: '5.0',
     subtitle: 'hodnotenie klientov',

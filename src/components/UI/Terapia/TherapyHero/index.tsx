@@ -30,33 +30,15 @@ export default function TherapyHero() {
         <ContentWrapper>
           <TextContent>
             <Description>
-              Kraniosakrálna terapia je jemná, neinvazívna technika, ktorá pracuje s prirodzeným rytmom tela.{' '}
-              <span>Pomáha obnoviť rovnováhu</span> a podporiť samoliečebné procesy organizmu.
+            Kraniosakrálna terapia je jemná, no veľmi účinná technika, ktorá podporuje telo v jeho prirodzenom procese uzdravovania. Využíva dotyk na konkrétnych miestach tela, ktoré pomáhajú harmonizovať nervový systém, uvoľniť napätie a zmierniť stres. Tento prístup je ideálny pre všetky vekové kategórie – od tehotných mamičiek až po seniorov.
+
             </Description>
             <Description>
               Táto metóda je založená na práci s kraniosakrálnym systémom, ktorý zahŕňa lebku, chrbticu a panvu, a pomáha zmierniť rôzne zdravotné problémy.
             </Description>
 
             <FeaturesGrid>
-              <FeatureCard>
-                <FeatureIcon>
-                  <Zap className="size-4" />
-                  <FeatureTitle>Jemná technika</FeatureTitle>
-                </FeatureIcon>
-                <FeatureDescription>
-                  Neinvazívna metóda bez vedľajších účinkov, vhodná pre všetky vekové kategórie.
-                </FeatureDescription>
-              </FeatureCard>
-              
-              <FeatureCard>
-                <FeatureIcon>
-                  <Cpu className="size-4" />
-                  <FeatureTitle>Prirodzené liečenie</FeatureTitle>
-                </FeatureIcon>
-                <FeatureDescription>
-                  Aktivuje samoliečebné procesy tela a podporuje prirodzenú rovnováhu.
-                </FeatureDescription>
-              </FeatureCard>
+             
             </FeaturesGrid>
           </TextContent>
           
@@ -68,8 +50,8 @@ export default function TherapyHero() {
                   src="/images/skeleton.webp"
                   className="rounded-[12px] shadow"
                   alt="therapy illustration"
-                  width={1207}
-                  height={929}
+                  width={1400}
+                  height={1078}
                 />
               </DottedBorder>
             </ImageContainer>

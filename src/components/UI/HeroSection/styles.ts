@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 import hero_background from '../../../../public/images/grid_background.png';
 
 export const Wrapper = styled.section`
-  margin-top: 6.25rem;
+  margin-top: 4rem;
+  
+  @media (min-width: 768px) {
+    margin-top: 5rem;
+  }
 `;
 
 export const Inner = styled.div`
@@ -51,7 +55,7 @@ export const HeroTextContainer = styled.div`
   p {
     max-width: 41.75rem;
     color: #bdbdbd;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     margin: 0 auto;
   }

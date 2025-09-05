@@ -23,7 +23,7 @@ export const ContentWrapper = styled.div`
   
   @media (min-width: 1024px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 4rem;
   }
 `;
@@ -33,6 +33,7 @@ export const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100%;
   
   @media (min-width: 1024px) {
     max-width: 50%;
@@ -41,7 +42,7 @@ export const TextContent = styled.div`
 
 export const Title = styled.h2`
   font-size: 2.25rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   color: #1e293b;
   margin: 0;
@@ -52,7 +53,7 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.p`
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: #475569;
   margin: 0;
@@ -67,7 +68,7 @@ export const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: auto;
   
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
@@ -81,14 +82,14 @@ export const FeatureCard = styled.div`
   gap: 0.75rem;
   padding: 1.25rem;
   border-radius: 0.75rem;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  background: linear-gradient(135deg, rgba(242, 188, 187, 0.08), rgba(70, 159, 157, 0.08));
+  border: 1px solid rgba(242, 188, 187, 0.15);
   transition: all 0.3s ease;
   
   &:hover {
-    background: rgba(16, 185, 129, 0.12);
+    background: linear-gradient(135deg, rgba(242, 188, 187, 0.12), rgba(70, 159, 157, 0.12));
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 4px 12px rgba(242, 188, 187, 0.15);
   }
 `;
 
@@ -100,7 +101,7 @@ export const FeatureIcon = styled.div`
   svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: #10b981;
+    color: #469F9D;
   }
 `;
 
@@ -127,6 +128,7 @@ export const ImageWrapper = styled.div`
     flex: 0 0 45%;
     justify-content: flex-end;
     align-items: stretch;
+    height: 100%;
   }
 `;
 
@@ -143,9 +145,8 @@ export const ImageContainer = styled.div`
   
   @media (min-width: 1024px) {
     max-width: 500px;
-    height: 80%;
+    height: 100%;
     min-height: 400px;
-    max-height: 500px;
   }
   
   .therapy-image {
