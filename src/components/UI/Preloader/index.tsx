@@ -61,7 +61,7 @@ const Preloader = ({
             {letters.map((letter, index) => (
               <Letter 
                 key={index}
-                ref={(el) => { letterRefs.current[index] = el; }}
+                ref={(el) => void (letterRefs.current[index] = el)}
               >
                 {letter}
               </Letter>
