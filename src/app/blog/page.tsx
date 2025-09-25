@@ -20,11 +20,11 @@ const BlogLoading = dynamic(() => import('@/components/UI/Blog/BlogLoading'), {
 });
 
 export const metadata: Metadata = {
-  title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+  title: 'Blog | Kranioflow | Kraniosakrálna terapia',
   description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness. Expertné rady a tipy od našich terapeutov.',
   keywords: 'blog, kraniosakrálna terapia, zdravie, wellness, terapeutické rady',
   openGraph: {
-    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    title: 'Blog | Kranioflow | Kraniosakrálna terapia',
     description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
     type: 'website',
   },

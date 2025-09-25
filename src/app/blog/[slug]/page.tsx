@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       };
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://kranioflow.sk';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://kranioflow.com';
     const canonicalUrl = `${baseUrl}/blog/${slug}`;
 
     return {

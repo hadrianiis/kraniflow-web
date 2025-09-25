@@ -6,8 +6,12 @@ import BackButton from "@/components/UI/BackButton";
 import { ToastProvider } from "@/components/UI/Toast";
 import ErrorBoundary from "@/components/UI/ErrorBoundary";
 import { ContactPageContainer, BackButtonWrapper } from "./styles";
+import type { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: 'Kontakt | Kranioflow | Kraniosakrálna terapia',
+  description: 'Kontaktujte nás pre objednanie termínu kraniosakrálnej terapie. Rýchla odpoveď a profesionálny prístup garantovaný.',
+};
 
 // Dynamically import the MarketingForm component with SSR disabled
 // This prevents hydration issues with client-side form components

@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blog | KranioFlow',
-    template: '%s | KranioFlow Blog'
+    default: 'Blog | Kranioflow | Kraniosakrálna terapia',
+    template: '%s | Kranioflow | Kraniosakrálna terapia'
   },
   description: 'Objavte najnovšie články o kraniosakrálnej terapii.',
   keywords: 'blog, kraniosakrálna terapia, zdravie, wellness, alternatívna medicína, relaxácia, liečba, terapeut',
-  creator: 'KranioFlow',
-  publisher: 'KranioFlow',
+  creator: 'Kranioflow',
+  publisher: 'Kranioflow',
   formatDetection: {
     email: false,
     address: false,
@@ -22,21 +22,21 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'sk_SK',
     url: 'https://kranioflow.com/blog',
-    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    title: 'Blog | Kranioflow | Kraniosakrálna terapia',
     description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
-    siteName: 'KranioFlow Blog',
+    siteName: 'Kranioflow Blog',
     images: [
       {
         url: '/images/featured_img1.avif',
         width: 1200,
         height: 630,
-        alt: 'KranioFlow Blog - Kraniosakrálna terapia',
+        alt: 'Kranioflow Blog - Kraniosakrálna terapia',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    title: 'Blog | Kranioflow | Kraniosakrálna terapia',
     description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
     images: ['/images/featured_img1.avif'],
   },
@@ -70,12 +70,12 @@ export default function BlogLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "KranioFlow Blog",
+            "name": "Kranioflow Blog",
             "description": "Blog o kraniosakrálnej terapii, zdraví a wellness",
             "url": "https://kranioflow.com/blog",
             "publisher": {
               "@type": "Organization",
-              "name": "KranioFlow",
+              "name": "Kranioflow",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://kranioflow.com/kranioflow-logo-optimized.svg"

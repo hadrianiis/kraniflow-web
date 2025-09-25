@@ -5,8 +5,8 @@ import StyledComponentsRegistry from '@/lib/registry';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kraniosakrálna terapia Bratislava – jemný dotyk pre zdravie a rovnováhu',
-  description: 'Objavte silu biodynamickej kraniosakrálnej terapie (BCST) v Bratislave. Uvoľnite stres, zmiernite bolesť a obnovte vnútorný pokoj.',
+  title: 'Kranioflow | Kraniosakrálna terapia',
+  description: 'Uvoľnite stres, zmiernite bolesť a obnovte vnútorný pokoj.',
 };
 
 export default function RootLayout({
@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="sk">
       <head>
         {/* Critical resource hints for faster loading - only for actually used origins */}
-        <link rel="preconnect" href="https://kranioflow.wordpress.com" />
       </head>
       <body suppressHydrationWarning={true}>
         <BFCacheOptimizer />
