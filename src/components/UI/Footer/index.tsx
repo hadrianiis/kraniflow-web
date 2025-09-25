@@ -3,7 +3,7 @@
 import OptimizedImage from '@/components/Common/OptimizedImage';
 import Link from 'next/link';
 // Static image paths
-const qr_kontakt = '/svgs/qr-kontakt.png';
+const qr_kontakt = '/svgs/QR-kontakt.svg';
 
 const centerLinks = [
   { name: 'Domov', href: '/' },
