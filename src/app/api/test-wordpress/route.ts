@@ -21,8 +21,8 @@ export async function GET() {
     timestamp: new Date().toISOString(),
     config: {
       useWordPress: config.features.useWordPress,
-      apiUrl: config.wordpress.apiUrl,
-      siteUrl: config.wordpress.siteUrl
+      apiUrl: config.wordpress.apiUrl || 'Not configured',
+      siteUrl: config.wordpress.siteUrl || 'Not configured'
     },
     tests: {}
   };
