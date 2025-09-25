@@ -167,7 +167,6 @@ src/lib/blog.ts           # Blog API funkcie
 ### 🧪 Testing
 - **Unit Tests** - Jest + React Testing Library
 - **E2E Tests** - Playwright
-- **Performance Tests** - Lighthouse CI
 - **Accessibility Tests** - axe-core
 
 ## Podpora

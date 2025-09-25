@@ -19,8 +19,6 @@ declare global {
       NODE_ENV: 'development' | 'production' | 'test';
       NEXT_PUBLIC_SITE_URL?: string;
       DATABASE_URL?: string;
-      GOOGLE_SHEETS_API_KEY?: string;
-      GOOGLE_SHEETS_SHEET_ID?: string;
       CONTACT_EMAIL?: string;
     }
   }

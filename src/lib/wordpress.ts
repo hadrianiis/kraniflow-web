@@ -206,7 +206,7 @@ export interface WordPressMedia {
 }
 
 // Configuration
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'https://public-api.wordpress.com/rest/v1.1/sites/248514061';
+const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL;
 
 // Helper function to calculate read time
 function calculateReadTime(content: string): number {
@@ -276,6 +276,10 @@ export class WordPressAPI {
   private readonly MAX_CACHE_SIZE = 100;
 
   constructor() {
+    if (!WORDPRESS_API_URL) {
+      throw new Error('WORDPRESS_API_URL environment variable is required');
+    }
+    
     this.baseUrl = WORDPRESS_API_URL;
     
     // Set up basic auth if credentials are provided
