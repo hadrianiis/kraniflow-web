@@ -4,6 +4,20 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Redirect old URLs to new Slovak URLs
+  if (pathname === '/contact') {
+    return NextResponse.redirect(new URL('/kontakt', request.url), 301);
+  }
+  if (pathname === '/about') {
+    return NextResponse.redirect(new URL('/o-mne', request.url), 301);
+  }
+  if (pathname === '/terapia') {
+    return NextResponse.redirect(new URL('/o-terapii', request.url), 301);
+  }
+  if (pathname === '/privacy-policy') {
+    return NextResponse.redirect(new URL('/ochrana-udajov', request.url), 301);
+  }
+
   // Optimize font caching for better performance
   if (pathname.startsWith('/fonts/')) {
     const response = NextResponse.next();
