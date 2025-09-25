@@ -1,5 +1,6 @@
 "use client"
 
+import { ParkingSquareOff } from "lucide-react"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -78,11 +79,9 @@ export default function PrivacyPolicyPage() {
         <SectionTitle>1. Prevádzkovateľ osobných údajov</SectionTitle>
         <Paragraph>Prevádzkovateľom osobných údajov je:</Paragraph>
         <ContactInfo>
-          <PlaceholderText>[Názov/meno prevádzkovateľa]</PlaceholderText>
+          <Paragraph>Kranioflow</Paragraph>
           <br />
-          <PlaceholderText>[Adresa sídla alebo bydliska]</PlaceholderText>
-          <br />
-          <PlaceholderText>[E-mail / Telefón]</PlaceholderText>
+          <Paragraph>svantnerovakristina259@gmail.com</Paragraph>
         </ContactInfo>
       </Section>
 
@@ -169,9 +168,8 @@ export default function PrivacyPolicyPage() {
           kontaktujte nás na:
         </Paragraph>
         <ContactInfo>
-          <PlaceholderText>[E-mailová adresa]</PlaceholderText>
+          <Paragraph>svantnerovakristina259@gmail.com</Paragraph>
           <br />
-          <PlaceholderText>[Telefónne číslo]</PlaceholderText>
         </ContactInfo>
       </Section>
     </Container>
