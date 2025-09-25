@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { wordpressAPI } from '@/lib/wordpress';
+import { getWordPressAPI } from '@/lib/wordpress';
 
 // API endpoint for blog tags
 export async function GET() {
   try {
     console.log('📝 Blog API GET tags');
 
-    const tags = await wordpressAPI.getTags();
+    const tags = await getWordPressAPI().getTags();
 
     const response = NextResponse.json({
       success: true,

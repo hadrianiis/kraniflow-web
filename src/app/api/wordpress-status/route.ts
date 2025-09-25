@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { wordpressAPI } from '@/lib/wordpress';
+import { getWordPressAPI } from '@/lib/wordpress';
 import { config } from '@/lib/config';
 
 export async function GET() {
@@ -15,13 +15,13 @@ export async function GET() {
     }
 
     // Use the new health check method
-    const healthCheck = await wordpressAPI.healthCheck();
+    const healthCheck = await getWordPressAPI().healthCheck();
     
     if (healthCheck.status === 'healthy') {
       // Get additional stats if healthy
       try {
-        const totalPosts = await wordpressAPI.getAllPostsCount();
-        const cacheStats = wordpressAPI.getCacheStats();
+        const totalPosts = await getWordPressAPI().getAllPostsCount();
+        const cacheStats = getWordPressAPI().getCacheStats();
         
         return NextResponse.json({
           status: 'connected',

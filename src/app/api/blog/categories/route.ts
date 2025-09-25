@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { wordpressAPI } from '@/lib/wordpress';
+import { getWordPressAPI } from '@/lib/wordpress';
 
 // API endpoint for blog categories
 export async function GET() {
   try {
     console.log('📝 Blog API GET categories');
 
-    const categories = await wordpressAPI.getCategories();
+    const categories = await getWordPressAPI().getCategories();
 
     const response = NextResponse.json({
       success: true,

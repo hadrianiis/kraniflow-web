@@ -2,12 +2,11 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    default: 'Blog | KranioFlow',
     template: '%s | KranioFlow Blog'
   },
-  description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness. Expertné rady a tipy od našich terapeutov.',
+  description: 'Objavte najnovšie články o kraniosakrálnej terapii.',
   keywords: 'blog, kraniosakrálna terapia, zdravie, wellness, alternatívna medicína, relaxácia, liečba, terapeut',
-  authors: [{ name: 'KranioFlow Team' }],
   creator: 'KranioFlow',
   publisher: 'KranioFlow',
   formatDetection: {
@@ -15,14 +14,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://kranioflow.sk'),
+  metadataBase: new URL('https://kranioflow.com'),
   alternates: {
     canonical: '/blog',
   },
   openGraph: {
     type: 'website',
     locale: 'sk_SK',
-    url: 'https://kranioflow.sk/blog',
+    url: 'https://kranioflow.com/blog',
     title: 'Blog | KranioFlow - Kraniosakrálna terapia',
     description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
     siteName: 'KranioFlow Blog',
@@ -73,13 +72,13 @@ export default function BlogLayout({
             "@type": "Blog",
             "name": "KranioFlow Blog",
             "description": "Blog o kraniosakrálnej terapii, zdraví a wellness",
-            "url": "https://kranioflow.sk/blog",
+            "url": "https://kranioflow.com/blog",
             "publisher": {
               "@type": "Organization",
               "name": "KranioFlow",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://kranioflow.sk/kranioflow-logo-optimized.svg"
+                "url": "https://kranioflow.com/kranioflow-logo-optimized.svg"
               }
             },
             "mainEntity": {

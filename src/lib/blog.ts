@@ -1,5 +1,5 @@
 import { BlogPost, BlogFilters, BlogResponse } from '@/types/blog';
-import { wordpressAPI } from './wordpress';
+import { getWordPressAPI } from './wordpress';
 import { config } from './config';
 import { unstable_cache } from 'next/cache';
 
@@ -28,7 +28,7 @@ async function getBlogPostsInternal(filters: BlogFilters = {}): Promise<BlogResp
       console.log('📰 Fetching posts from WordPress API only...');
       
       // Fetch ALL posts from WordPress API (no pagination)
-      const apiResult = await wordpressAPI.getPosts({
+      const apiResult = await getWordPressAPI().getPosts({
         ...(filters.search && { search: filters.search }),
         ...(filters.category && { categories: [parseInt(filters.category)] }),
         ...(filters.tags && { tags: filters.tags.map(tag => parseInt(tag)).filter(id => !isNaN(id)) }),
@@ -73,7 +73,7 @@ async function getBlogPostsInternal(filters: BlogFilters = {}): Promise<BlogResp
         }
         
         // Get categories from WordPress
-        const categories = await wordpressAPI.getCategories().catch(() => []);
+        const categories = await getWordPressAPI().getCategories().catch(() => []);
         
         return {
           posts: filteredPosts, // Return ALL posts - frontend will handle pagination
@@ -134,7 +134,7 @@ async function getBlogPostInternal(slug: string): Promise<BlogPost | null> {
     try {
       console.log(`📰 Fetching post by slug from WordPress API: ${slug}`);
       
-      const apiPost = await wordpressAPI.getPostBySlug(slug);
+      const apiPost = await getWordPressAPI().getPostBySlug(slug);
       if (apiPost) {
         console.log(`✅ Found post from WordPress API: ${apiPost.title}`);
         return apiPost;
@@ -163,7 +163,7 @@ export async function getRelatedPosts(
     try {
       console.log('📰 Fetching related posts from WordPress API...');
       
-      const apiResult = await wordpressAPI.getPosts({
+      const apiResult = await getWordPressAPI().getPosts({
         // Get latest posts (no pagination)
       });
 
@@ -196,7 +196,7 @@ export async function getBlogPostsByCategory(category: string): Promise<BlogPost
     try {
       console.log(`📰 Fetching posts by category from WordPress API: ${category}`);
       
-      const { posts } = await wordpressAPI.getPosts({
+      const { posts } = await getWordPressAPI().getPosts({
         categories: [parseInt(category)] // Assuming category is passed as ID
       });
       
@@ -219,7 +219,7 @@ export async function getBlogPostsByTag(tag: string): Promise<BlogPost[]> {
     try {
       console.log(`📰 Fetching posts by tag from WordPress API: ${tag}`);
       
-      const { posts } = await wordpressAPI.getPosts({
+      const { posts } = await getWordPressAPI().getPosts({
         tags: [parseInt(tag)] // Assuming tag is passed as ID
       });
       
@@ -242,7 +242,7 @@ export async function getBlogPostsByAuthor(author: string): Promise<BlogPost[]> 
     try {
       console.log(`📰 Fetching posts by author from WordPress API: ${author}`);
       
-      const { posts } = await wordpressAPI.getPosts({
+      const { posts } = await getWordPressAPI().getPosts({
         author: parseInt(author) // Assuming author is passed as ID
       });
       
@@ -265,7 +265,7 @@ export async function searchBlogPosts(query: string): Promise<BlogPost[]> {
     try {
       console.log(`📰 Searching posts in WordPress API: "${query}"`);
       
-      const { posts } = await wordpressAPI.searchPosts(query);
+      const { posts } = await getWordPressAPI().searchPosts(query);
       
       console.log(`✅ Found ${posts.length} posts matching: "${query}"`);
       return posts;

@@ -781,5 +781,28 @@ export class WordPressAPI {
   }
 }
 
-// Export singleton instance
-export const wordpressAPI = new WordPressAPI();
+// Lazy initialization of WordPress API
+let _wordpressAPI: WordPressAPI | null = null;
+
+export function getWordPressAPI(): WordPressAPI {
+  if (!_wordpressAPI) {
+    _wordpressAPI = new WordPressAPI();
+  }
+  return _wordpressAPI;
+}
+
+// Export function for backward compatibility
+export const wordpressAPI = {
+  getCategories: () => getWordPressAPI().getCategories(),
+  getPosts: (params?: any) => getWordPressAPI().getPosts(params),
+  getPostBySlug: (slug: string) => getWordPressAPI().getPostBySlug(slug),
+  getPostById: (id: number) => getWordPressAPI().getPostById(id),
+  getTags: () => getWordPressAPI().getTags(),
+  getAuthors: () => getWordPressAPI().getAuthors(),
+  searchPosts: (query: string, params?: any) => getWordPressAPI().searchPosts(query, params),
+  getRelatedPosts: (currentPostId: string, categoryId: number, tagIds: number[], limit?: number) => 
+    getWordPressAPI().getRelatedPosts(currentPostId, categoryId, tagIds, limit),
+  clearCachePublic: () => getWordPressAPI().clearCachePublic(),
+  getCacheStats: () => getWordPressAPI().getCacheStats(),
+  healthCheck: () => getWordPressAPI().healthCheck()
+};

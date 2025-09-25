@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { wordpressAPI } from '@/lib/wordpress';
+import { getWordPressAPI } from '@/lib/wordpress';
 import { config } from '@/lib/config';
 
 export async function GET() {
@@ -30,14 +30,14 @@ export async function GET() {
   try {
     // Test 1: WordPress API Health Check
     console.log('🔍 Testing WordPress API health check...');
-    const healthCheck = await wordpressAPI.healthCheck();
+    const healthCheck = await getWordPressAPI().healthCheck();
     results.tests.healthCheck = healthCheck;
 
     if (healthCheck.status === 'healthy') {
       // Test 2: WordPress API - Get Posts
       console.log('🔍 Testing WordPress API - Get Posts...');
       try {
-        const apiPosts = await wordpressAPI.getPosts({});
+        const apiPosts = await getWordPressAPI().getPosts({});
         results.tests.apiPosts = {
           success: true,
           count: apiPosts.posts.length,
@@ -59,7 +59,7 @@ export async function GET() {
       // Test 3: WordPress API - Get Categories
       console.log('🔍 Testing WordPress API - Get Categories...');
       try {
-        const categories = await wordpressAPI.getCategories();
+        const categories = await getWordPressAPI().getCategories();
         results.tests.apiCategories = {
           success: true,
           count: categories.length,
@@ -79,7 +79,7 @@ export async function GET() {
       // Test 4: WordPress API - Get Tags
       console.log('🔍 Testing WordPress API - Get Tags...');
       try {
-        const tags = await wordpressAPI.getTags();
+        const tags = await getWordPressAPI().getTags();
         results.tests.apiTags = {
           success: true,
           count: tags.length,
@@ -100,7 +100,7 @@ export async function GET() {
       if (results.tests.apiPosts?.success && results.tests.apiPosts.samplePost) {
         console.log('🔍 Testing WordPress API - Get Single Post...');
         try {
-          const singlePost = await wordpressAPI.getPostBySlug(results.tests.apiPosts.samplePost.slug);
+          const singlePost = await getWordPressAPI().getPostBySlug(results.tests.apiPosts.samplePost.slug);
           results.tests.apiSinglePost = {
             success: singlePost !== null,
             found: singlePost !== null,
@@ -122,7 +122,7 @@ export async function GET() {
     // Test 6: WordPress API Search
     console.log('🔍 Testing WordPress API Search...');
     try {
-      const searchResults = await wordpressAPI.searchPosts('terapia', {});
+      const searchResults = await getWordPressAPI().searchPosts('terapia', {});
       results.tests.search = {
         success: true,
         count: searchResults.posts.length,
@@ -145,7 +145,7 @@ export async function GET() {
     // Test 7: Cache Stats
     console.log('🔍 Testing Cache Stats...');
     try {
-      const cacheStats = wordpressAPI.getCacheStats();
+      const cacheStats = getWordPressAPI().getCacheStats();
       results.tests.cacheStats = {
         success: true,
         size: cacheStats.size,
@@ -162,7 +162,7 @@ export async function GET() {
     // Test 8: Authors Test
     console.log('🔍 Testing Authors...');
     try {
-      const authors = await wordpressAPI.getAuthors();
+      const authors = await getWordPressAPI().getAuthors();
       results.tests.authors = {
         success: true,
         count: authors.length,
