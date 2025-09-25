@@ -20,6 +20,10 @@ declare global {
       NEXT_PUBLIC_SITE_URL?: string;
       DATABASE_URL?: string;
       CONTACT_EMAIL?: string;
+      GOOGLE_SCRIPT_URL?: string;
+      GOOGLE_SHEET_ID?: string;
+      NOTIFICATION_EMAIL?: string;
+      USE_GOOGLE_SCRIPT?: string;
     }
   }
 

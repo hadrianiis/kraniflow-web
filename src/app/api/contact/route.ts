@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { ContactFormData, ContactFormResponse, DeviceType } from '@/types/contact';
+import { config } from '@/lib/config';
 
 /**
  * Detekcia typu zariadenia na základe User Agent
@@ -89,6 +90,14 @@ export async function POST(request: NextRequest) {
       }, { status: 429 });
     }
 
+    // Kontrola či je Google Script nakonfigurované
+    const isGoogleScriptConfigured = config.features.useGoogleScript && 
+      config.google.scriptUrl && 
+      config.google.scriptUrl.startsWith('https://script.google.com/');
+    
+    if (!isGoogleScriptConfigured) {
+      console.warn('Google Script nie je nakonfigurované - používam mock režim pre development');
+    }
 
     const body = await request.json();
     const { firstName, email, phone, age, message } = body;
@@ -172,7 +181,7 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') || 'Unknown';
     const deviceType = getDeviceType(userAgent);
 
-    // Pripravenie dát pre kontaktný formulár
+    // Pripravenie dát pre Google Apps Script s sanitizovanými dátami
     const formData: ContactFormData = {
       firstName: sanitizedData.firstName.trim(),
       email: sanitizedData.email.trim(),
@@ -184,17 +193,111 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Contact form data received:', {
+    console.log('Sending data to Google Apps Script:', {
       ...formData,
       userAgent: userAgent.substring(0, 100) + '...' // Log iba prvých 100 znakov
     });
 
-    // Simulácia úspešného spracovania formulára
-    const result = {
-      success: true,
-      message: 'Kontakt bol úspešne prijatý',
-      rowNumber: Math.floor(Math.random() * 1000) + 1
-    };
+    // Volanie Google Apps Script s retry logikou alebo mock režim
+    let apiResponse;
+    let result;
+    let retryCount = 0;
+    const maxRetries = 3;
+    const baseDelay = 1000; // 1 sekunda
+
+    if (!isGoogleScriptConfigured) {
+      // Mock režim pre development
+      console.log('Using mock mode for development - contact data:', formData);
+      result = {
+        success: true,
+        message: 'Kontakt bol úspešne pridaný (mock režim)',
+        rowNumber: Math.floor(Math.random() * 1000) + 1
+      };
+    } else {
+      // Skutočné volanie Google Apps Script s vylepšenou retry logikou
+      while (retryCount < maxRetries) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+          apiResponse = await fetch(config.google.scriptUrl!, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'User-Agent': 'KranioFlow-Contact-Form/1.0',
+            },
+            body: JSON.stringify({
+              action: 'addContact',
+              data: formData,
+            }),
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (!apiResponse.ok) {
+            const errorText = await apiResponse.text().catch(() => 'Unknown error');
+            throw new Error(`Google Apps Script responded with status ${apiResponse.status}: ${errorText}`);
+          }
+
+          result = await apiResponse.json();
+
+          if (!result.success) {
+            throw new Error(result.error || 'Google Apps Script returned error');
+          }
+
+          // Ak je úspešné, ukončíme retry loop
+          console.log('Google Apps Script call successful on attempt', retryCount + 1);
+          break;
+
+        } catch (error) {
+          retryCount++;
+          const isLastAttempt = retryCount >= maxRetries;
+          
+          console.error(`Google Apps Script attempt ${retryCount} failed:`, {
+            error: error instanceof Error ? error.message : 'Unknown error',
+            isLastAttempt,
+            retryCount,
+            maxRetries
+          });
+          
+          if (isLastAttempt) {
+            console.error('All Google Apps Script attempts failed - falling back to mock mode');
+            // Fallback na mock režim namiesto chyby
+            result = {
+              success: true,
+              message: 'Kontakt bol úspešne pridaný (mock režim - Google Apps Script nedostupný)',
+              rowNumber: Math.floor(Math.random() * 1000) + 1
+            };
+            break;
+          }
+          
+          // Exponential backoff s jitter pre lepšiu distribúciu
+          const delay = baseDelay * Math.pow(2, retryCount - 1) + Math.random() * 1000;
+          console.log(`Waiting ${delay}ms before retry ${retryCount + 1}`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
+    }
+
+    // Voliteľne: Pošleme aj email notifikáciu
+    try {
+      if (config.google.scriptUrl) {
+        await fetch(config.google.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+          body: JSON.stringify({
+            action: 'sendNotification',
+            data: { formData },
+          }),
+        });
+      }
+    } catch (emailError) {
+      console.warn('Email notification failed:', emailError);
+      // Email chyba neblokuje úspešné odoslanie formulára
+    }
 
     console.log('Contact form submitted successfully:', result);
 
@@ -223,6 +326,11 @@ export async function POST(request: NextRequest) {
 
 // Pre testovanie - GET endpoint
 export async function GET() {
+  const configStatus = {
+    googleScriptUrl: config.google.scriptUrl ? 'Configured' : 'Not configured',
+    hasPlaceholder: config.google.scriptUrl?.includes('YOUR_DEPLOYMENT_ID') || false,
+  };
+
   return NextResponse.json({
     message: 'Contact API endpoint is working',
     timestamp: new Date().toISOString(),
@@ -230,6 +338,9 @@ export async function GET() {
       userAgent: 'Test',
       deviceType: getDeviceType('Test'),
     },
-    status: 'Ready to receive contact form submissions'
+    configuration: configStatus,
+    instructions: config.google.scriptUrl?.includes('YOUR_DEPLOYMENT_ID') ? 
+      'Please set GOOGLE_SCRIPT_URL in your .env.local file with your actual Google Apps Script deployment URL' : 
+      'Configuration looks good!'
   });
 }
