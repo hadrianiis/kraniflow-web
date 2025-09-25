@@ -1,14 +1,14 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Kranioflow',
-  description: 'Zásady ochrany osobných údajov pre Kranioflow - BCST terapia',
+  title: 'Ochrana údajov | Kranioflow | Kraniosakrálna terapia',
+  description: 'Zásady ochrany osobných údajov - informácie o spracovaní a ochrane vašich osobných údajov v súlade s GDPR.',
 };
 
-export default function PrivacyPolicyLayout({
+export default function PrivacyLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <>{children}</>;
 }
