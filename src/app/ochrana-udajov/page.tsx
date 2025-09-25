@@ -1,6 +1,5 @@
 "use client"
 
-import { ParkingSquareOff } from "lucide-react"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -57,13 +56,6 @@ const ContactInfo = styled.div`
   margin: 1rem 0;
 `
 
-const PlaceholderText = styled.span`
-  background-color: #e9ecef;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-style: italic;
-  color: #6c757d;
-`
 
 export default function PrivacyPolicyPage() {
   return (
