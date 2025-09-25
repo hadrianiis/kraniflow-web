@@ -4,8 +4,8 @@ import * as React from "react"
 import styled from "styled-components"
 
 const StyledButton = styled.button<{
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
-  size?: 'default' | 'sm' | 'lg' | 'icon'
+  $variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  $size?: 'default' | 'sm' | 'lg' | 'icon'
 }>`
   display: inline-flex;
   align-items: center;
@@ -38,8 +38,8 @@ const StyledButton = styled.button<{
   }
   
   /* Variants */
-  ${({ variant }) => {
-    switch (variant) {
+  ${({ $variant }) => {
+    switch ($variant) {
       case 'default':
         return `
           background-color: hsl(var(--primary));
@@ -110,8 +110,8 @@ const StyledButton = styled.button<{
   }}
   
   /* Sizes */
-  ${({ size }) => {
-    switch (size) {
+  ${({ $size }) => {
+    switch ($size) {
       case 'sm':
         return `
           height: 2rem;
@@ -150,8 +150,8 @@ function Button({
   return (
     <StyledButton
       data-slot="button"
-      variant={variant}
-      size={size}
+      $variant={variant}
+      $size={size}
       {...props}
     />
   )

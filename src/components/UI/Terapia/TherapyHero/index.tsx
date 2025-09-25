@@ -1,5 +1,4 @@
 'use client';
-import { Cpu, Zap } from 'lucide-react';
 import Image from 'next/image';
 import {
   Section,
@@ -8,11 +7,6 @@ import {
   ContentWrapper,
   TextContent,
   Description,
-  FeaturesGrid,
-  FeatureCard,
-  FeatureIcon,
-  FeatureTitle,
-  FeatureDescription,
   ImageWrapper,
   ImageContainer,
   GradientOverlay,
@@ -37,9 +31,6 @@ export default function TherapyHero() {
               Táto metóda je založená na práci s kraniosakrálnym systémom, ktorý zahŕňa lebku, chrbticu a panvu, a pomáha zmierniť rôzne zdravotné problémy.
             </Description>
 
-            <FeaturesGrid>
-             
-            </FeaturesGrid>
           </TextContent>
           
           <ImageWrapper>

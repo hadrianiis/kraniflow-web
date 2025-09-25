@@ -1,17 +1,17 @@
 import {
   FAQ,
-  CTA_01,
-  AboutText,
 } from '@/components';
-import { AboutHeroNew } from '@/components/UI/About';
+import AboutHero from '@/components/UI/About/AboutHero';
+import AboutContent from '@/components/UI/About/AboutContent';
+import AboutFeatures from '@/components/UI/About/AboutFeatures';
 
 export default function AboutPage() {
   return (
     <>
       <main>
-        <AboutHeroNew />
-        <AboutText />
-        <CTA_01 />
+        <AboutHero />
+        <AboutFeatures />
+        <AboutContent />
         <FAQ />
       </main>
     </>

@@ -1,17 +1,16 @@
-'use client';
 import { styled } from 'styled-components';
-import hero_background from '../../../../public/images/grid_background.png';
+import { theme, media } from '@/lib/theme';
 
 export const Wrapper = styled.section`
-  margin-top: 4rem;
+  margin-top: ${theme.spacing['4xl']};
   
-  @media (min-width: 768px) {
-    margin-top: 5rem;
+  ${media.md} {
+    margin-top: ${theme.spacing['5xl']};
   }
 `;
 
 export const Inner = styled.div`
-  background: url(${hero_background.src}) no-repeat;
+  background: url('/images/grid_background.png') no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,24 +19,29 @@ export const Inner = styled.div`
   text-align: center;
   background-position: top center;
   background-size: contain;
+  
+  /* Performance optimizations */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 `;
 
 export const Pill = styled.div`
   display: flex;
-  padding: 0.375rem 0.75rem;
+  padding: ${theme.spacing.sm} ${theme.spacing.md};
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: ${theme.spacing.sm};
   border-radius: 6.25rem;
-  border: 0.2px solid #989898;
+  border: 0.2px solid ${theme.colors.border.dark};
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  margin-bottom: 1rem;
+  margin-bottom: ${theme.spacing.lg};
 
   span {
-    color: var(--light-gray);
-    font-size: 1rem;
-    font-weight: 400;
+    color: ${theme.colors.text.light};
+    font-size: ${theme.typography.fontSize.base};
+    font-weight: ${theme.typography.fontWeight.normal};
   }
 `;
 
@@ -48,29 +52,45 @@ export const HeroTextContainer = styled.div`
   padding-bottom: 2rem;
 
   h1 {
-    font-size: 6rem;
-    font-weight: 400;
+    font-size: 5rem;
+    font-weight: ${theme.typography.fontWeight.normal};
+    line-height: ${theme.typography.lineHeight.tight};
+    color: ${theme.colors.text.primary};
+    
+    /* Performance optimizations for text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
   }
 
   p {
     max-width: 41.75rem;
-    color: #bdbdbd;
-    font-size: 1rem;
-    font-weight: 400;
+    color: ${theme.colors.text.muted};
+    font-size: ${theme.typography.fontSize.base};
+    font-weight: ${theme.typography.fontWeight.normal};
     margin: 0 auto;
+    line-height: ${theme.typography.lineHeight.normal};
+    
+    /* Performance optimizations for text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     gap: 1rem;
     padding-bottom: 1.5rem;
+    
     h1 {
-      font-size: 2.5rem;
-      font-weight: 400;
+      font-size: 3rem;
+      font-weight: ${theme.typography.fontWeight.normal};
     }
 
     p {
-      font-size: 1rem;
-      line-height: 1.5rem;
+      font-size: ${theme.typography.fontSize.base};
+      line-height: ${theme.typography.lineHeight.normal};
     }
   }
 `;

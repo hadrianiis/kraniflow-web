@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "dev:localhost": "next dev",
+    "dev:network": "next dev --hostname 0.0.0.0 --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,30 +14,15 @@
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@tabler/icons-react": "^3.34.1",
-    "@tiptap/extension-blockquote": "^3.3.1",
-    "@tiptap/extension-bold": "^3.3.1",
-    "@tiptap/extension-bullet-list": "^3.3.1",
-    "@tiptap/extension-color": "^3.3.1",
-    "@tiptap/extension-heading": "^3.3.1",
-    "@tiptap/extension-italic": "^3.3.1",
-    "@tiptap/extension-link": "^3.3.1",
-    "@tiptap/extension-list-item": "^3.3.1",
-    "@tiptap/extension-ordered-list": "^3.3.1",
-    "@tiptap/extension-strike": "^3.3.1",
-    "@tiptap/extension-text-align": "^3.3.1",
-    "@tiptap/extension-text-style": "^3.3.1",
-    "@tiptap/extension-underline": "^3.3.1",
-    "@tiptap/react": "^3.3.1",
-    "@tiptap/starter-kit": "^3.3.1",
     "class-variance-authority": "^0.7.1",
+    "critters": "^0.0.23",
     "framer-motion": "^12.23.12",
-    "gsap": "^3.12.2",
-    "imagekitio-react": "^4.3.0",
     "lenis": "^1.0.34",
     "lucide-react": "^0.539.0",
     "next": "^15.5.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
@@ -47,5 +34,18 @@
     "eslint": "^8",
     "eslint-config-next": "^15.5.0",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "not IE 11",
+    "not IE_Mob 11",
+    "not op_mini all",
+    "Chrome >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "Edge >= 90"
+  ]
 }

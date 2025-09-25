@@ -39,6 +39,8 @@ export interface BlogFilters {
   author?: string
   search?: string
   sortBy?: 'newest' | 'oldest' | 'popular' | 'title'
+  page?: number
+  limit?: number
 }
 
 export interface BlogPagination {

@@ -1,5 +1,5 @@
-'use client';
 import { styled } from 'styled-components';
+import { theme } from '@/lib/theme';
 import { motion } from 'framer-motion';
 
 export const Wrapper = styled.div`
@@ -16,13 +16,13 @@ export const Inner = styled.div`
 
   h1 {
     max-width: 56rem;
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     h1 {
-      font-size: 3.75rem;
+      font-size: 2.5rem;
     }
   }
 `;
@@ -47,7 +47,7 @@ export const AccordionItem = styled(motion.div)`
   overflow: hidden;
 `;
 
-export const Question = styled(motion.div)`
+export const Question = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,7 +56,7 @@ export const Question = styled(motion.div)`
   font-weight: 500;
   margin-bottom: 1.5rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     font-size: 1rem;
     margin-bottom: 2rem;
     gap: 1rem;
@@ -64,7 +64,7 @@ export const Question = styled(motion.div)`
 `;
 
 export const Answer = styled(motion.div)`
-  color: var(--link-color);
+  color: ${theme.colors.text.primary};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5rem;

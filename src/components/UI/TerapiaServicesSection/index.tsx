@@ -1,5 +1,4 @@
 'use client';
-import { GetStartedButton } from '@/components';
 import {
   Wrapper,
   Container,

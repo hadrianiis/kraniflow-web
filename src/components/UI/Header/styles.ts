@@ -1,6 +1,6 @@
-'use client';
 import Link from 'next/link';
 import { styled } from 'styled-components';
+import { theme } from '@/lib/theme';
 
 export const Wrapper = styled.section`
   padding: 1rem 0;
@@ -18,7 +18,7 @@ export const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 20px;
     right: 20px;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, ${theme.colors.gradient.start}, ${theme.colors.gradient.end});
     border-radius: 25px;
     z-index: 999;
     display: flex;
@@ -53,21 +53,43 @@ export const MobileMenuContent = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const Inner = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   width: 90%;
   max-width: 80rem;
   margin: 0 auto;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  grid-column: 1;
+  
+  img {
+    height: 160px;
+    width: auto;
+    object-fit: contain;
+    background: transparent;
+    border-radius: 8px;
+  }
+
   @media (max-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     width: 100%;
-    position: relative;
+    grid-column: 1;
+    
+    img {
+      height: 120px;
+    }
   }
 `;
 
@@ -82,12 +104,13 @@ export const BurgerMenu = styled.div`
 export const Nav = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 3.75rem;
   position: relative;
-  margin-right: -6.3rem;
+  grid-column: 2;
 
   a {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 400;
   }
@@ -110,7 +133,7 @@ export const MobileNav = styled.div`
     justify-content: center;
 
     a {
-      color: var(--white);
+      color: ${theme.colors.text.white};
       font-size: 1rem;
       font-weight: 500;
       text-decoration: none;
@@ -134,7 +157,7 @@ export const MobileNav = styled.div`
 export const AbsoluteLinks = styled(Link)`
   position: absolute;
   top: 40px;
-  color: var(--link-color);
+  color: ${theme.colors.text.primary};
   font-size: 1rem;
   font-weight: 400;
 `;
@@ -142,11 +165,13 @@ export const AbsoluteLinks = styled(Link)`
 export const CallToActions = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
+  grid-column: 3;
 
   div {
     span {
-      color: var(--white);
+      color: ${theme.colors.text.white};
       font-size: 1rem;
       font-weight: 600;
     }
@@ -162,11 +187,13 @@ export const MobileCallToActions = styled.div<{ $isOpen: boolean }>`
 
   @media (max-width: 768px) {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     margin-top: auto;
     padding: 1rem 0.5rem;
+    gap: 0.75rem;
     opacity: ${({ $isOpen }) => $isOpen ? 1 : 0};
     visibility: ${({ $isOpen }) => $isOpen ? 'visible' : 'hidden'};
     flex-shrink: 0;
@@ -176,7 +203,7 @@ export const MobileCallToActions = styled.div<{ $isOpen: boolean }>`
 
     div {
       span {
-        color: var(--white);
+        color: ${theme.colors.text.white};
         font-size: 1rem;
         font-weight: 600;
       }

@@ -11,13 +11,12 @@ import {
   HoverOverlay,
 } from './styles';
 import MaskText from '@/components/Common/MaskText';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import {
-  desktopHeaderPhrases,
-  desktopParagraphPhrase,
-  mobileParagraphPhrase,
-  features,
-} from './constants';
+import { useIsMobile } from '@/lib/useIsMobile';
+import { 
+  OFFERS_HEADER_PHRASES, 
+  OFFERS_DESCRIPTION_PHRASES, 
+  FEATURES 
+} from '@/lib/constants';
 import {
   IconClockCheck,
   IconHeartHandshake,
@@ -47,24 +46,24 @@ const OffersSection = () => {
     <Wrapper>
       <Inner>
         <Header>
-          <MaskText phrases={desktopHeaderPhrases} tag="h1" align="center" />
-          {isMobile ? (
-            <MaskText phrases={mobileParagraphPhrase} tag="p" align="center" />
-          ) : (
-            <MaskText phrases={desktopParagraphPhrase} tag="p" align="center" />
-          )}
+          <MaskText phrases={OFFERS_HEADER_PHRASES.desktop} tag="h1" align="center" />
+          <MaskText 
+            phrases={isMobile ? OFFERS_DESCRIPTION_PHRASES.mobile : OFFERS_DESCRIPTION_PHRASES.desktop} 
+            tag="p" 
+            align="center" 
+          />
         </Header>
         
         <FeaturesGrid>
-          {features.map((feature, index) => {
+          {FEATURES.map((feature, index) => {
             const IconComponent = iconMap[feature.iconName as keyof typeof iconMap];
             return (
-              <FeatureCard key={feature.title} index={index}>
-                <HoverOverlay index={index} className="hover-overlay" />
+              <FeatureCard key={feature.id} $index={index}>
+                <HoverOverlay $index={index} className="hover-overlay" />
                 <IconContainer>
                   {IconComponent && <IconComponent />}
                 </IconContainer>
-                <FeatureTitle index={index} className="feature-title">
+                <FeatureTitle $index={index} className="feature-title">
                   <span>{feature.title}</span>
                 </FeatureTitle>
                 <FeatureDescription>

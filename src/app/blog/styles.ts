@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.main`
   min-height: 100vh;
   background-color: var(--Background);
+  contain: layout style;
 `;
 
 export const Inner = styled.div`
@@ -13,13 +14,11 @@ export const Inner = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   width: 90%;
+  contain: layout;
 `;
 
 export const ContentSection = styled.section`
-  margin: 6.25rem auto 0;
+  margin: 0 auto 100px;
   width: 100%;
-  
-  @media (max-width: 768px) {
-    margin-top: 5rem;
-  }
+  contain: layout style;
 `; 

@@ -1,7 +1,7 @@
-import Layout from '@/components/Layout';
-import StyledComponentsRegistry from '../../libs/registry';
-import { ToastProvider } from '@/components/UI/Toast';
-import './globals.css';
+import ConditionalLayout from '@/components/ConditionalLayout';
+import BFCacheOptimizer from '@/components/BFCacheOptimizer';
+import CSSLoader from '@/components/CSSLoader';
+import StyledComponentsRegistry from '@/lib/registry';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,11 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sk">
-      <body>
+      <head>
+        {/* Critical resource hints for faster loading - only for actually used origins */}
+        <link rel="preconnect" href="https://kranioflow.wordpress.com" />
+      </head>
+      <body suppressHydrationWarning={true}>
+        <BFCacheOptimizer />
+        <CSSLoader />
         <StyledComponentsRegistry>
-          <ToastProvider>
-            <Layout>{children}</Layout>
-          </ToastProvider>
+          <ConditionalLayout>{children}</ConditionalLayout>
         </StyledComponentsRegistry>
       </body>
     </html>

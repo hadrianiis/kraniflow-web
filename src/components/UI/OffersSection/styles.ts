@@ -1,4 +1,3 @@
-'use client';
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section``;
@@ -23,7 +22,7 @@ export const Header = styled.header`
   margin: 0 auto 6.75rem;
 
   h1 {
-    font-size: 4.75rem;
+    font-size: 5rem;
     font-weight: 400;
   }
 
@@ -35,9 +34,9 @@ export const Header = styled.header`
     line-height: 1.75rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     h1 {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
     }
 
     p {
@@ -66,7 +65,7 @@ export const FeaturesGrid = styled.div`
   }
 `;
 
-export const FeatureCard = styled.div<{ index: number }>`
+export const FeatureCard = styled.div<{ $index: number }>`
   display: flex;
   flex-direction: column;
   padding: 2.5rem 0;
@@ -85,7 +84,7 @@ export const FeatureCard = styled.div<{ index: number }>`
   }
 `;
 
-export const HoverOverlay = styled.div<{ index: number }>`
+export const HoverOverlay = styled.div<{ $index: number }>`
   position: absolute;
   inset: 0;
   height: 100%;
@@ -95,8 +94,8 @@ export const HoverOverlay = styled.div<{ index: number }>`
   pointer-events: none;
   z-index: 1;
 
-  ${({ index }) => {
-    if (index < 4) {
+  ${({ $index }) => {
+    if ($index < 4) {
       return `
         background: linear-gradient(to top, #f3f4f6, transparent);
       `;
@@ -116,7 +115,7 @@ export const IconContainer = styled.div`
   font-size: 1.5rem;
 `;
 
-export const FeatureTitle = styled.div<{ index: number }>`
+export const FeatureTitle = styled.div<{ $index: number }>`
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 0.5rem;

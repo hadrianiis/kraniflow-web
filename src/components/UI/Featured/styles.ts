@@ -1,6 +1,6 @@
-'use client';
 import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
+import { theme } from '@/lib/theme';
 
 export const Wrapper = styled.section`
   margin-bottom: 4rem;
@@ -15,7 +15,7 @@ export const Inner = styled.div`
   width: 90%;
 
   h2 {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;

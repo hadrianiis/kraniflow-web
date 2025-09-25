@@ -1,3 +1,5 @@
+'use client';
+
 import { createGlobalStyle } from 'styled-components';
 
 const styled = { createGlobalStyle };
@@ -25,7 +27,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   body {
     max-width: 100vw;
     overflow-x: hidden;
-    font-family: 'SF Pro Display', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--Background);
     color: #333333;
     scroll-snap-type: y mandatory;
@@ -47,12 +49,5 @@ export const GlobalStyles = styled.createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  .not_complete {
-    display: none;
-  }
-
-  .complete {
   }
 `;

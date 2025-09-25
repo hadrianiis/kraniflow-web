@@ -15,14 +15,19 @@ import {
 } from './styles';
 import { IconCircleChevronLeft, IconCircleChevronRight } from '@tabler/icons-react';
 import { MaskText } from '@/components';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import { Props, desktopHeaderPhrase, testimonials } from './constants';
+import { useIsMobile } from '@/lib/useIsMobile';
+import { TESTIMONIALS_HEADER_PHRASES, TESTIMONIALS } from '@/lib/constants';
+
+interface Props {
+  testimony: string;
+  person: string;
+}
 
 const JoinSection = () => {
-  const [testimonialsArr, setTestimonialsArr] = useState<Props[]>(testimonials);
+  const [testimonialsArr, setTestimonialsArr] = useState<Props[]>(TESTIMONIALS);
 
   const next = () => {
-    const newArr = [...testimonialsArr.slice(1), testimonialsArr[0]];
+    const newArr = [...testimonialsArr.slice(1), testimonialsArr[0]!];
     setTestimonialsArr(newArr);
   };
 
@@ -43,7 +48,7 @@ const JoinSection = () => {
     <Wrapper>
       <Inner>
         <Header>
-          <MaskText phrases={desktopHeaderPhrase} tag="h1" align="center" />
+          <MaskText phrases={TESTIMONIALS_HEADER_PHRASES.desktop} tag="h1" align="center" />
         </Header>
         <TestimonialWrapper>
           {mappedTestimonials.map((t, i) => (

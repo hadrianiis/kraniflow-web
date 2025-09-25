@@ -1,261 +1,336 @@
-import { BlogPost } from '@/types/blog';
+import { BlogPost, BlogFilters, BlogResponse } from '@/types/blog';
+import { wordpressAPI } from './wordpress';
+import { config } from './config';
+import { unstable_cache } from 'next/cache';
 
-// Mock data - v reálnej aplikácii by toto bolo z databázy alebo CMS
-const mockPosts: BlogPost[] = [
-  {
-    id: '1',
-    title: 'Úvod do kraniosakrálnej terapie',
-    excerpt: 'Objavte, ako kraniosakrálna terapia môže pomôcť s chronickými bolesťami, stresom a celkovým zdravím.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/kranio-about1.avif',
-    publishedAt: '2024-01-15',
-    updatedAt: '2024-01-15',
-    readTime: 8,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['kraniosakrálna terapia', 'úvod', 'zdravie'],
-    category: 'Základy terapie',
-    isPublished: true,
-    views: 1250,
-    likes: 45,
-    slug: 'uvod-do-kraniosakralnej-terapie'
+
+// Cached version of getBlogPosts for better performance
+const getCachedBlogPosts = unstable_cache(
+  async (filters: BlogFilters = {}): Promise<BlogResponse> => {
+    return await getBlogPostsInternal(filters);
   },
+  ['blog-posts'],
   {
-    id: '2',
-    title: 'Ako kraniosakrálna terapia pomáha so stresom',
-    excerpt: 'Pozrite si, ako môže kraniosakrálna terapia účinne redukovať stres a napätie v tele.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/stress-cells.avif',
-    publishedAt: '2024-01-12',
-    updatedAt: '2024-01-12',
-    readTime: 12,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['stres', 'napätie', 'relaxácia'],
-    category: 'Stres a napätie',
-    isPublished: true,
-    views: 980,
-    likes: 32,
-    slug: 'ako-kraniosakralna-terapia-pomaha-so-stresom'
-  },
-  {
-    id: '3',
-    title: 'Kraniosakrálna terapia pre deti',
-    excerpt: 'Ako môže kraniosakrálna terapia pomôcť deťom s rôznymi zdravotnými problémami a vývojovými poruchami.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/kika-spine.webp',
-    publishedAt: '2024-01-10',
-    updatedAt: '2024-01-10',
-    readTime: 10,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['deti', 'vývoj', 'zdravie'],
-    category: 'Terapia pre deti',
-    isPublished: true,
-    views: 756,
-    likes: 28,
-    slug: 'kraniosakralna-terapia-pre-deti'
-  },
-  {
-    id: '4',
-    title: 'Biodynamický prístup v kraniosakrálnej terapii',
-    excerpt: 'Pozrite si, ako biodynamický prístup môže priniesť hlbšie liečivé účinky v kraniosakrálnej terapii.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/skeleton.avif',
-    publishedAt: '2024-01-08',
-    updatedAt: '2024-01-08',
-    readTime: 15,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['biodynamika', 'liečenie', 'terapia'],
-    category: 'Biodynamický prístup',
-    isPublished: true,
-    views: 634,
-    likes: 19,
-    slug: 'biodynamicky-pristup-v-kraniosakralnej-terapii'
-  },
-  {
-    id: '5',
-    title: 'Kraniosakrálna terapia a migrény',
-    excerpt: 'Ako môže kraniosakrálna terapia pomôcť pri chronických bolestiach hlavy a migrénach.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/featured_img.avif',
-    publishedAt: '2024-01-05',
-    updatedAt: '2024-01-05',
-    readTime: 11,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['migrény', 'bolesť hlavy', 'liečenie'],
-    category: 'Bolesť hlavy',
-    isPublished: true,
-    views: 892,
-    likes: 41,
-    slug: 'kraniosakralna-terapia-a-migreny'
-  },
-  {
-    id: '6',
-    title: 'Príprava na kraniosakrálnu terapiu',
-    excerpt: 'Praktické tipy, ako sa pripraviť na prvú kraniosakrálnu terapiu a čo očakávať.',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    featuredImage: '/images/featured_img1.avif',
-    publishedAt: '2024-01-03',
-    updatedAt: '2024-01-03',
-    readTime: 9,
-    author: {
-      id: '1',
-      name: 'Mgr. Kika Nováková',
-      avatar: '/images/kika-photo-kranio.avif',
-      bio: 'Certifikovaná kraniosakrálna terapeutka s viac ako 10-ročnými skúsenosťami.',
-      role: 'Terapeutka'
-    },
-    tags: ['príprava', 'prvá návšteva', 'tipy'],
-    category: 'Príprava na terapiu',
-    isPublished: true,
-    views: 567,
-    likes: 23,
-    slug: 'priprava-na-kraniosakralnu-terapiu'
+    tags: ['blog-posts'],
+    revalidate: 60 * 60, // 1 hour - matches ISR revalidation
   }
-];
+);
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  return mockPosts;
+export async function getBlogPosts(filters: BlogFilters = {}): Promise<BlogResponse> {
+  // Use cached version for better performance
+  return await getCachedBlogPosts(filters);
 }
 
+async function getBlogPostsInternal(filters: BlogFilters = {}): Promise<BlogResponse> {
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log('📰 Fetching posts from WordPress API only...');
+      
+      // Fetch ALL posts from WordPress API (no pagination)
+      const apiResult = await wordpressAPI.getPosts({
+        ...(filters.search && { search: filters.search }),
+        ...(filters.category && { categories: [parseInt(filters.category)] }),
+        ...(filters.tags && { tags: filters.tags.map(tag => parseInt(tag)).filter(id => !isNaN(id)) }),
+        orderby: filters.sortBy === 'title' ? 'title' : 
+                filters.sortBy === 'oldest' ? 'date' : 
+                filters.sortBy === 'popular' ? 'date' : 'date',
+        order: filters.sortBy === 'oldest' ? 'asc' : 'desc'
+      });
+      
+      if (apiResult && apiResult.posts && apiResult.posts.length > 0) {
+        console.log(`✅ Found ${apiResult.posts.length} posts from WordPress API (${apiResult.total} total posts)`);
+        
+        // Apply additional client-side filters
+        let filteredPosts = apiResult.posts;
+        
+        if (filters.category && !filters.category.match(/^\d+$/)) {
+          // If category is not a number, filter by name
+          filteredPosts = filteredPosts.filter(post => 
+            post.category.toLowerCase().includes(filters.category!.toLowerCase())
+          );
+        }
+        
+        if (filters.tags?.length) {
+          filteredPosts = filteredPosts.filter(post => 
+            post.tags.some(tag => 
+              filters.tags!.some(filterTag => 
+                tag.toLowerCase().includes(filterTag.toLowerCase())
+              )
+            )
+          );
+        }
+        
+        if (filters.author) {
+          filteredPosts = filteredPosts.filter(post => 
+            post.author.name.toLowerCase().includes(filters.author!.toLowerCase())
+          );
+        }
+        
+        // Apply additional sorting if needed
+        if (filters.sortBy === 'popular') {
+          filteredPosts.sort((a, b) => b.views - a.views);
+        }
+        
+        // Get categories from WordPress
+        const categories = await wordpressAPI.getCategories().catch(() => []);
+        
+        return {
+          posts: filteredPosts, // Return ALL posts - frontend will handle pagination
+          pagination: {
+            page: 1, // Not used anymore
+            limit: 6, // Frontend will use this for display
+            total: filteredPosts.length, // Total filtered posts
+            totalPages: Math.ceil(filteredPosts.length / 6) // Calculate pages for frontend
+          },
+          categories: categories.length > 0 ? categories : [
+            { id: '1', name: 'Blog', slug: 'blog', description: '', postCount: filteredPosts.length, color: '#3B82F6' }
+          ]
+        };
+      } else {
+        console.log('❌ No posts found from WordPress API');
+        throw new Error('No posts available from WordPress API');
+      }
+    } catch (apiError) {
+      console.error('❌ WordPress API error:', apiError);
+      throw new Error(`Failed to fetch posts from WordPress API: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty result
+  console.log('📝 WordPress is disabled, returning empty result');
+  return {
+    posts: [],
+    pagination: {
+      page: filters.page || 1,
+      limit: filters.limit || 6,
+      total: 0,
+      totalPages: 0
+    },
+    categories: []
+  };
+}
+
+// Cached version of getBlogPost for better performance
+const getCachedBlogPost = (slug: string) => unstable_cache(
+  async (): Promise<BlogPost | null> => {
+    return await getBlogPostInternal(slug);
+  },
+  [`blog-post-${slug}`],
+  {
+    tags: ['blog-post'],
+    revalidate: 60 * 10, // 10 minutes
+  }
+)();
+
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  return mockPosts.find(post => post.slug === slug) || null;
+  // Use cached version for better performance
+  return await getCachedBlogPost(slug);
+}
+
+async function getBlogPostInternal(slug: string): Promise<BlogPost | null> {
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log(`📰 Fetching post by slug from WordPress API: ${slug}`);
+      
+      const apiPost = await wordpressAPI.getPostBySlug(slug);
+      if (apiPost) {
+        console.log(`✅ Found post from WordPress API: ${apiPost.title}`);
+        return apiPost;
+      } else {
+        console.log(`❌ Post not found in WordPress API: ${slug}`);
+        return null;
+      }
+    } catch (apiError) {
+      console.error('❌ WordPress API error for single post:', apiError);
+      throw new Error(`Failed to fetch post from WordPress API: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return null
+  console.log(`📝 WordPress is disabled, post not found: ${slug}`);
+  return null;
 }
 
 export async function getRelatedPosts(
   currentSlug: string, 
-  category: string, 
-  tags: string[]
+  _category: string, 
+  _tags: string[]
 ): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  return mockPosts
-    .filter(post => post.slug !== currentSlug)
-    .filter(post => 
-      post.category === category || 
-      post.tags.some(tag => tags.includes(tag))
-    )
-    .slice(0, 3);
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log('📰 Fetching related posts from WordPress API...');
+      
+      const apiResult = await wordpressAPI.getPosts({
+        // Get latest posts (no pagination)
+      });
+
+      if (apiResult && apiResult.posts) {
+        // Filter out current post and return latest posts
+        const otherPosts = apiResult.posts
+          .filter(post => post.slug !== currentSlug)
+          .slice(0, 3);
+        
+        console.log(`✅ Found ${otherPosts.length} related posts from WordPress API`);
+        return otherPosts;
+      } else {
+        console.log('❌ No posts found from WordPress API');
+        return [];
+      }
+    } catch (apiError) {
+      console.error('❌ WordPress API error for related posts:', apiError);
+      throw new Error(`Failed to fetch related posts from WordPress API: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty array
+  console.log('📝 WordPress is disabled, no related posts available');
+  return [];
 }
 
 export async function getBlogPostsByCategory(category: string): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  return mockPosts.filter(post => 
-    post.category.toLowerCase().includes(category.toLowerCase())
-  );
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log(`📰 Fetching posts by category from WordPress API: ${category}`);
+      
+      const { posts } = await wordpressAPI.getPosts({
+        categories: [parseInt(category)] // Assuming category is passed as ID
+      });
+      
+      console.log(`✅ Found ${posts.length} posts in category: ${category}`);
+      return posts;
+    } catch (error) {
+      console.error('❌ WordPress API error for category posts:', error);
+      throw new Error(`Failed to fetch posts by category from WordPress API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty array
+  console.log('📝 WordPress is disabled, no posts by category available');
+  return [];
 }
 
 export async function getBlogPostsByTag(tag: string): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  return mockPosts.filter(post => 
-    post.tags.some(postTag => 
-      postTag.toLowerCase().includes(tag.toLowerCase())
-    )
-  );
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log(`📰 Fetching posts by tag from WordPress API: ${tag}`);
+      
+      const { posts } = await wordpressAPI.getPosts({
+        tags: [parseInt(tag)] // Assuming tag is passed as ID
+      });
+      
+      console.log(`✅ Found ${posts.length} posts with tag: ${tag}`);
+      return posts;
+    } catch (error) {
+      console.error('❌ WordPress API error for tag posts:', error);
+      throw new Error(`Failed to fetch posts by tag from WordPress API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty array
+  console.log('📝 WordPress is disabled, no posts by tag available');
+  return [];
 }
 
 export async function getBlogPostsByAuthor(author: string): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  return mockPosts.filter(post => 
-    post.author.name.toLowerCase().includes(author.toLowerCase())
-  );
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log(`📰 Fetching posts by author from WordPress API: ${author}`);
+      
+      const { posts } = await wordpressAPI.getPosts({
+        author: parseInt(author) // Assuming author is passed as ID
+      });
+      
+      console.log(`✅ Found ${posts.length} posts by author: ${author}`);
+      return posts;
+    } catch (error) {
+      console.error('❌ WordPress API error for author posts:', error);
+      throw new Error(`Failed to fetch posts by author from WordPress API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty array
+  console.log('📝 WordPress is disabled, no posts by author available');
+  return [];
 }
 
 export async function searchBlogPosts(query: string): Promise<BlogPost[]> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
-  
-  const lowercaseQuery = query.toLowerCase();
-  
-  return mockPosts.filter(post => 
-    post.title.toLowerCase().includes(lowercaseQuery) ||
-    post.excerpt.toLowerCase().includes(lowercaseQuery) ||
-    post.content.toLowerCase().includes(lowercaseQuery) ||
-    post.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
-  );
+  // Use only WordPress.com API
+  if (config.features.useWordPress) {
+    try {
+      console.log(`📰 Searching posts in WordPress API: "${query}"`);
+      
+      const { posts } = await wordpressAPI.searchPosts(query);
+      
+      console.log(`✅ Found ${posts.length} posts matching: "${query}"`);
+      return posts;
+    } catch (error) {
+      console.error('❌ WordPress API error for search:', error);
+      throw new Error(`Failed to search posts from WordPress API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // If WordPress is disabled, return empty array
+  console.log('📝 WordPress is disabled, no search results available');
+  return [];
 }
 
 // Admin functions for CRUD operations
-export async function createBlogPost(postData: Omit<BlogPost, 'id' | 'publishedAt' | 'updatedAt' | 'views' | 'likes'>): Promise<BlogPost> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  const newPost: BlogPost = {
-    ...postData,
-    id: (mockPosts.length + 1).toString(),
-    publishedAt: new Date().toISOString().split('T')[0],
-    updatedAt: new Date().toISOString().split('T')[0],
-    views: 0,
-    likes: 0
-  };
-  
-  mockPosts.unshift(newPost);
-  return newPost;
+export async function createBlogPost(_postData: Omit<BlogPost, 'id' | 'publishedAt' | 'updatedAt' | 'views' | 'likes'>): Promise<BlogPost> {
+  try {
+    // Use WordPress API if enabled and available
+    if (config.features.useWordPress && config.wordpress.apiUrl) {
+      // WordPress API integration would go here
+      // This would require implementing POST requests to WordPress API
+      console.log('WordPress API create post not implemented yet');
+      throw new Error('WordPress API create post not implemented yet');
+    }
+  } catch (error) {
+    console.error('WordPress API error:', error);
+    throw new Error('Failed to create post via WordPress API');
+  }
+
+  // If WordPress is disabled, throw error
+  throw new Error('WordPress is disabled, cannot create posts');
 }
 
-export async function updateBlogPost(id: string, postData: Partial<BlogPost>): Promise<BlogPost | null> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  const postIndex = mockPosts.findIndex(post => post.id === id);
-  if (postIndex === -1) return null;
-  
-  const updatedPost = {
-    ...mockPosts[postIndex],
-    ...postData,
-    updatedAt: new Date().toISOString().split('T')[0]
-  };
-  
-  mockPosts[postIndex] = updatedPost;
-  return updatedPost;
+export async function updateBlogPost(_id: string, _postData: Partial<BlogPost>): Promise<BlogPost | null> {
+  try {
+    // Use WordPress API if enabled and available
+    if (config.features.useWordPress && config.wordpress.apiUrl) {
+      // WordPress API integration would go here
+      // This would require implementing PUT/PATCH requests to WordPress API
+      console.log('WordPress API update post not implemented yet');
+      throw new Error('WordPress API update post not implemented yet');
+    }
+  } catch (error) {
+    console.error('WordPress API error:', error);
+    throw new Error('Failed to update post via WordPress API');
+  }
+
+  // If WordPress is disabled, throw error
+  throw new Error('WordPress is disabled, cannot update posts');
 }
 
-export async function deleteBlogPost(id: string): Promise<boolean> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  const postIndex = mockPosts.findIndex(post => post.id === id);
-  if (postIndex === -1) return false;
-  
-  mockPosts.splice(postIndex, 1);
-  return true;
+export async function deleteBlogPost(_id: string): Promise<boolean> {
+  try {
+    // Use WordPress API if enabled and available
+    if (config.features.useWordPress && config.wordpress.apiUrl) {
+      // WordPress API integration would go here
+      // This would require implementing DELETE requests to WordPress API
+      console.log('WordPress API delete post not implemented yet');
+      throw new Error('WordPress API delete post not implemented yet');
+    }
+  } catch (error) {
+    console.error('WordPress API error:', error);
+    throw new Error('Failed to delete post via WordPress API');
+  }
+
+  // If WordPress is disabled, throw error
+  throw new Error('WordPress is disabled, cannot delete posts');
 }

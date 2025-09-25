@@ -1,11 +1,8 @@
 'use client';
 import { Wrapper, BriefNote } from './styles';
 import MaskText from '@/components/Common/MaskText';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import {
-  desktopBriefNotePhrase,
-  mobileBriefNotePhrase,
-} from './constants';
+import { useIsMobile } from '@/lib/useIsMobile';
+import { BRIEF_NOTE_PHRASES } from '@/lib/constants';
 
 const Briefnotephrase = () => {
   const isMobile = useIsMobile();
@@ -13,11 +10,11 @@ const Briefnotephrase = () => {
   return (
     <Wrapper>
       <BriefNote>
-        {isMobile ? (
-          <MaskText phrases={mobileBriefNotePhrase} tag="p" align="center" />
-        ) : (
-          <MaskText phrases={desktopBriefNotePhrase} tag="p" align="center" />
-        )}
+        <MaskText 
+          phrases={isMobile ? BRIEF_NOTE_PHRASES.mobile : BRIEF_NOTE_PHRASES.desktop} 
+          tag="p" 
+          align="center" 
+        />
       </BriefNote>
     </Wrapper>
   );

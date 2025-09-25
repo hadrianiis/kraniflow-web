@@ -1,8 +1,8 @@
-'use client';
 import { styled } from 'styled-components';
+import { theme } from '@/lib/theme';
 
 export const Wrapper = styled.section`
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(135deg, ${theme.colors.gradient.start}, ${theme.colors.gradient.end});
 `;
 
 export const Inner = styled.div`
@@ -25,15 +25,15 @@ export const Header = styled.header`
   max-width: 48.5rem;
   margin: 0 auto 3rem;
   h1 {
-    color: var(--Background, #F1F1F1);
-    font-size: 4.75rem;
+    color: ${theme.colors.background.primary};
+    font-size: 5rem;
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     margin-bottom: 2rem;
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
   }
 `;
@@ -56,7 +56,7 @@ export const Testimonial = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  border-left: 2px solid var(--Background, #F1F1F1);
+  border-left: 2px solid ${theme.colors.background.primary};
 
   @media (max-width: 768px) {
     border-left: none;
@@ -69,7 +69,7 @@ export const Testimony = styled.p`
   font-weight: 400;
   line-height: 1.6rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     font-size: 1rem;
     line-height: 1.75rem;
   }
@@ -90,7 +90,7 @@ export const Name = styled.div`
   width: 100%;
 
   h3 {
-    color: var(--Background, #F1F1F1);
+    color: ${theme.colors.background.primary};
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.5rem;
@@ -102,7 +102,7 @@ export const Name = styled.div`
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     gap: 0.5rem;
 
     h3 {
@@ -133,7 +133,7 @@ export const Previous = styled.div`
     opacity: 0.8;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     width: 2.5rem;
     height: 2.5rem;
   }
@@ -148,7 +148,7 @@ export const Next = styled.div`
     opacity: 0.8;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     width: 2.5rem;
     height: 2.5rem;
   }

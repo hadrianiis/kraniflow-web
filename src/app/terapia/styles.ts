@@ -127,7 +127,7 @@ export const TherapyGrid = styled.div`
   }
 `;
 
-export const TherapyCard = styled.div<{ index: number }>`
+export const TherapyCard = styled.div<{ $index: number }>`
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 2.5rem 2rem;
@@ -145,9 +145,9 @@ export const TherapyCard = styled.div<{ index: number }>`
     left: 0;
     right: 0;
     height: 4px;
-    background: ${({ index }) => {
+    background: ${({ $index }) => {
       const colors = ['#00D4AA', '#6366F1', '#F59E0B', '#EF4444', '#8B5CF6', '#10B981'];
-      return colors[index % colors.length];
+      return colors[$index % colors.length];
     }};
   }
 

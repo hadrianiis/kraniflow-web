@@ -1,12 +1,13 @@
 "use client"
 
-import { useRef, useEffect, useState, useMemo, useCallback } from "react";
-import { ChevronRight, Check, PartyPopper } from "lucide-react";
+import { useRef, useState, useCallback } from "react";
+import { PartyPopper } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useToast } from "@/components/UI/Toast";
+import type { ContactFormState, ContactFormResponse } from "@/types/contact";
 
-import SendButton from "../SendButton";
+import AnimatedButton from "../AnimatedButton";
 
 import {
   MainContainer,
@@ -16,348 +17,297 @@ import {
   ActionContainer,
   Heading,
   Description,
-  ListContainer,
-  ListItem,
-  StepDescription,
-  ButtonContainer,
-  OptionButton,
   FormField,
   Label,
   StyledInput,
   StyledTextarea,
-  PrimaryButton,
-  SecondaryButton,
-  ButtonRow
+  ValidationMessage,
+  ConsentContainer,
+  ConsentCheckbox,
+  ConsentText,
+  PrivacyLink
 } from "./styles";
 
 export default function MarketingForm() {
   const router = useRouter();
-  const { success: showSuccessToast } = useToast();
-  const [step, setStep] = useState(1);
+  const { success: showSuccessToast, error: showErrorToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormState>({
     firstName: "",
+    age: "",
     email: "",
     phone: "",
     message: "",
   });
-
-  const [selectedProblem, setSelectedProblem] = useState("");
-
-  const problems = useMemo(
-    () => [
-      { value: "adhd", label: "ADHD / Poruchy pozornosti" },
-      { value: "stres", label: "Stres a úzkosť" },
-      { value: "bolest", label: "Chronická bolesť" },
-      { value: "spánek", label: "Problémy so spánkom" },
-      { value: "trauma", label: "Trauma a PTSD" },
-      { value: "depresia", label: "Depresia" },
-      { value: "migréna", label: "Migrény a bolesti hlavy" },
-      { value: "iné", label: "Iné problémy" },
-    ],
-    []
-  );
+  const [consentGiven, setConsentGiven] = useState(false);
 
   // Refy pre vstupy
   const firstNameRef = useRef<HTMLInputElement>(null);
+  const ageRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  // Funkcia na odstránenie fokusu z aktuálneho vstupu
-  const removeFocus = useCallback(() => {
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
-    }
+  // Validation helpers
+  const isValidEmail = useCallback((email: string) => {
+    return email.includes('@');
   }, []);
 
-  useEffect(() => {
-    removeFocus();
-  }, [step, removeFocus]);
-
-  const toggleProblem = useCallback((value: string) => {
-    setSelectedProblem((prev) => (prev === value ? "" : value));
+  const isValidPhone = useCallback((phone: string) => {
+    // Allow numbers, spaces, +, -, (, )
+    const phoneRegex = /^[0-9\s\+\-\(\)]+$/;
+    return phoneRegex.test(phone) && phone.trim().length > 0;
   }, []);
 
-  const handleNext = useCallback(() => {
-    removeFocus();
-    setStep((prev) => prev + 1);
-  }, [removeFocus]);
+  const isValidAge = useCallback((age: string) => {
+    const ageNum = parseInt(age);
+    return ageNum >= 1 && ageNum <= 120;
+  }, []);
 
-  const totalSteps = 2;
+  const isFormValid = useCallback(() => {
+    return formData.firstName.trim() && 
+           formData.age.trim() && 
+           isValidAge(formData.age) &&
+           formData.email.trim() && 
+           isValidEmail(formData.email) &&
+           formData.phone.trim() && 
+           isValidPhone(formData.phone) &&
+           formData.message.trim() && // Just required, no minimum length
+           consentGiven; // User must consent to privacy policy
+  }, [formData.firstName, formData.age, formData.email, formData.phone, formData.message, consentGiven, isValidEmail, isValidPhone, isValidAge]);
 
-  const renderStep = () => {
+  const renderForm = () => {
     return (
-      <AnimatePresence mode="wait">
-        {step && (
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <FormContainer>
-              {/* Heading fixed top */}
-              <HeadingContainer>
-                {step === 1 && (
-                  <Heading>Aký problém vás trápi?</Heading>
-                )}
-                {step === 2 && (
-                  <Heading>Vaše kontaktné údaje</Heading>
-                )}
-              </HeadingContainer>
-              
-              {/* Step content middle */}
-              <ContentContainer>
-                {step === 1 && (
-                  <>
-                    <Description>
-                      Kraniosakrálna terapia môže pomôcť s rôznymi problémami. 
-                      Vyberte si problém, ktorý vás najviac trápi.
-                    </Description>
-                    <ButtonContainer>
-                      {problems.map((problem) => (
-                        <motion.div
-                          key={problem.value}
-                          whileHover={{
-                            scale: 1.04,
-                            boxShadow: "0 4px 24px 0 rgba(63,63,70,0.18)",
-                          }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <OptionButton
-                            type="button"
-                            onClick={() => toggleProblem(problem.value)}
-                            $isSelected={selectedProblem === problem.value}
-                          >
-                            {problem.label}
-                          </OptionButton>
-                        </motion.div>
-                      ))}
-                    </ButtonContainer>
-                  </>
-                )}
-                {step === 2 && (
-                  <>
-                    <FormField>
-                      <Label htmlFor="firstName">Meno a priezvisko</Label>
-                      <StyledInput
-                        ref={firstNameRef}
-                        id="firstName"
-                        value={formData.firstName}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            firstName: e.target.value,
-                          }))
-                        }
-                        placeholder="Vaše meno a priezvisko"
-                      />
-                    </FormField>
-                    
-                    <FormField>
-                      <Label htmlFor="email">Email</Label>
-                      <StyledInput
-                        ref={emailRef}
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                          }))
-                        }
-                        placeholder="vas@email.sk"
-                      />
-                    </FormField>
-                    
-                    <FormField>
-                      <Label htmlFor="phone">Telefón</Label>
-                      <StyledInput
-                        ref={phoneRef}
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            phone: e.target.value,
-                          }))
-                        }
-                        placeholder="+421 xxx xxx xxx"
-                      />
-                    </FormField>
-                    
-                    <FormField>
-                      <Label htmlFor="message">Správa (voliteľné)</Label>
-                      <StyledTextarea
-                        id="message"
-                        value={formData.message}
-                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            message: e.target.value,
-                          }))
-                        }
-                        placeholder="Napíšte nám o vašich potrebách alebo otázkach..."
-                      />
-                    </FormField>
-                  </>
-                )}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <FormContainer>
+          {/* Heading */}
+          <HeadingContainer>
+            <Heading>Kontaktný formulár</Heading>
+          </HeadingContainer>
+          
+          {/* Form content */}
+          <ContentContainer>
+            <Description>
+              Vyplňte formulár a my vás budeme kontaktovať do 24 hodín 
+              pre dohodnutie konzultácie.
+            </Description>
+            
+            <FormField>
+              <Label htmlFor="firstName">Meno a priezvisko *</Label>
+              <StyledInput
+                ref={firstNameRef}
+                id="firstName"
+                value={formData.firstName}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    firstName: e.target.value,
+                  }))
+                }
+                placeholder="Vaše meno a priezvisko"
+                required
+              />
+            </FormField>
+            
+            <FormField>
+              <Label htmlFor="age">Vek *</Label>
+              <StyledInput
+                ref={ageRef}
+                id="age"
+                type="number"
+                min="1"
+                max="120"
+                value={formData.age}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    age: e.target.value,
+                  }))
+                }
+                placeholder="Váš vek"
+                required
+              />
+              {formData.age && !isValidAge(formData.age) && (
+                <ValidationMessage $isError>
+                  Vek musí byť medzi 1 a 120 rokov
+                </ValidationMessage>
+              )}
+            </FormField>
+            
+            <FormField>
+              <Label htmlFor="email">Email *</Label>
+              <StyledInput
+                ref={emailRef}
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    email: e.target.value,
+                  }))
+                }
+                placeholder="vas@email.sk"
+                required
+              />
+              {formData.email && !isValidEmail(formData.email) && (
+                <ValidationMessage $isError>
+                  Email musí obsahovať @
+                </ValidationMessage>
+              )}
+            </FormField>
+            
+            <FormField>
+              <Label htmlFor="phone">Telefónne číslo *</Label>
+              <StyledInput
+                ref={phoneRef}
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    phone: e.target.value,
+                  }))
+                }
+                placeholder="+421 xxx xxx xxx"
+                required
+              />
+              {formData.phone && !isValidPhone(formData.phone) && (
+                <ValidationMessage $isError>
+                  Telefónne číslo môže obsahovať iba čísla a znaky +, -, (, )
+                </ValidationMessage>
+              )}
+            </FormField>
+            
+            <FormField>
+              <Label htmlFor="message">Správa *</Label>
+              <StyledTextarea
+                ref={messageRef}
+                id="message"
+                value={formData.message}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    message: e.target.value,
+                  }))
+                }
+                placeholder="Napíšte nám o vašich problémoch, potrebách alebo otázkach..."
+                required
+                rows={4}
+              />
+            </FormField>
+          </ContentContainer>
+          
+          {/* Privacy consent checkbox */}
+          <ConsentContainer>
+            <ConsentCheckbox
+              type="checkbox"
+              id="privacyConsent"
+              checked={consentGiven}
+              onChange={(e) => setConsentGiven(e.target.checked)}
+              required
+            />
+            <ConsentText htmlFor="privacyConsent">
+              Súhlasím s{" "}
+              <PrivacyLink 
+                href="/privacy-policy" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                podmienkami ochrany osobných údajov
+              </PrivacyLink>
+            </ConsentText>
+          </ConsentContainer>
+          
+          {/* Action button */}
+          <ActionContainer>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <AnimatedButton
+                onClick={async () => {
+                  // Set loading state
+                  setIsSubmitting(true);
+                  
+                  try {
+                    // Submit form to our API endpoint
+                    const response = await fetch('/api/contact', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(formData),
+                    });
 
+                    const result: ContactFormResponse = await response.json();
 
-              </ContentContainer>
-              
-              {/* Action buttons fixed bottom */}
-              <ActionContainer>
-                {step === 1 && (
-                  <motion.div
-                    whileHover={{ scale: 1.05, backgroundColor: "#f8f8f8", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)" }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <PrimaryButton 
-                      onClick={handleNext}
-                      disabled={!selectedProblem}
-                    >
-                      Pokračovať
-                    </PrimaryButton>
-                  </motion.div>
-                )}
-                {step === 2 && (
-                  <ButtonRow>
-                    <motion.div
-                      whileHover={{ scale: 1.05, borderColor: "#ffffff", boxShadow: "0 4px 20px rgba(255, 255, 255, 0.1)" }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <SecondaryButton onClick={() => setStep((prev) => prev - 1)}>
-                        Späť
-                      </SecondaryButton>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <SendButton
-                        onClick={() => {
-                          // Set loading state
-                          setIsSubmitting(true);
-                          
-                          // Simulate API call with setTimeout
-                          setTimeout(() => {
-                            // Handle form submission here
-                            console.log('Form submitted:', { formData, selectedProblem });
-                            
-                            // Show success toast notification
-                            showSuccessToast(
-                              "Ďakujeme za vašu rezerváciu! Čoskoro vás budeme kontaktovať.", 
-                              {
-                                icon: <PartyPopper size={18} />,
-                                duration: 5000,
-                                description: `Vaša rezervácia pre ${selectedProblem} bola úspešne odoslaná. Kontaktujeme vás do 24 hodín.`,
-                              }
-                            );
-                            
-                            // Reset form and redirect to homepage after submission completes
-                            setTimeout(() => {
-                              setIsSubmitting(false);
-                              // Reset form states first
-                              setFormData({
-                                firstName: "",
-                                email: "",
-                                phone: "",
-                                message: "",
-                              });
-                              setSelectedProblem("");
-                              
-                              // Redirect to homepage
-                              router.push('/');
-                            }, 1000);
-                          }, 1500); // Simulate network delay of 1.5 seconds
-                        }}
-                        loading={isSubmitting}
-                        disabled={!formData.firstName || !formData.email || !formData.phone || isSubmitting}
-                        type="submit"
-                      >
-                        Odoslať rezerváciu
-                      </SendButton>
-                    </motion.div>
-                  </ButtonRow>
-                )}
-                {step === 3 && (
-                  <ButtonRow>
-                    <motion.div
-                      whileHover={{ scale: 1.05, borderColor: "#ffffff", boxShadow: "0 4px 20px rgba(255, 255, 255, 0.1)" }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <SecondaryButton onClick={() => setStep((prev) => prev - 1)}>
-                        Späť
-                      </SecondaryButton>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <SendButton
-                        onClick={() => {
-                          // Set loading state
-                          setIsSubmitting(true);
-                          
-                          // Simulate API call with setTimeout
-                          setTimeout(() => {
-                            // Handle form submission here
-                            console.log('Form submitted:', { formData, selectedProblem });
-                            
-                            // Show success toast notification
-                            showSuccessToast(
-                              "Ďakujeme za vašu rezerváciu! Čoskoro vás budeme kontaktovať.", 
-                              {
-                                icon: <PartyPopper size={18} />,
-                                duration: 5000,
-                                description: `Vaša rezervácia pre ${selectedProblem} bola úspešne odoslaná. Kontaktujeme vás do 24 hodín.`,
-                              }
-                            );
-                            
-                            // Reset form and redirect to homepage after submission completes
-                            setTimeout(() => {
-                              setIsSubmitting(false);
-                              // Reset form states first
-                              setFormData({
-                                firstName: "",
-                                email: "",
-                                phone: "",
-                                message: "",
-                              });
-                              setSelectedProblem("");
-                              
-                              // Redirect to homepage
-                              router.push('/');
-                            }, 1000);
-                          }, 1500); // Simulate network delay of 1.5 seconds
-                        }}
-                        loading={isSubmitting}
-                        disabled={!formData.firstName || !formData.email || !formData.phone || isSubmitting}
-                        type="submit"
-                      >
-                        Odoslať rezerváciu
-                      </SendButton>
-                    </motion.div>
-                  </ButtonRow>
-                )}
-
-              </ActionContainer>
-            </FormContainer>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                    if (result.success) {
+                      // Show success toast notification
+                      showSuccessToast(
+                        "Ďakujeme za vašu rezerváciu! Čoskoro vás budeme kontaktovať.", 
+                        {
+                          icon: <PartyPopper size={18} />,
+                          duration: 5000,
+                          description: `Vaša rezervácia bola úspešne odoslaná. Kontaktujeme vás do 24 hodín.`,
+                        }
+                      );
+                      
+                      // Reset form and redirect to homepage after submission completes
+                      setTimeout(() => {
+                        setIsSubmitting(false);
+                        // Reset form states first
+                        setFormData({
+                          firstName: "",
+                          age: "",
+                          email: "",
+                          phone: "",
+                          message: "",
+                        });
+                        setConsentGiven(false);
+                        
+                        // Redirect to homepage
+                        router.push('/');
+                      }, 1000);
+                    } else {
+                      // Handle error
+                      throw new Error(result.error || 'Neznáma chyba');
+                    }
+                  } catch (error) {
+                    console.error('Form submission error:', error);
+                    setIsSubmitting(false);
+                    
+                    // Show error toast
+                    showErrorToast(
+                      "Chyba pri odosielaní formulára", 
+                      {
+                        icon: <PartyPopper size={18} />,
+                        duration: 5000,
+                        description: error instanceof Error ? error.message : 'Skúste to prosím znovu.',
+                      }
+                    );
+                  }
+                }}
+                disabled={!isFormValid() || isSubmitting}
+                type="submit"
+              >
+                {isSubmitting ? "Odosielam..." : "Odoslať"}
+              </AnimatedButton>
+            </motion.div>
+          </ActionContainer>
+        </FormContainer>
+      </motion.div>
     );
   };
 
   return (
     <MainContainer>
-      <div>
-        {renderStep()}
-      </div>
+      {renderForm()}
     </MainContainer>
   );
 }

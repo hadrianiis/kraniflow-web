@@ -100,7 +100,6 @@ export const BlogGridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin-bottom: 3rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);

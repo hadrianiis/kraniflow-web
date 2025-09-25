@@ -57,11 +57,10 @@ src/app/blog/
 ```
 src/components/UI/Blog/
 ├── index.ts              # Export všetkých komponentov
-├── BlogHero/             # Hero sekcia blogu
 ├── BlogGrid/             # Grid článkov s filtrami
 ├── BlogSidebar/          # Sidebar s populárnymi článkami
 ├── BlogPostDetail/       # Detail článku
-├── RelatedPosts/         # Súvisiace články
+├── RelatedPostsSection/  # Súvisiace články
 └── BlogGrid/
     ├── index.tsx         # Hlavný grid komponent
     └── types.ts          # TypeScript typy

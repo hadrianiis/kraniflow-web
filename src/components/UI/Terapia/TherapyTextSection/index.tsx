@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+import SVGIcon from '@/components/Common/SVGIcon';
 import {
   Section,
   Container,
@@ -29,11 +29,12 @@ export default function TherapyTextSection() {
           <FeaturesGrid>
             <FeatureCard>
               <FeatureIcon>
-                <Image 
+                <SVGIcon 
                   src="/svgs/pregnant.svg" 
                   alt="Tehotné ženy" 
                   width={50} 
                   height={50}
+                  color="#489E9D"
                 />
                 <FeatureTitle>Tehotné ženy</FeatureTitle>
               </FeatureIcon>
@@ -44,11 +45,12 @@ export default function TherapyTextSection() {
             
             <FeatureCard>
               <FeatureIcon>
-                <Image 
+                <SVGIcon 
                   src="/svgs/baby.svg" 
                   alt="Novorodenci a deti" 
                   width={50} 
                   height={50}
+                  color="#489E9D"
                 />
                 <FeatureTitle>Novorodenci a deti</FeatureTitle>
               </FeatureIcon>
@@ -59,11 +61,12 @@ export default function TherapyTextSection() {
 
             <FeatureCard>
               <FeatureIcon>
-                <Image 
+                <SVGIcon 
                   src="/svgs/adult.svg" 
                   alt="Dospelí" 
                   width={50} 
                   height={50}
+                  color="#489E9D"
                 />
                 <FeatureTitle>Dospelí</FeatureTitle>
               </FeatureIcon>
@@ -74,11 +77,12 @@ export default function TherapyTextSection() {
 
             <FeatureCard>
               <FeatureIcon>
-                <Image 
+                <SVGIcon 
                   src="/svgs/old-man.svg" 
                   alt="Seniori" 
                   width={50} 
                   height={50}
+                  color="#489E9D"
                 />
                 <FeatureTitle>Seniori</FeatureTitle>
               </FeatureIcon>

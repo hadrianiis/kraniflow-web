@@ -1,171 +1,158 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Calendar, Clock, User, MessageCircle } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { BlogPost } from '@/types/blog';
+import { formatDate, getImageSizes, DEFAULT_BLUR_DATA_URL } from '@/lib/blog-utils';
+
+// Simple HTML content cleaning function
+const cleanHtmlContent = (html: string): string => {
+  return html
+    // Remove WordPress-specific artifacts and closing brackets
+    .replace(/\]\]>/g, '') // Remove ]]>
+    .replace(/}}>/g, '') // Remove }}>
+    .replace(/}}/g, '') // Remove }}
+    .replace(/{{/g, '') // Remove {{
+    .replace(/>>/g, '') // Remove >>
+    .replace(/<<</g, '') // Remove <<<
+    .replace(/&gt;&gt;/g, '') // Remove HTML encoded >>
+    .replace(/&lt;&lt;/g, '') // Remove HTML encoded <<
+    .replace(/&gt;/g, '') // Remove HTML encoded >
+    .replace(/&lt;/g, '') // Remove HTML encoded <
+    // Clean up formatting
+    .replace(/\s+/g, ' ')
+    .replace(/\n\s*\n/g, '\n')
+    .trim();
+};
+import { memo, useMemo, useCallback } from 'react';
 import {
   Container,
-  HeroSection,
+  Header,
   Title,
-  Excerpt,
-  MetaContainer,
+  AuthorSection,
   AuthorInfo,
   AuthorAvatar,
   AuthorDetails,
   AuthorName,
-  AuthorLabel,
+  AuthorRole,
   MetaInfo,
   MetaItem,
   FeaturedImageContainer,
+  FeaturedImageWrapper,
   FeaturedImage,
   ContentContainer,
-  ContentWrapper,
-  Content,
-  Blockquote,
-  TagsSection,
-  TagsTitle,
-  TagsContainer,
-  TagLink
+  Content
 } from './styles';
 
 interface BlogPostDetailProps {
   post: BlogPost;
 }
 
-export default function BlogPostDetail({ post }: BlogPostDetailProps) {
+// Memoized icon components to prevent recreation
+const CalendarIcon = memo(() => <Calendar size={16} />);
+CalendarIcon.displayName = 'CalendarIcon';
+
+const ClockIcon = memo(() => <Clock size={16} />);
+ClockIcon.displayName = 'ClockIcon';
+
+// Separate components for better performance and SSR optimization
+const BlogPostHeader = memo(function BlogPostHeader({ post }: { post: BlogPost }) {
+  const formattedDate = useMemo(() => {
+    return formatDate(post.publishedAt);
+  }, [post.publishedAt]);
+
+  return (
+    <Header>
+      <Title>{post.title}</Title>
+      
+      {/* Author Section */}
+      <AuthorSection>
+        <AuthorInfo>
+          <AuthorAvatar
+            src={post.author.avatar}
+            alt={post.author.name}
+            width={40}
+            height={40}
+          />
+          <AuthorDetails>
+            <AuthorName>{post.author.name}</AuthorName>
+            <AuthorRole>{post.author.role || 'Autor'}</AuthorRole>
+          </AuthorDetails>
+        </AuthorInfo>
+
+        <MetaInfo>
+          <MetaItem>
+            <CalendarIcon />
+            {formattedDate}
+          </MetaItem>
+          <MetaItem>
+            <ClockIcon />
+            {post.readTime} min čítania
+          </MetaItem>
+        </MetaInfo>
+      </AuthorSection>
+    </Header>
+  );
+});
+
+const BlogPostImage = memo(function BlogPostImage({ post }: { post: BlogPost }) {
+  const imageSizes = useMemo(() => getImageSizes('FEATURED_IMAGE'), []);
+  
+  const handleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.currentTarget;
+    if (!img.dataset.errorLogged) {
+      console.error('Featured image failed to load:', img.src);
+      img.dataset.errorLogged = 'true';
+    }
+    img.style.display = 'none';
+  }, []);
+
+  return (
+    <FeaturedImageContainer>
+      <FeaturedImageWrapper>
+        <FeaturedImage
+          src={post.featuredImage}
+          alt={post.title}
+          width={800}
+          height={400}
+          priority
+          fetchPriority="high"
+          sizes={imageSizes}
+          placeholder="blur"
+          blurDataURL={DEFAULT_BLUR_DATA_URL}
+          onError={handleImageError}
+        />
+      </FeaturedImageWrapper>
+    </FeaturedImageContainer>
+  );
+});
+
+const BlogPostContent = memo(function BlogPostContent({ post }: { post: BlogPost }) {
+  const cleanedContent = useMemo(() => {
+    return cleanHtmlContent(post.content);
+  }, [post.content]);
+
+  return (
+    <ContentContainer>
+      <Content dangerouslySetInnerHTML={{ __html: cleanedContent }} />
+    </ContentContainer>
+  );
+});
+
+const BlogPostDetail = memo(function BlogPostDetail({ post }: BlogPostDetailProps) {
   return (
     <Container>
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <HeroSection>
-
-
-          {/* Title */}
-          <Title>
-            {post.title}
-          </Title>
-
-          {/* Excerpt */}
-          <Excerpt>
-            {post.excerpt}
-          </Excerpt>
-
-          {/* Meta Information */}
-          <MetaContainer>
-            <AuthorInfo>
-              <AuthorAvatar
-                src={post.author.avatar}
-                alt={post.author.name}
-              />
-              <AuthorDetails>
-                <AuthorName>{post.author.name}</AuthorName>
-                <AuthorLabel>Autor článku</AuthorLabel>
-              </AuthorDetails>
-            </AuthorInfo>
-
-            <MetaInfo>
-              <MetaItem>
-                <Calendar />
-                {new Date(post.publishedAt).toLocaleDateString('sk-SK', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </MetaItem>
-              <MetaItem>
-                <Clock />
-                {post.readTime} min
-              </MetaItem>
-            </MetaInfo>
-          </MetaContainer>
-
-
-        </HeroSection>
-      </motion.div>
+      {/* Header Section */}
+      <BlogPostHeader post={post} />
 
       {/* Featured Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <FeaturedImageContainer>
-          <FeaturedImage
-            src={post.featuredImage}
-            alt={post.title}
-          />
-        </FeaturedImageContainer>
-      </motion.div>
+      <BlogPostImage post={post} />
 
       {/* Article Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <ContentContainer>
-          <ContentWrapper>
-            {/* Content */}
-            <Content>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              
-              <h2>
-                Kľúčové body článku
-              </h2>
-              
-              <ul>
-                <li>
-                  <div className="bullet"></div>
-                  <span>Dôležitosť finančného plánovania pre dlhodobý úspech</span>
-                </li>
-                <li>
-                  <div className="bullet"></div>
-                  <span>Strategie pre rôzne životné etapy a finančné ciele</span>
-                </li>
-                <li>
-                  <div className="bullet"></div>
-                  <span>Praktické tipy pre implementáciu finančného plánu</span>
-                </li>
-              </ul>
-              
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              
-              <Blockquote>
-                "Finančná sloboda nie je o tom, koľko peňazí máte, ale o tom, ako ich používate a investujete pre svoju budúcnosť."
-              </Blockquote>
-              
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-              </p>
-            </Content>
-
-            {/* Tags */}
-            <TagsSection>
-              <TagsTitle>Tagy</TagsTitle>
-              <TagsContainer>
-                {post.tags.map((tag) => (
-                  <TagLink
-                    key={tag}
-                    href={`/blog/tag/${tag}`}
-                  >
-                    #{tag}
-                  </TagLink>
-                ))}
-              </TagsContainer>
-            </TagsSection>
-
-
-          </ContentWrapper>
-        </ContentContainer>
-      </motion.div>
+      <BlogPostContent post={post} />
     </Container>
   );
-} 
+});
+
+BlogPostDetail.displayName = 'BlogPostDetail';
+
+export default BlogPostDetail; 

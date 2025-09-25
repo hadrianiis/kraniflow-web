@@ -6,7 +6,6 @@ import {
   JoinSection,
   OffersSection,
   Briefnotephrase,
-  CTA_01,
 } from '@/components';
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <Briefnotephrase />
       <IntroSection />
       <JoinSection />
-      <CTA_01 />
       <FAQ />
     </main>
   );

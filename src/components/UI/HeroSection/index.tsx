@@ -1,12 +1,9 @@
 'use client';
-import { Wrapper, Inner, Pill, HeroTextContainer } from './styles';
-import { GetStartedButton } from '@/components';
+import { Wrapper, Inner, HeroTextContainer } from './styles';
+import UiverseButton from '@/components/UI/UiverseButton';
 import MaskText from '@/components/Common/MaskText';
 import { useIsMobile } from '@/lib/useIsMobile';
-import {
-  mobilePhrases,
-  phrases,
-} from './constants';
+import { HERO_PHRASES, HERO_SUBTITLE } from '@/lib/constants';
 
 const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -14,19 +11,19 @@ const HeroSection = () => {
     <Wrapper>
       <Inner>
         <HeroTextContainer>
-          {isMobile ? (
-            <>
-              <MaskText phrases={mobilePhrases} tag="h1" align="center" />
-              <p>Cesta k dlhodobému zdraviu</p>
-            </>
-          ) : (
-            <>
-              <MaskText phrases={phrases} tag="h1" align="center" />
-              <p>Cesta k dlhodobému zdraviu</p>
-            </>
-          )}
+          <MaskText 
+            phrases={isMobile ? HERO_PHRASES.mobile : HERO_PHRASES.desktop} 
+            tag="h1" 
+            align="center" 
+          />
+          <p>{HERO_SUBTITLE}</p>
         </HeroTextContainer>
-        <GetStartedButton padding="1rem 2rem" />
+        <UiverseButton 
+          onClick={() => window.location.href = '/contact'}
+          className="cta-button"
+        >
+          Rezervujte si termín
+        </UiverseButton>
       </Inner>
     </Wrapper>
   );

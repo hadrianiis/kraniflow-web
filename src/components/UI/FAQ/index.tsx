@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { AnimatePresence, useInView } from 'framer-motion';
+import { AnimatePresence, useInView, motion } from 'framer-motion';
 import {
   Accordion,
   AccordionItem,
@@ -9,16 +9,13 @@ import {
   Question,
   Wrapper,
 } from './styles';
-import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { MaskText } from '@/components';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import {
-  animate,
-  desktopHeaderPhrase,
-  faqData,
-  mobileHeaderPhrase,
-} from './constants';
+import { 
+  ANIMATION_VARIANTS, 
+  FAQ_HEADER_PHRASES, 
+  FAQ_DATA 
+} from '@/lib/constants';
 
 const FAQ = () => {
   const [openItem, setOpenItem] = useState<number | null>(null);
@@ -34,28 +31,26 @@ const FAQ = () => {
     amount: 0.4,
   });
 
-  const isMobile = useIsMobile();
-
   return (
     <Wrapper>
       <Inner>
         <div className="text-center mb-16">
-          {isMobile ? (
-            <MaskText phrases={mobileHeaderPhrase} tag="h1" align="center" />
-          ) : (
-            <MaskText phrases={desktopHeaderPhrase} tag="h1" align="center" />
-          )}
+          <MaskText 
+            phrases={FAQ_HEADER_PHRASES.desktop} 
+            tag="h1" 
+            align="center" 
+          />
           <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto mt-6 rounded-full"></div>
         </div>
         
         <Accordion ref={accordionRef}>
-          {faqData.map((item, index) => (
+          {FAQ_DATA.map((item, index) => (
             <AccordionItem
-              variants={animate}
+              variants={ANIMATION_VARIANTS.fadeInUp}
               initial="initial"
-              animate={isInView ? 'open' : ''}
+              animate={isInView ? 'animate' : ''}
               custom={index}
-              key={index}
+              key={item.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
             >
               <Question onClick={() => toggleItem(index)} className="p-6">
@@ -67,6 +62,7 @@ const FAQ = () => {
               <AnimatePresence>
                 {openItem === index && (
                   <Answer
+                    as={motion.div}
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}

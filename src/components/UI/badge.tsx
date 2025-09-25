@@ -4,7 +4,7 @@ import * as React from "react"
 import styled from "styled-components"
 
 const StyledBadge = styled.span<{
-  variant?: 'default' | 'secondary' | 'destructive' | 'outline'
+  $variant?: 'default' | 'secondary' | 'destructive' | 'outline'
 }>`
   display: inline-flex;
   align-items: center;
@@ -33,8 +33,8 @@ const StyledBadge = styled.span<{
   }
   
   /* Variants */
-  ${({ variant }) => {
-    switch (variant) {
+  ${({ $variant }) => {
+    switch ($variant) {
       case 'default':
         return `
           border-color: transparent;
@@ -95,7 +95,7 @@ function Badge({
   return (
     <StyledBadge
       data-slot="badge"
-      variant={variant}
+      $variant={variant}
       {...props}
     />
   )

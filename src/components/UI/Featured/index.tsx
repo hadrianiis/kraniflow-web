@@ -1,24 +1,9 @@
 'use client';
-import Image from 'next/image';
-// Obrázky - použijeme cestu namiesto importu
-const big_banner = '/images/featured_img.avif';
-const featured_mobile_banner = '/images/featured_img1.avif';
-const featured_img1 = '/images/featured_img1.avif';
+import { IMAGES } from '@/lib/constants';
 import { Wrapper, Inner, ImageContainer, Div } from './styles';
 import RevealCover from '@/components/Common/RevealCover';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 import { useIsMobile } from '@/lib/useIsMobile';
-export const imageVariants = {
-  hidden: {
-    scale: 1.6,
-  },
-  visible: {
-    scale: 1,
-    transition: {
-      duration: 1.4,
-      delay: 0.2,
-    },
-  },
-};
 
 const Featured = () => {
   const isMobile = useIsMobile();
@@ -27,21 +12,16 @@ const Featured = () => {
       <Inner>
         <ImageContainer>
           <RevealCover />
-          <Div
-            variants={imageVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ amount: 0.25, once: true }}
-          >
-            {isMobile ? (
-              <Image
-                src={featured_img1}
-                alt="Kraniosakrálna terapia - jemný dotyk pre zdravie"
-                fill
-              />
-            ) : (
-              <Image src={featured_img1} alt="Kraniosakrálna terapia Bratislava" fill />
-            )}
+          <Div>
+            <OptimizedImage
+              src={isMobile ? IMAGES.hero.mobile : IMAGES.hero.desktop}
+              alt="Kraniosakrálna terapia - jemný dotyk pre zdravie"
+              fill
+              priority
+              fetchPriority="high"
+              quality={isMobile ? 75 : 85}
+              sizes="(max-width: 768px) 100vw, 100vw"
+            />
           </Div>
         </ImageContainer>
       </Inner>

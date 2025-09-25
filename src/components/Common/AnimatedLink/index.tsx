@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { Div, Word, Span, AbsoluteContainer } from './styles';
 import { Variants } from 'framer-motion';
 
-type AnimationProps = Variants;
-
 const titleAnimation: Variants = {
   rest: {
     transition: {
@@ -47,10 +45,42 @@ const letterAnimationTwo: Variants = {
   },
 };
 
-const AnimatedLink = ({ title, url }: { title: string; url: string }) => {
+const AnimatedLink = ({ 
+  title, 
+  url, 
+  onLinkClick,
+  disableAnimation = false
+}: { 
+  title: string; 
+  url: string; 
+  onLinkClick?: () => void;
+  disableAnimation?: boolean;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
+  
+  const handleClick = () => {
+    if (onLinkClick) {
+      onLinkClick();
+    }
+  };
+
+  // Ak je animácia zakázaná, zobrazíme jednoduchý text bez animácie
+  if (disableAnimation) {
+    return (
+      <Link href={url} style={{ textDecoration: 'none' }} onClick={handleClick}>
+        <span style={{ 
+          color: 'white',
+          fontSize: '1rem',
+          fontWeight: 500
+        }}>
+          {title}
+        </span>
+      </Link>
+    );
+  }
+
   return (
-    <Link href={url} style={{ textDecoration: 'none' }}>
+    <Link href={url} style={{ textDecoration: 'none' }} onClick={handleClick}>
       <Div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

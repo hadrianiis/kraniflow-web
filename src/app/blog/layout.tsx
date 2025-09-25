@@ -2,44 +2,44 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blog | Raft - Finančná sloboda a investovanie',
-    template: '%s | Raft Blog'
+    default: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    template: '%s | KranioFlow Blog'
   },
-  description: 'Objavte najnovšie články o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody. Expertné rady a tipy od našich finančných poradcov.',
-  keywords: 'blog, finančné poradenstvo, investovanie, finančná sloboda, finančné plánovanie, dôchodok, kryptomeny, dane',
-  authors: [{ name: 'Raft Team' }],
-  creator: 'Raft',
-  publisher: 'Raft',
+  description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness. Expertné rady a tipy od našich terapeutov.',
+  keywords: 'blog, kraniosakrálna terapia, zdravie, wellness, alternatívna medicína, relaxácia, liečba, terapeut',
+  authors: [{ name: 'KranioFlow Team' }],
+  creator: 'KranioFlow',
+  publisher: 'KranioFlow',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://raft.sk'),
+  metadataBase: new URL('https://kranioflow.sk'),
   alternates: {
     canonical: '/blog',
   },
   openGraph: {
     type: 'website',
     locale: 'sk_SK',
-    url: 'https://raft.sk/blog',
-    title: 'Blog | Raft - Finančná sloboda a investovanie',
-    description: 'Objavte najnovšie články o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody.',
-    siteName: 'Raft Blog',
+    url: 'https://kranioflow.sk/blog',
+    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
+    siteName: 'KranioFlow Blog',
     images: [
       {
-        url: '/images/financial_freedom_banner.png',
+        url: '/images/featured_img1.avif',
         width: 1200,
         height: 630,
-        alt: 'Raft Blog - Finančná sloboda a investovanie',
+        alt: 'KranioFlow Blog - Kraniosakrálna terapia',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | Raft - Finančná sloboda a investovanie',
-    description: 'Objavte najnovšie články o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody.',
-    images: ['/images/financial_freedom_banner.png'],
+    title: 'Blog | KranioFlow - Kraniosakrálna terapia',
+    description: 'Objavte najnovšie články o kraniosakrálnej terapii, zdraví a wellness.',
+    images: ['/images/featured_img1.avif'],
   },
   robots: {
     index: true,
@@ -71,15 +71,15 @@ export default function BlogLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "Raft Blog",
-            "description": "Blog o finančnom plánovaní, investovaní a dosiahnutí finančnej slobody",
-            "url": "https://raft.sk/blog",
+            "name": "KranioFlow Blog",
+            "description": "Blog o kraniosakrálnej terapii, zdraví a wellness",
+            "url": "https://kranioflow.sk/blog",
             "publisher": {
               "@type": "Organization",
-              "name": "Raft",
+              "name": "KranioFlow",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://raft.sk/logo-kranio.svg"
+                "url": "https://kranioflow.sk/kranioflow-logo-optimized.svg"
               }
             },
             "mainEntity": {
@@ -90,11 +90,11 @@ export default function BlogLayout({
                   "position": 1,
                   "item": {
                     "@type": "BlogPosting",
-                    "headline": "Ako začať investovať s malým kapitálom",
-                    "description": "Praktický návod pre začiatočníkov, ktorí chcú začať investovať aj s obmedzenými finančnými prostriedkami.",
+                    "headline": "Úvod do kraniosakrálnej terapie",
+                    "description": "Praktický návod pre začiatočníkov, ktorí chcú pochopiť základy kraniosakrálnej terapie a jej benefity.",
                     "author": {
                       "@type": "Person",
-                      "name": "Mgr. Peter Novák"
+                      "name": "Mgr. Kika Nováková"
                     },
                     "datePublished": "2024-01-15",
                     "dateModified": "2024-01-15"

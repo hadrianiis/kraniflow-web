@@ -1,24 +1,23 @@
 'use client';
 
-import Image from 'next/image';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 import {
   Wrapper,
   Inner,
   LogoContainer,
   Nav,
   CallToActions,
-  AbsoluteLinks,
   MobileMenuOverlay,
   MobileMenuContent,
   MobileNav,
   MobileCallToActions,
 } from './styles';
-import raft_logo from '../../../../public/svgs/raft_logo.svg';
-import { GetStartedButton } from '@/components';
+import UiverseButton from '@/components/UI/UiverseButton';
+import MobileSendButton from '@/components/UI/MobileSendButton';
 import AnimatedLink from '@/components/Common/AnimatedLink';
 import { HamburgerMenu } from '@/components';
 import { useState } from 'react';
-import { links } from './constants';
+import { NAVIGATION_LINKS } from '@/lib/constants';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,17 +26,23 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <Wrapper>
         <Inner>
           <LogoContainer>
-            <Image 
-              src="/logo-kranio.svg" 
-              alt="Kranio Logo" 
-              width={100} 
-              height={100}
+            <OptimizedImage 
+              src="/kranioflow-logo-optimized.svg" 
+              alt="Kranioflow Logo" 
+              width={160} 
+              height={160}
               priority
+              placeholder="empty"
+              quality={100}
             />
             <HamburgerMenu 
               isOpen={isOpen} 
@@ -49,23 +54,33 @@ const Header = () => {
             <MobileMenuOverlay $isOpen={isOpen}>
               <MobileMenuContent $isOpen={isOpen}>
                 <MobileNav>
-                  {links.map((link, i) => (
-                    <AnimatedLink key={i} title={link.linkTo} url={link.url} />
+                  {NAVIGATION_LINKS.map((link, i) => (
+                    <AnimatedLink 
+                      key={i} 
+                      title={link.label} 
+                      url={link.url} 
+                      onLinkClick={handleCloseMenu}
+                      disableAnimation={true}
+                    />
                   ))}
                 </MobileNav>
                 <MobileCallToActions $isOpen={isOpen}>
-                  <GetStartedButton padding="10px 20px" />
+                  <MobileSendButton onClick={() => window.location.href = '/contact'}>
+                    Kontakt
+                  </MobileSendButton>
                 </MobileCallToActions>
               </MobileMenuContent>
             </MobileMenuOverlay>
           </LogoContainer>
           <Nav>
-            {links.map((link, i) => (
-              <AnimatedLink key={i} title={link.linkTo} url={link.url} />
+            {NAVIGATION_LINKS.map((link, i) => (
+              <AnimatedLink key={i} title={link.label} url={link.url} />
             ))}
           </Nav>
           <CallToActions>
-            <GetStartedButton padding="12px 24px" />
+            <UiverseButton href="/contact" padding="12px 24px">
+              Kontakt
+            </UiverseButton>
           </CallToActions>
         </Inner>
       </Wrapper>

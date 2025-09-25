@@ -1,5 +1,5 @@
-'use client';
 import { styled } from 'styled-components';
+import { theme } from '@/lib/theme';
 
 export const Wrapper = styled.section`
   padding-bottom: 0;
@@ -49,7 +49,7 @@ export const TextSection = styled.div`
   flex: 1;
   max-width: 50%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     max-width: 100%;
   }
 `;
@@ -61,7 +61,7 @@ export const EdgesSection = styled.div`
   gap: 1.5rem;
   max-width: 50%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     max-width: 100%;
     gap: 1.25rem;
   }
@@ -76,7 +76,7 @@ export const Header = styled.header`
   margin-bottom: 0;
 
   h3 {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, ${theme.colors.gradient.start}, ${theme.colors.gradient.end});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -88,7 +88,7 @@ export const Header = styled.header`
   }
 
   h1 {
-    font-size: 4.75rem;
+    font-size: 5rem;
     font-weight: 400;
     line-height: 1.1;
     margin: 0;
@@ -96,16 +96,16 @@ export const Header = styled.header`
 
   p {
     max-width: 100%;
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
     margin: 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     h1 {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
     }
 
     p {
@@ -142,14 +142,14 @@ export const SessionTitle = styled.div`
   h2 {
     font-size: 1.375rem;
     font-weight: 600;
-    color: var(--text-color);
+    color: ${theme.colors.text.primary};
     margin: 0 0 0.75rem 0;
     line-height: 1.3;
     text-align: left;
   }
 
   p {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
@@ -158,7 +158,7 @@ export const SessionTitle = styled.div`
     text-align: left;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     h2 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
@@ -175,14 +175,14 @@ export const SessionDescription = styled.div`
   h2 {
     font-size: 1.375rem;
     font-weight: 600;
-    color: var(--text-color);
+    color: ${theme.colors.text.primary};
     margin: 0 0 0.75rem 0;
     line-height: 1.3;
     text-align: left;
   }
 
   div {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
@@ -191,7 +191,7 @@ export const SessionDescription = styled.div`
     text-align: left;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     h2 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
@@ -211,7 +211,7 @@ export const IntroEdge = styled.div`
   padding: 1.25rem 0;
 
   p {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
@@ -220,7 +220,7 @@ export const IntroEdge = styled.div`
     text-align: left;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     padding: 1rem 0;
     gap: 0.5rem;
   }
@@ -235,7 +235,7 @@ export const IntroTitle = styled.div`
     font-size: 1.375rem;
     font-weight: 600;
     margin: 0;
-    color: var(--text-color);
+    color: ${theme.colors.text.primary};
     line-height: 1.3;
     text-align: left;
   }
@@ -247,7 +247,7 @@ export const IntroTitle = styled.div`
     opacity: 0.8;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     gap: 0.5rem;
     
     h3 {
@@ -268,11 +268,13 @@ export const Stats = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 4rem;
+  min-height: 120px; /* Ensure minimum height for visibility */
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     gap: 2rem;
     margin: 1rem auto 3rem auto;
+    min-height: auto;
   }
 `;
 
@@ -282,16 +284,18 @@ export const Stat = styled.div`
   align-items: center;
   text-align: center;
   gap: 0.75rem;
+  min-width: 120px; /* Ensure minimum width for visibility */
 
   h1 {
     font-size: 5rem;
     font-weight: 600;
     margin: 0;
     line-height: 1;
+    color: ${theme.colors.text.primary};
   }
 
   p {
-    color: var(--link-color);
+    color: ${theme.colors.text.primary};
     font-size: 1.125rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -299,8 +303,9 @@ export const Stat = styled.div`
     line-height: 1.2;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     gap: 0.5rem;
+    min-width: auto;
     
     h1 {
       font-size: 2rem;
@@ -323,7 +328,7 @@ export const Banner = styled.div`
     height: 100%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     height: 28rem;
     img {
       object-fit: cover;

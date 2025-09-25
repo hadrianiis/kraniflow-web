@@ -1,8 +1,5 @@
 'use client';
-import Image from 'next/image';
-// Obrázky - použijeme cestu namiesto importu
-const future_banner = '/images/featured_img.avif';
-const future_mobile_banner = '/images/featured_img1.avif';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 import {
   Wrapper,
   Inner,
@@ -15,45 +12,39 @@ import {
   IntroTitle,
   SessionSection,
   SessionTitle,
-  SessionDescription,
   MainHeaderSection,
   Stats,
   Stat,
   Banner,
 } from './styles';
 import { MaskText } from '@/components';
-import { useIsMobile } from '../../../../libs/useIsMobile';
-import {
-  desktopHeaderPhrase,
-  desktopParagraphPhrase,
-  AboutTherapyPhrases,
-  edges,
-  stats,
-  mobileHeaderPhrase,
-  mobileParagraphPhrase,
-} from './constants';
+import { 
+  INTRO_HEADER_PHRASES, 
+  INTRO_DESCRIPTION_PHRASES, 
+  STATISTICS,
+  IMAGES,
+  THERAPY_INFO,
+  THERAPY_EDGES
+} from '@/lib/constants';
 
 const IntroSection = () => {
-  const isMobile = useIsMobile();
 
   return (
     <Wrapper>
       <Inner>
         <MainHeaderSection>
           <Header>
-            <h3>Prečo vyskúšať</h3>
             <HeaderMainText>
-              {isMobile ? (
-                <>
-                  <MaskText phrases={mobileHeaderPhrase} tag="h1" align="center" />
-                  <MaskText phrases={mobileParagraphPhrase} tag="p" align="center" />
-                </>
-              ) : (
-                <>
-                  <MaskText phrases={desktopHeaderPhrase} tag="h1" align="center" />
-                  <MaskText phrases={desktopParagraphPhrase} tag="p" align="center" />
-                </>
-              )}
+              <MaskText 
+                phrases={INTRO_HEADER_PHRASES.desktop} 
+                tag="h1" 
+                align="center" 
+              />
+              <MaskText 
+                phrases={INTRO_DESCRIPTION_PHRASES.desktop} 
+                tag="p" 
+                align="center" 
+              />
             </HeaderMainText>
           </Header>
         </MainHeaderSection>
@@ -61,7 +52,7 @@ const IntroSection = () => {
         <ContentContainer>
           <TextSection>
             <SessionSection>
-              {AboutTherapyPhrases.map((phrase, index) => (
+              {THERAPY_INFO.map((phrase, index) => (
                 <SessionTitle key={index}>
                   <MaskText phrases={[phrase.title]} tag="h2" align="left" />
                   <MaskText phrases={[phrase.description]} tag="p" align="left" />
@@ -71,10 +62,10 @@ const IntroSection = () => {
           </TextSection>
           
           <EdgesSection>
-            {edges.map((edge, i) => (
+            {THERAPY_EDGES.map((edge, i) => (
               <IntroEdge key={i}>
                 <IntroTitle>
-                  <Image src={edge.icon} alt="icon" width={32} height={32} />
+                  <OptimizedImage src={edge.icon} alt="icon" width={32} height={32} placeholder="empty" />
                   <MaskText phrases={[edge.point]} tag="h3" align="left" />
                 </IntroTitle>
                 <MaskText phrases={[edge.details]} tag="p" align="left" />
@@ -84,20 +75,20 @@ const IntroSection = () => {
         </ContentContainer>
         
         <Stats>
-          {stats.map((stat, i) => (
-            <Stat key={i}>
-              <MaskText phrases={[stat.number]} tag="h1" align="center" />
-              <MaskText phrases={[stat.subtitle]} tag="p" align="center" />
+          {STATISTICS.map((stat) => (
+            <Stat key={stat.id}>
+              <h1>{stat.number}</h1>
+              <p>{stat.subtitle}</p>
             </Stat>
           ))}
         </Stats>
       </Inner>
       <Banner>
-        {isMobile ? (
-          <Image src={future_mobile_banner} alt="Kraniosakrálna terapia - mobile banner" fill />
-        ) : (
-          <Image src={future_banner} alt="Kraniosakrálna terapia - banner" fill />
-        )}
+        <OptimizedImage 
+          src={IMAGES.hero.desktop} 
+          alt="Kraniosakrálna terapia - banner" 
+          fill 
+        />
       </Banner>
     </Wrapper>
   );
