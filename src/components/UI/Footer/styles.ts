@@ -64,6 +64,8 @@ export const LeftSection = styled.div`
   @media (max-width: 768px) {
     justify-content: center;
     order: 1;
+    width: 100%;
+    margin-bottom: ${theme.spacing.lg};
   }
 `;
 
@@ -103,6 +105,13 @@ export const QRContainer = styled.div`
   display: flex;
   gap: ${theme.spacing.md};
   padding: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: ${theme.spacing.sm};
+  }
 `;
 
 export const QRImageCtn = styled.div``;
@@ -123,7 +132,8 @@ export const TextCtn = styled.div`
   @media (max-width: 768px) {
     p {
       font-size: ${theme.typography.fontSize.sm};
-      max-width: 12rem;
+      max-width: 100%;
+      text-align: center;
     }
   }
 `;
