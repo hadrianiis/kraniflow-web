@@ -3,7 +3,7 @@
 import OptimizedImage from '@/components/Common/OptimizedImage';
 import Link from 'next/link';
 // Static image paths
-const qr_code = '/images/qr_code.png';
+const qr_kontakt = '/svgs/qr-kontakt.png';
 
 const centerLinks = [
   { name: 'Domov', href: '/' },
@@ -46,7 +46,7 @@ const Footer = () => {
               <QRContainer>
                 <QRImageCtn>
                   <OptimizedImage 
-                    src={qr_code} 
+                    src={qr_kontakt} 
                     alt="QR kód pre kontakt a rezerváciu termínu" 
                     width={120} 
                     height={120}

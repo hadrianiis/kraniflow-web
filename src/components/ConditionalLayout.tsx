@@ -11,7 +11,7 @@ const ConditionalLayout = ({ children }: ConditionalLayoutProps) => {
   const pathname = usePathname();
   
   // Stránky, ktoré NEPOTREBUJÚ Layout (navbar + footer)
-  const noLayoutPages = ['/contact'];
+  const noLayoutPages = ['/kontakt'];
   
   // Ak je aktuálna stránka v zozname stránok bez layoutu, vráť iba children
   if (noLayoutPages.includes(pathname)) {
