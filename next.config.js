@@ -79,6 +79,32 @@ const nextConfig = {
   // Enhanced headers for performance and security
   headers: async () => [
     {
+      source: '/sitemap.xml',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=3600, s-maxage=3600',
+        },
+        {
+          key: 'Content-Type',
+          value: 'application/xml',
+        },
+      ],
+    },
+    {
+      source: '/robots.txt',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=86400, s-maxage=86400',
+        },
+        {
+          key: 'Content-Type',
+          value: 'text/plain',
+        },
+      ],
+    },
+    {
       source: '/(.*)',
       headers: [
         {

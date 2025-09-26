@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E10098;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E10098;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- GraphQL Logo Background Circle -->
+  <circle cx="200" cy="200" r="180" fill="#E10098" opacity="0.1"/>
+  
+  <!-- GraphQL Logo Main Shape -->
+  <path d="M200 50 L350 200 L200 350 L50 200 Z" fill="none" stroke="#E10098" stroke-width="8"/>
+  
+  <!-- GraphQL Logo Inner Diamond -->
+  <path d="M200 100 L275 200 L200 300 L125 200 Z" fill="none" stroke="#E10098" stroke-width="6"/>
+  
+  <!-- GraphQL Logo Center -->
+  <circle cx="200" cy="200" r="25" fill="#E10098"/>
+  
+  <!-- GraphQL Text -->
+  <text x="200" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#E10098">GraphQL</text>
+</svg>

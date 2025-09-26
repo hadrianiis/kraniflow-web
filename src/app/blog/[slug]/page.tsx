@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import BlogPostWrapper from '@/components/UI/Blog/BlogPostWrapper';
 import { getBlogPost, getRelatedPosts } from '@/lib/blog';
+import { StructuredData } from '@/components/SEO';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -55,64 +57,24 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       };
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://kranioflow.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kranioflow.com';
     const canonicalUrl = `${baseUrl}/blog/${slug}`;
 
-    return {
+    return generateSEOMetadata({
       title: `${post.title} | KranioFlow Blog`,
       description: post.excerpt,
-      keywords: post.tags.join(', '),
-      authors: [{ name: post.author.name }],
-      creator: post.author.name,
-      publisher: 'KranioFlow',
-      alternates: {
-        canonical: canonicalUrl,
-      },
-      openGraph: {
-        title: post.title,
-        description: post.excerpt,
-        type: 'article',
-        url: canonicalUrl,
-        images: [
-          {
-            url: post.featuredImage.startsWith('http') 
-              ? post.featuredImage 
-              : `${baseUrl}${post.featuredImage}`,
-            width: 800,
-            height: 400,
-            alt: post.title,
-          },
-        ],
-        authors: [post.author.name],
-        publishedTime: post.publishedAt,
-        modifiedTime: post.updatedAt,
-        section: post.category,
-        tags: post.tags,
-        siteName: 'KranioFlow',
-        locale: 'sk_SK',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: post.title,
-        description: post.excerpt,
-        images: [post.featuredImage.startsWith('http') 
-          ? post.featuredImage 
-          : `${baseUrl}${post.featuredImage}`],
-        creator: '@kranioflow',
-      },
-      robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-          index: true,
-          follow: true,
-          'max-video-preview': -1,
-          'max-image-preview': 'large',
-          'max-snippet': -1,
-        },
-      },
-      category: 'health',
-    };
+      keywords: post.tags,
+      canonical: canonicalUrl,
+      ogImage: post.featuredImage.startsWith('http') 
+        ? post.featuredImage 
+        : `${baseUrl}${post.featuredImage}`,
+      ogType: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      author: post.author.name,
+      section: post.category,
+      tags: post.tags,
+    });
   } catch (error) {
     console.error('Error generating metadata:', error);
     return {
