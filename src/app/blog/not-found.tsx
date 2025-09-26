@@ -52,34 +52,11 @@ export default function BlogNotFound() {
         </div>
 
         <div className="border-t border-slate-200 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-6">
-            Možno vás zaujme
-          </h2>
+          
           
           <div className="grid gap-4 max-w-md mx-auto">
-            <Link 
-              href="/blog/ako-zacat-investovat-s-malym-kapitalom"
-              className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200 hover:-translate-y-1"
-            >
-              <h3 className="text-base font-semibold text-slate-800 mb-2">
-                Ako začať investovať s malým kapitálom
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Praktický návod pre začiatočníkov
-              </p>
-            </Link>
             
-            <Link 
-              href="/blog/financna-nezavislost-myty-a-realita"
-              className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200 hover:-translate-y-1"
-            >
-              <h3 className="text-base font-semibold text-slate-800 mb-2">
-                Finančná nezávislosť: Mýty a realita
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Rozbíjame najčastejšie mýty
-              </p>
-            </Link>
+        
           </div>
         </div>
       </div>
