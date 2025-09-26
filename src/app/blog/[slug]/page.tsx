@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import BlogPostWrapper from '@/components/UI/Blog/BlogPostWrapper';
 import { getBlogPost, getRelatedPosts } from '@/lib/blog';
-import { StructuredData } from '@/components/SEO';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 
 interface BlogPostPageProps {

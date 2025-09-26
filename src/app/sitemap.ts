@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/blog'
+import { getBlogPosts } from '@/lib/blog'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kranioflow.com'
@@ -48,10 +48,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = []
   
   try {
-    const posts = await getAllPosts()
-    blogPages = posts.map((post) => ({
+    const blogData = await getBlogPosts()
+    blogPages = blogData.posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.modified || post.date),
+      lastModified: new Date(post.updatedAt || post.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     }))
