@@ -143,7 +143,6 @@ export function generateStructuredData(config: SEOConfig & {
     title,
     description,
     canonical,
-    ogType,
     publishedTime,
     modifiedTime,
     author = 'Kranioflow',
